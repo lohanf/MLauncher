@@ -1,0 +1,8 @@
+What you need: Carbide 2.x, S60 SDKs (I am building with 3rd Edition MR, 3rd Edition FP2 V1.1, 5th Edition, v1.0)
+
+What you need to do:
+-in this folder there is a subfolder called "epoc32", containing 3 other subfolders. In each of these subfolders there is a header file called fll_sdk_version.h. Copy the fll_sdk_version.h corresponding to each SDK version to the epoc32/include folder of the SDK.
+-import the bld.inf into Carbide and create a new project. You can choose to build for all the SDKs mentioned above, or just some of them.
+
+To create the MLauncher.sis file, containing all the binaries for S60 3rd edition and its feature packs, and 5th edition: build the "phone release" configurations for all the SDKs mentioned above. Then run the "makesis.bat" file from the sis folder (you can run it from the command line).
+This is it. Enjoy!

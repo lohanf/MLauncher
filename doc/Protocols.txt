@@ -1,0 +1,61 @@
+Check for update from the web:
+
+1. Send request to http://website.com/MLauncher/version.xml
+   The User-Agent string: MLauncher V x.y
+2. Parse the incomming xml file
+3. If version is higher, ask the user for upgrade and download
+4. If no sis file present, ask the user for download
+5. If user approves, download the file to c:\private\E388D98A\MLauncher.sisx
+6. If upgrade, launch the Installer (does it work from that folder??)
+
+Check for update from BT phone:
+
+Sender: Send command to client BT: command number (1 byte) + message length (4 bytes) + message (version.xml) Command: GetVersion
+Recver: Receive 5 bytes: command + message length
+Recver: Receive the message. Parse the command. Parse the message.
+Recver: Send 5 bytes: command + message length. Then send the message (version.xml). Command: VersionFollows
+Sender: Receive 5 bytes: command + message length.
+Sender: Receive the message. Parse the command, parse the message.
+Zero message length means no sisx available for download.
+Sender: Figures out if it wants to download the sis from the peer. 
+        If yes, sends command (1 byte + 4 zero bytes) (the 4 zeros are the message length). Command: GetSISX
+        If no, it sends the "Done" command + 4 bytes
+Recver: Parses 5 bytes. Figures out it needs to send the sis file.
+Recver: Sends 5 bytes (command + sisx length) Command: SISXFollows
+Recver: Sends sisx
+Recver: Sends 5 bytes ("DoneSending" command + 4 checksum bytes)
+Sender: Receives all of the above.
+Sender: If checksum correct, sends the "Done" command + 4 zero bytes. If checksum not correct, sends again command + 4 zero bytes
+Recver: Receives the "Done" command + 4 zero bytes. ONLY AFTER IT RECEIVES THE DONE COMMAND IT CAN ASK FOR SOMETHING.
+Recver: if it wants the sis file, it sends the GetSISX command + 4 zero bites
+        if it does not want it, it sends the "Done" command and closes the connection
+Sender: Receives the "GetSISX command + 4 zero bytes
+Sender: Sends the SISFollows command+ sisx length + sisx
+Sender: Sends the DoneSending command + checksum
+Recver: Receives all these. If checksum correct, sends Done + 4 zeros + closes connection. If checksum incorrect, asks again.
+
+Functions:
+SendVersion, GetVersion, GetSISXFile, SendSISXFile, Done
+
+
+SendPlaylist:
+
+Sender: Send GetVersion
+Sender: GetSISXFile (if needed)
+Sender: send FileFollows+DoneSending
+Sender: -"-
+Sender: Sends Done
+Recver: can ask for sis if needed (GetSISXFile)
+Recver: Sends Done
+
+FileFollows protocol:
+Sender: command + 4 bytes message size
+Sender: message: xml (path + size + ?)
+Sender: file
+Sender: DoneSending + 4 bytes checksum
+Recver: send ReceivedOK or SendAgain
+
+Functions:
+SendFile, GetFile
+
+Commands: GetVersion, VersionFollows, GetSISX, SISXFollows, DoneSending, Done, FileFollows, ReceivedOK, SendAgain
