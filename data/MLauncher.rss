@@ -1,0 +1,2413 @@
+/*
+============================================================================
+ Name        : MLauncher.rss
+ Author      : Florin Lohan
+ Copyright   : Florin Lohan
+ Description : This file contains all the resources for the MLauncher.
+============================================================================
+*/
+//  RESOURCE IDENTIFIER
+NAME MLAU    // 4 letter ID
+
+
+//  INCLUDES
+#include <eikon.rh>
+#include <avkon.rh>
+#include <avkon.rsg>
+#include <appinfo.rh>
+#include <CommonDialogs.hrh> // Enumerations
+#include <CommonDialogs.rh> // Resource structures
+#include "MLauncher.hrh"
+
+//localization support
+#ifdef LANGUAGE_03
+#include "MLauncher.l03"
+#define LANG_INCLUDED
+#endif
+
+#ifdef LANGUAGE_04
+#include "MLauncher.l04"
+#define LANG_INCLUDED
+#endif
+
+#ifdef LANGUAGE_18
+#include "MLauncher.l18"
+#define LANG_INCLUDED
+#endif
+
+#ifdef LANGUAGE_42
+#include "MLauncher.l42"
+#define LANG_INCLUDED
+#endif
+
+#ifdef LANGUAGE_78
+#include "MLauncher.l78"
+#define LANG_INCLUDED
+#endif
+
+#ifdef LANGUAGE_83
+#include "MLauncher.l83"
+#define LANG_INCLUDED
+#endif
+
+#ifdef LANGUAGE_103
+#include "MLauncher.l103"
+#define LANG_INCLUDED
+#endif
+
+#ifndef LANG_INCLUDED
+//if no language was included, we use english/default
+#include "MLauncher.rls"
+//#include "preferences.rls"
+#endif
+
+#include <MLauncher.mbg> //toolbar icons
+#include "defs.h"
+
+#define KMaxFileName 256
+#define KOwnIconFile "\\resource\\apps\\MLauncher.mif"
+
+//  RESOURCE DEFINITIONS
+// -----------------------------------------------------------------------------
+//
+//    Define the resource file signature
+//    This resource should be empty.
+//
+// -----------------------------------------------------------------------------
+//
+RESOURCE RSS_SIGNATURE
+    {
+    }
+
+// -----------------------------------------------------------------------------
+//
+//    Default Document Name
+//
+// -----------------------------------------------------------------------------
+//
+RESOURCE TBUF r_default_document_name
+    {
+    buf="HEWB";
+    }
+
+// -----------------------------------------------------------------------------
+//
+//    Define default menu and CBA key.
+//
+// -----------------------------------------------------------------------------
+//
+RESOURCE EIK_APP_INFO
+    {
+    menubar = r_menubar_navi;
+    cba = r_softkeys_options_navi__select;
+    }
+
+
+// -----------------------------------------------------------------------------
+//
+//   r_menubar_navi
+//   Main menubar & menu
+//
+// -----------------------------------------------------------------------------
+//
+RESOURCE MENU_BAR r_menubar_navi
+{
+titles =
+    {
+    MENU_TITLE { menu_pane = r_menu_navi; }
+    };
+}
+
+RESOURCE MENU_PANE r_menu_navi
+{
+	items =
+	{
+			MENU_ITEM
+			{
+				command = ECommandSwitchToFFList;
+				txt = qtn_command_switchto_fflist;
+			},
+			MENU_ITEM
+			{
+				command = ECommandSwitchToPlaylists;
+				txt = qtn_command_switchto_playlists;
+			},
+			MENU_ITEM
+			{
+				command = ECommandSwitchToMusicPlayer;
+				txt = qtn_command_switchto_musicplayer;
+			},
+			MENU_ITEM
+			{
+				command = ECommandSwitchToFiletransfer;
+				txt = qtn_command_switchto_filetransfer;
+			},
+			MENU_ITEM
+			{
+				command = ECommandSwitchToStopwatch;
+				txt = qtn_command_switchto_stopwatch;
+			},
+			MENU_ITEM
+			{
+				command = ECommandSwitchToMyFiles;
+				txt = qtn_command_switchto_myfiles;
+			}
+	};
+}
+
+
+// -----------------------------------------------------------------------------
+//
+// Resources for the Views.
+//
+// -----------------------------------------------------------------------------
+//
+
+//TODO: This CBA resource should disappear after changing to MSK
+RESOURCE CBA r_softkeys_options_navi
+{
+    buttons=
+        {
+        AVKON_CBA_BUTTON
+            {
+				id=EAknSoftkeyOptions;
+				txt=qtn_options;
+            },
+	    AVKON_CBA_BUTTON
+            {
+	    	    id=ESoftkeyNavi;
+			    txt=qtn_text_softkey_navi;
+            }
+        };
+}
+
+RESOURCE CBA r_softkeys_options_navi__select
+{
+    buttons=
+        {
+        AVKON_CBA_BUTTON
+            {
+				id=EAknSoftkeyOptions;
+				txt=qtn_options;
+            },
+	    AVKON_CBA_BUTTON
+            {
+	    	    id=ESoftkeyNavi;
+			    txt=qtn_text_softkey_navi;
+            }
+#ifdef __MSK_ENABLED__
+            ,
+        AVKON_CBA_BUTTON
+        	{
+        	    id=3032; //EAknSoftkeyForwardKeyEvent;
+        	    //id=EAknSoftkeyMark;
+        	    txt=qtn_msk_select;
+        	}
+#endif
+        };
+}
+
+
+
+/*
+RESOURCE CBA r_softkeys_options_exit__select
+{
+    buttons=
+        {
+        AVKON_CBA_BUTTON
+            {
+				id=EAknSoftkeyOptions;
+				txt=qtn_options;
+            },
+	    AVKON_CBA_BUTTON
+            {
+	    	    id=EAknSoftkeyExit;
+			    txt=qtn_exit;
+            }
+#ifdef __MSK_ENABLED__
+            ,
+        AVKON_CBA_BUTTON
+        	{
+        	    id=3032; //EAknSoftkeyForwardKeyEvent;
+        	    //id=EAknSoftkeyMark;
+        	    txt=qtn_msk_select;
+        	}
+#endif
+        };
+}
+*/
+
+#ifdef __MSK_ENABLED__
+RESOURCE AVKON_CBA_BUTTON r_msk_context
+{
+	id=3029; //EAknSoftkeyContextOptions;
+	txt=text_softkey_option;
+}
+#endif
+
+// -----------------------------------------------------------------------------
+//
+// Resources for the List View.
+//
+// -----------------------------------------------------------------------------
+//
+RESOURCE AVKON_VIEW r_list_view
+{
+	menubar = r_menubar_list;
+    cba = r_softkeys_options_navi__select;
+    //cba = R_AVKON_SOFTKEYS_OPTIONS_EXIT__SELECT;
+	//cba = r_softkeys_options_exit__select;
+#ifdef __TOUCH_ENABLED__
+	toolbar = r_list_view_toolbar;
+#endif
+}
+
+#ifdef __TOUCH_ENABLED__
+RESOURCE AVKON_TOOLBAR r_list_view_toolbar
+{
+	flags = KAknToolbarFixed;
+	items =
+	{
+		TBAR_CTRL
+		{
+			type = EAknCtButton;
+			id = ECommandFilesUp;
+			control = AVKON_BUTTON
+			{
+				flags = 0;
+				states =
+				{
+					AVKON_BUTTON_STATE
+					{
+						//txt = "Up";
+						helptxt = qtn_gotoparent_helptext;
+						bmpfile = KOwnIconFile;
+						bmpid=EMbmMlauncherOutof_folder;
+						bmpmask=EMbmMlauncherOutof_folder_mask;
+						/*
+						bmpfile = "Something.mif";
+						bmpid=0;
+						bmpmask=0;
+						dim_bmpid=0;
+						dim_bmpmask;
+						press_bmpid;
+						press_bmpmask;
+						extension=r_extension;
+						*/
+					}
+					
+					
+				};
+			};
+		},
+		TBAR_CTRL
+		{
+			type = EAknCtButton;
+			id = ECommandFilesPlayMenu;
+			control = AVKON_BUTTON
+			{
+				flags = 0;
+				states =
+				{
+					AVKON_BUTTON_STATE
+					{
+						//txt = "Play";
+						helptxt = qtn_play_helptext;
+						bmpfile = KOwnIconFile;
+						bmpid=EMbmMlauncherPlay_white;
+						bmpmask=EMbmMlauncherPlay_white_mask;
+					}
+				};
+			};
+		},
+		TBAR_CTRL
+		{
+			type = EAknCtButton;
+			id = ECommandFilesShufflePlayMenu;
+			control = AVKON_BUTTON
+			{
+				flags = 0;
+				states =
+				{
+					AVKON_BUTTON_STATE
+					{
+						helptxt = qtn_shufleandplay_helptext;
+						bmpfile = KOwnIconFile;
+						bmpid=EMbmMlauncherShuffleplay;
+						bmpmask=EMbmMlauncherShuffleplay_mask;
+					}
+				};
+			};
+		},
+		TBAR_CTRL
+		{
+			type = EAknCtButton;
+			id = ECommandFilesDown;
+			control = AVKON_BUTTON
+					{
+				flags = 0;
+				states =
+				{
+					AVKON_BUTTON_STATE
+					{
+						//txt = "Subf";
+						helptxt = qtn_gointofolder_helptext;
+						bmpfile = KOwnIconFile;
+						bmpid=EMbmMlauncherInto_folder;
+						bmpmask=EMbmMlauncherInto_folder_mask;
+					}		
+				};
+			};
+		},
+		TBAR_CTRL
+		{
+			type = EAknCtButton;
+			id = ECommandFilesPreview;
+			control = AVKON_BUTTON
+					{
+				flags = 0;
+				states =
+				{
+					AVKON_BUTTON_STATE
+					{
+						//txt = "Subf";
+						helptxt = qtn_playsong_helptext;
+						bmpfile = KOwnIconFile;
+						bmpid=EMbmMlauncherPreview;
+						bmpmask=EMbmMlauncherPreview_mask;
+					}		
+				};
+			};
+		}
+	};
+}
+#endif 
+
+RESOURCE MENU_BAR r_menubar_list
+{
+titles =
+    {
+    MENU_TITLE { menu_pane = r_menu_list; }
+    };
+}
+
+RESOURCE MENU_PANE r_menu_list
+    {
+    items =
+        {
+        /*MENU_ITEM
+            {
+            command = ECommandTest;
+            txt = "Test (Panic App)";
+            },*/
+        MENU_ITEM
+                {
+                command = ECommandPlay;
+                txt = qtn_command_play;
+                },
+        MENU_ITEM
+                {
+                command = ECommandShufflePlay;
+                txt = qtn_command_shuffle_play;
+                },
+        MENU_ITEM
+                {
+                command = ECommandFind;
+                txt = qtn_command_find;
+                },
+        MENU_ITEM
+                {
+                command = ECommandSendPlaylist;
+                txt = qtn_command_send_playlist;
+                cascade = r_menu_send_playlist;
+                },
+        MENU_ITEM
+                {
+                command = ECommandFiles;
+                txt = qtn_command_files;
+                cascade = r_menu_files;
+                },
+        MENU_ITEM
+                {
+                command = ECommandApplication;
+                txt = qtn_command_application;
+                cascade = r_menu_application;
+                },
+        MENU_ITEM
+                {
+                command = ECommandPreferences;
+                txt = qtn_command_preferences;
+                cascade = r_menu_preferences;
+                },
+        MENU_ITEM
+                {
+                command = EAknSoftkeyExit;
+                txt = qtn_exit;
+                },
+        MENU_ITEM
+                {
+                command = ECommandMoveHere;
+                txt = qtn_command_move_here;
+                },
+        MENU_ITEM
+                {
+                command = ECommandCancelMove;
+                txt = qtn_command_cancel_move;
+                },
+        MENU_ITEM
+                {
+                command = ECommandNewFolder;
+                txt = qtn_command_new_folder;
+                }
+        };
+    }
+
+RESOURCE MENU_PANE r_menu_files
+{
+items =
+    {
+    MENU_ITEM
+        {
+        command = ECommandSelectAll;
+        txt = qtn_command_selectall;
+        },
+    MENU_ITEM
+        {
+        command = ECommandUnselectAll;
+        txt = qtn_command_unselectall;
+        },
+        /* NOT IMPLEMENTED YET
+    MENU_ITEM
+        {
+        command = ECommandSaveSelection;
+        txt = qtn_command_save_selection;
+        },*/
+    MENU_ITEM
+        {
+        command = ECommandDelete;
+        txt = qtn_command_delete;
+        },
+    MENU_ITEM
+        {
+        command = ECommandRename;
+        txt = qtn_command_rename;
+        },
+    MENU_ITEM
+        {
+        command = ECommandMove;
+        txt = qtn_command_move;
+        },
+    MENU_ITEM
+        {
+        command = ECommandNewFolder;
+        txt = qtn_command_new_folder;
+        }
+    };
+}
+
+RESOURCE MENU_PANE r_menu_preferences
+    {
+    items =
+        {
+        MENU_ITEM
+                {
+                command = ECommandPreferencesStartingDirs;
+                txt = qtn_command_starting_dirs;
+                },
+                /*
+        MENU_ITEM
+                {
+                command = ECommandPreferencesUseMetadata;
+                txt = qtn_command_use_metadata;
+                },
+                
+        MENU_ITEM
+                {
+                command = ECommandPreferencesKeepSelection;
+                txt = qtn_command_keepselection;
+                },*/
+        MENU_ITEM
+                {
+                command = ECommandPreferencesLaunchEmbedded;
+                txt = qtn_command_launchembedded;
+                },
+        MENU_ITEM
+                {
+                command = ECommandPreferencesUsePartialCheck;
+                txt = qtn_command_usepartialcheck;
+                },
+        MENU_ITEM
+                {
+                command = ECommandPreferencesUseInternalPlayer;
+                txt = qtn_command_useinternalplayer;
+                },
+        MENU_ITEM
+                {
+                command = ECommandPreferencesRedKey;
+                txt = qtn_command_redkey;
+                },
+#ifdef __TOUCH_ENABLED__
+        MENU_ITEM
+                {
+                command = ECommandPreferencesPlayButton;
+                txt = qtn_command_playbutton;
+                },
+#endif
+        MENU_ITEM
+                {
+                command = ECommandPreferencesDelete;
+                txt = qtn_command_deletepreferences;
+                },
+        MENU_ITEM
+                {
+                command = ECommandPreferencesEnableLog;
+                txt = qtn_command_enable_log;
+                },
+        MENU_ITEM
+                {
+                command = ECommandPreferencesDisableLog;
+                txt = qtn_command_disable_log;
+                }
+        };
+    }
+
+RESOURCE MENU_PANE r_menu_application
+{
+items =
+{
+    MENU_ITEM
+            {
+            command = ECommandCountdownTimer;
+            txt = qtn_command_countdown_timer;
+            },
+	MENU_ITEM
+            {
+            command = ECommandSendApplicationBTDiscover;
+            txt = qtn_command_send_app_bt_discover;
+            },
+    MENU_ITEM
+            {
+            command = ECommandSendApplicationSMS;
+            txt = qtn_command_send_app_sms;
+            },
+    MENU_ITEM
+            {
+            command = ECommandUploadCrashLogFile;
+            txt = qtn_command_upload_crash_logfile;
+            },
+    MENU_ITEM
+            {
+            command = ECommandCheckUpdates;
+            txt = qtn_command_check4updates;
+            },
+    MENU_ITEM
+            {
+            command = ECommandAbout;
+            txt = qtn_command_about;
+            }
+    };
+}
+
+
+RESOURCE MENU_PANE r_menu_send_playlist
+{
+items =
+    {
+    MENU_ITEM
+            {
+            command = ECommandSendPlaylistBTDiscover;
+            txt = qtn_command_send_playlist_bt_discover;
+            }
+
+    ,
+    MENU_ITEM
+            {
+            command = ECommandSendPlaylistIP;
+            txt = qtn_command_send_playlist_ip;
+            }
+
+    };
+}
+
+
+// -----------------------------------------------------------------------------
+//
+// Resources for the Filetransfer View.
+//
+// -----------------------------------------------------------------------------
+//
+RESOURCE AVKON_VIEW r_filetransfer_view
+{
+	menubar = r_menubar_filetransfer;
+    cba = r_softkeys_options_navi; //TODO: MSK
+}
+
+RESOURCE MENU_BAR r_menubar_filetransfer
+{
+titles =
+    {
+    MENU_TITLE { menu_pane = r_menu_filetransfer; }
+    };
+}
+
+RESOURCE MENU_PANE r_menu_filetransfer
+{
+items =
+    {
+    MENU_ITEM
+            {
+            command = ECommandCancelTransfer;
+            txt = qtn_command_cancel_transfer;
+            },
+    MENU_ITEM
+        {
+        command = EAknSoftkeyExit;
+        txt = qtn_exit;
+        }
+    };
+}
+
+// -----------------------------------------------------------------------------
+//
+// Resources for the Playlists View.
+//
+// -----------------------------------------------------------------------------
+//
+RESOURCE AVKON_VIEW r_playlists_view
+{
+	menubar = r_menubar_playlists;
+    cba = r_softkeys_options_navi; //TODO: MSK
+}
+
+RESOURCE MENU_BAR r_menubar_playlists
+{
+titles =
+    {
+    MENU_TITLE { menu_pane = r_menu_playlists; }
+    };
+}
+
+RESOURCE MENU_PANE r_menu_playlists
+{
+items =
+    {
+    MENU_ITEM
+        {
+        command = ECommandPlaylistPlay;
+        txt = qtn_command_playlist_play;
+        },
+    MENU_ITEM
+        {
+        command = ECommandPlaylistRename;
+        txt = qtn_command_playlist_rename;
+        },
+        MENU_ITEM
+        {
+        command = ECommandPlaylistDelete;
+        txt = qtn_command_playlist_delete;
+        },
+    MENU_ITEM
+        {
+        command = EAknSoftkeyExit;
+        txt = qtn_exit;
+        }
+    };
+}
+
+// -----------------------------------------------------------------------------
+//
+// Resources for the MyFiles View.
+//
+// -----------------------------------------------------------------------------
+//
+RESOURCE AVKON_VIEW r_myfiles_view
+{
+	menubar = r_menubar_myfiles;
+    cba = r_softkeys_options_navi; //TODO: MSK
+}
+
+RESOURCE MENU_BAR r_menubar_myfiles
+{
+titles =
+    {
+    MENU_TITLE { menu_pane = r_menu_myfiles; }
+    };
+}
+
+RESOURCE MENU_PANE r_menu_myfiles
+{
+items =
+    {
+    MENU_ITEM
+        {
+        command = EAknSoftkeyExit;
+        txt = qtn_exit;
+        }
+    };
+}
+
+
+// -----------------------------------------------------------------------------
+//
+// Resources for the Sources View.
+//
+// -----------------------------------------------------------------------------
+//
+RESOURCE CBA r_softkeys_options_back__use  //&ignore
+{
+    buttons=
+        {
+        AVKON_CBA_BUTTON
+            {
+				id=EAknSoftkeyOptions;
+				txt=qtn_options;
+            },
+	    AVKON_CBA_BUTTON
+            {
+	    	    id=EAknSoftkeyBack;
+			    txt=qtn_back;
+            }
+#ifdef __MSK_ENABLED__
+            ,
+        AVKON_CBA_BUTTON
+        	{
+        	    id=3032; //EAknSoftkeyForwardKeyEvent;
+        	    txt=qtn_msk_ignore;
+        	}
+#endif
+        };
+}
+
+RESOURCE AVKON_VIEW r_sources_view
+{
+	menubar = r_menubar_sources;
+    cba = r_softkeys_options_back__use;
+    //cba = R_AVKON_SOFTKEYS_OPTIONS_BACK;
+}
+
+RESOURCE MENU_BAR r_menubar_sources
+{
+titles =
+    {
+    MENU_TITLE { menu_pane = r_menu_sources; }
+    };
+}
+
+RESOURCE MENU_PANE r_menu_sources
+{
+	items =
+	{
+			MENU_ITEM
+			{
+				command = ECommandSourceToAudioBook;
+				txt = qtn_command_source_to_audiobooks;
+			},
+			MENU_ITEM
+			{
+				command = ECommandSourceToMusic;
+				txt = qtn_command_source_to_music;
+			},
+			MENU_ITEM
+			{
+				command = ECommandDeleteSource;
+				txt = qtn_command_delete_source;
+			},
+			MENU_ITEM
+			{
+				command = ECommandAddSource;
+				txt = qtn_command_add_source;
+			},
+			MENU_ITEM
+			{
+				command = ECommandDeleteAllSources;
+				txt = qtn_command_delete_all_sources;
+			},
+			MENU_ITEM
+			{
+				command = EAknSoftkeyExit;
+				txt = qtn_exit;
+			}
+	};
+}
+
+
+// -----------------------------------------------------------------------------
+//
+// Resources for the Music Player View.
+//
+// -----------------------------------------------------------------------------
+//
+RESOURCE CBA r_softkeys_options_navi__pause  //&play
+{
+    buttons=
+        {
+        AVKON_CBA_BUTTON
+            {
+				id=EAknSoftkeyOptions;
+				txt=qtn_options;
+            },
+	    AVKON_CBA_BUTTON
+            {
+            	id=ESoftkeyNavi;
+            	txt=qtn_text_softkey_navi;
+            }
+#ifdef __MSK_ENABLED__
+            ,
+        AVKON_CBA_BUTTON
+        	{
+        	    id=3032; //EAknSoftkeyForwardKeyEvent;
+        	    txt=qtn_msk_pause;
+        	}
+#endif
+        };
+}
+
+RESOURCE CBA r_softkeys_options_back__pause  //&play
+{
+    buttons=
+        {
+        AVKON_CBA_BUTTON
+            {
+				id=EAknSoftkeyOptions;
+				txt=qtn_options;
+            },
+	    AVKON_CBA_BUTTON
+            {
+            	id=EAknSoftkeyBack;
+            	txt=qtn_back;
+            }
+#ifdef __MSK_ENABLED__
+            ,
+        AVKON_CBA_BUTTON
+        	{
+        	    id=3032; //EAknSoftkeyForwardKeyEvent;
+        	    txt=qtn_msk_pause;
+        	}
+#endif
+        };
+}
+
+RESOURCE AVKON_VIEW r_musicplayer_view_navi
+{
+	menubar = r_menubar_musicplayer;
+#ifndef __TOUCH_ENABLED__
+    cba = r_softkeys_options_navi__pause;
+#endif
+}
+
+RESOURCE MENU_BAR r_menubar_musicplayer
+{
+titles =
+    {
+    MENU_TITLE { menu_pane = r_menu_musicplayer; }
+    };
+}
+
+RESOURCE MENU_PANE r_menu_musicplayer
+{
+items =
+    {
+    MENU_ITEM
+    {
+    	command = ECommandMusicPlayerStop;
+    	txt = qtn_command_stop;
+    },
+    MENU_ITEM
+    {
+    	command = ECommandMusicPlayerPlaylist;
+    	txt = qtn_command_music_player_playlist;
+    	cascade = r_menu_music_player_playlist;
+    },
+    MENU_ITEM
+    {
+    	command = ECommandMusicPlayerLoop;
+    	txt = qtn_command_music_player_loop;
+    	cascade = r_menu_music_player_loop;
+    },
+    MENU_ITEM
+    {
+    	command = ECommandMusicPlayerAudioSettings;
+    	txt = qtn_command_music_player_audio_settings;
+    	cascade = r_menu_audio_settings;
+    },
+    MENU_ITEM
+    {
+    	command = ECommandMusicPlayerPreferences;
+    	txt = qtn_command_preferences;
+    	cascade = r_menu_music_player_preferences;
+    },
+    MENU_ITEM
+    {
+    	command = ECommandMusicPlayerHelp;
+    	txt = qtn_command_help;
+    	cascade = r_menu_music_player_help;
+    },
+    MENU_ITEM
+    {
+    	command = EAknSoftkeyExit;
+    	txt = qtn_exit;
+    }
+    };
+}
+
+RESOURCE MENU_PANE r_menu_music_player_help
+{
+	items =
+	{
+		MENU_ITEM
+		{
+			command = ECommandMusicPlayerHelpHowTo;
+			txt = qtn_command_music_player_help_howtouse;
+		},
+		MENU_ITEM
+		{
+			command = ECommandMusicPlayerHelpAlbumArt;
+			txt = qtn_command_music_player_help_albumart;
+		}
+	};
+}
+
+RESOURCE MENU_PANE r_menu_audio_settings
+{
+	items =
+	{
+		MENU_ITEM
+		{
+			command = ECommandAudioSettingsEqualizerAndEffects;
+			txt = qtn_command_music_player_equalizer_and_effects;
+		},
+		MENU_ITEM
+		{
+			command = ECommandMusicPlayerFmTx;
+			txt = qtn_command_music_player_fmtx;
+			//flags = EEikMenuItemCheckBox; -> there is no (known to me) way to tell if the FmTx is on or off
+		},
+		MENU_ITEM
+		{
+			command = ECommandMusicPlayerAudioSettingsCrossfading;
+			txt = qtn_command_music_player_preferences_crossfading;
+			flags = EEikMenuItemCheckBox;
+		}
+	};
+}
+
+RESOURCE MENU_PANE r_menu_music_player_preferences
+{
+	items =
+	{
+		MENU_ITEM
+		{
+			command = ECommandMusicPlayerPreferencesButtonsInsteadOfDrag;
+			txt = qtn_command_music_player_preferences_buttonsdrag;
+		},
+		MENU_ITEM
+		{
+			command = ECommandMusicPlayerPreferencesCoverHintFiles;
+			txt = qtn_command_music_player_preferences_coverhintfiles;
+		} 
+	};
+}
+
+RESOURCE MENU_PANE r_menu_music_player_loop
+{
+	items =
+	{
+			MENU_ITEM
+			{
+				command = ECommandMusicPlayerLoopOff;
+				txt = qtn_command_music_player_loop_off;
+				flags = EEikMenuItemRadioStart;
+			},
+			MENU_ITEM
+			{
+				command = ECommandMusicPlayerLoopPlaylist;
+				txt = qtn_command_music_player_loop_playlist;
+			},
+			MENU_ITEM
+			{
+				command = ECommandMusicPlayerLoopSong;
+				txt = qtn_command_music_player_loop_song;
+				flags = EEikMenuItemRadioEnd;
+			} 
+	};
+}
+
+RESOURCE MENU_PANE r_menu_music_player_playlist
+{
+	items =
+	{
+		MENU_ITEM
+		{
+			command = ECommandMusicPlayerPlaylistRemoveCurrentItem;
+			txt = qtn_command_music_player_playlist_remove_current_item;
+		},
+		MENU_ITEM
+		{
+			command = ECommandMusicPlayerPlaylistReshuffleAll;
+			txt = qtn_command_music_player_playlist_reshuffle_all;
+		},
+		MENU_ITEM
+		{
+			command = ECommandMusicPlayerPlaylistReshuffleRemaining;
+			txt = qtn_command_music_player_playlist_reshuffle_remaining;
+		}
+	};
+}
+
+RESOURCE MENU_PANE r_menu_colored_theme
+{
+	items =
+	{
+	MENU_ITEM
+	{
+		command = ECommandColorSchemes;
+		txt = qtn_command_color_schemes;
+		cascade = r_menu_color_schemes;
+	}
+	};
+}
+
+RESOURCE MENU_PANE r_menu_color_schemes
+{
+items =
+    {
+    MENU_ITEM
+    {
+    	command = ECommandThemeMatchAlbumArt;
+    	txt = qtn_command_match_album_art;
+    	flags = EEikMenuItemRadioStart;
+    },
+    MENU_ITEM
+    {
+    	command = ECommandThemeBlackAndGreen;
+    	txt = qtn_command_black_and_green;
+    },
+    MENU_ITEM
+    {
+    	command = ECommandThemeBlackAndBlue;
+    	txt = qtn_command_black_and_blue;
+    },
+    MENU_ITEM
+    {
+    	command = ECommandThemeBlackAndOrange;
+    	txt = qtn_command_black_and_orange;
+    },
+    MENU_ITEM
+    {
+    	command = ECommandThemeBlackAndRed;
+    	txt = qtn_command_black_and_red;
+    },
+    MENU_ITEM
+    {
+    	command = ECommandThemeBlackAndViolet;
+    	txt = qtn_command_black_and_violet;
+    },
+    MENU_ITEM
+    {
+    	command = ECommandThemeWhiteAndGreen;
+    	txt = qtn_command_white_and_green;
+    },
+    MENU_ITEM
+    {
+    	command = ECommandThemeWhiteAndBlue;
+    	txt = qtn_command_white_and_blue;
+    },
+    MENU_ITEM
+    {
+    	command = ECommandThemeWhiteAndOrange;
+    	txt = qtn_command_white_and_orange;
+    },
+    MENU_ITEM
+    {
+    	command = ECommandThemeWhiteAndRed;
+    	txt = qtn_command_white_and_red;
+    },
+    MENU_ITEM
+    {
+    	command = ECommandThemeWhiteAndViolet;
+    	txt = qtn_command_white_and_violet;
+		flags = EEikMenuItemRadioEnd;
+    }
+    };
+}
+
+#ifdef __TOUCH_ENABLED__
+/* not needed/used any more
+RESOURCE AVKON_TOOLBAR r_music_player_nhdl_toolbar
+{
+	flags = KAknToolbarFixed;
+	items =
+	{
+		TBAR_CTRL
+		{
+			type = EAknCtButton;
+			id = ECommandMusicPlayerNext;
+			control = AVKON_BUTTON
+			{
+				flags = KAknButtonKeyRepeat;
+				states =
+				{
+					AVKON_BUTTON_STATE
+					{
+						txt = "Next";
+						helptxt = "Jump to next song";
+					}
+				};
+			};
+		},
+		TBAR_CTRL
+		{
+			type = EAknCtButton;
+			id = ECommandMusicPlayerPlayPause;
+			control = AVKON_BUTTON
+			{
+				flags = 0;
+				states =
+				{
+					AVKON_BUTTON_STATE
+					{
+						//txt = "Play";
+						helptxt = "Play/Pause";
+						bmpfile = KOwnIconFile;
+						bmpid=EMbmMlauncherPlay;
+						bmpmask=EMbmMlauncherPlay_mask;
+					}
+				};
+			};
+		},
+		TBAR_CTRL
+			{
+			type = EAknCtButton;
+			id = ECommandMusicPlayerPrev;
+			control = AVKON_BUTTON
+			{
+				flags = KAknButtonKeyRepeat;
+				states =
+				{
+					AVKON_BUTTON_STATE
+					{
+						txt = "Prev";
+						helptxt = "Jump to previous song";
+					}
+				};
+			};
+		}
+	};
+} */
+#endif
+// -----------------------------------------------------------------------------
+//
+// Resources for the Stopwatch View.
+//
+// -----------------------------------------------------------------------------
+//
+RESOURCE AVKON_VIEW r_stopwatch_view
+{
+    menubar = r_menubar_stopwatch;
+    cba = r_softkeys_options_navi; //TODO: MSK
+}
+
+RESOURCE MENU_BAR r_menubar_stopwatch
+{
+titles =
+    {
+    MENU_TITLE { menu_pane = r_menu_stopwatch; }
+    };
+}
+
+RESOURCE MENU_PANE r_menu_stopwatch
+{
+items =
+    {
+    MENU_ITEM
+            {
+            command = ECommandStopAlarm;
+            txt = qtn_command_stop_alarm;
+            },
+    MENU_ITEM
+            {
+            command = ECommandStartCountdown;
+            txt = qtn_command_start_countdown;
+            },
+    MENU_ITEM
+            {
+            command = ECommandCountdownSettings;
+            txt = qtn_command_countdown_settings;
+            },
+    MENU_ITEM
+            {
+            command = ECommandExitCountdown;
+            txt = qtn_command_exit_countdown;
+            },
+    MENU_ITEM
+            {
+            command = ECommandSwitchToFFList;
+            txt = qtn_command_switchto_list;
+            },
+    MENU_ITEM
+        {
+        command = EAknSoftkeyExit;
+        txt = qtn_exit;
+        }
+    };
+}
+
+
+RESOURCE DIALOG r_stopwatch_form_dialog
+    {
+    flags = EEikDialogFlagNoBorder | EEikDialogFlagNoDrag  |
+            EEikDialogFlagNoTitleBar | EEikDialogFlagFillAppClientRect |
+            EEikDialogFlagCbaButtons | EEikDialogFlagWait;
+    buttons = R_AVKON_SOFTKEYS_OK_CANCEL;
+    form = r_stopwatch_form;
+    }
+
+RESOURCE FORM r_stopwatch_form
+    {
+    flags = EEikFormUseDoubleSpacedFormat | EEikFormEditModeOnly;
+    items =
+        {
+        DLG_LINE
+            {
+            type = EEikCtDurationEditor;
+            prompt = "DurationX";
+            id = EStopwatchSettingDuration;
+            itemflags = EEikDlgItemTakesEnterKey;
+            control = DURATION_EDITOR
+                {
+                minDuration = DURATION { seconds = 1; };
+                maxDuration = DURATION { seconds = 36000; };
+                flags = 0;
+                };
+            },
+
+        DLG_LINE
+            {
+            type = EAknCtPopupFieldText;
+            prompt = "PlayX";
+            id = EStopwatchSettingPlayWhen;
+            itemflags = EEikDlgItemTakesEnterKey;
+            control = POPUP_FIELD_TEXT
+                {
+                textarray = r_stopwatch_play_when_items;
+                popupfield = POPUP_FIELD {};
+                active = 0;
+                };
+            },
+        DLG_LINE
+            {
+            type = EAknCtPopupFieldText;
+            prompt = "PlayX";
+            id = EStopwatchSettingPlayWhat;
+            itemflags = EEikDlgItemTakesEnterKey;
+            control = POPUP_FIELD_TEXT
+                {
+                textarray = r_stopwatch_play_what_items;
+                popupfield = POPUP_FIELD {};
+                active = 0;
+                };
+            }
+        };
+    }
+RESOURCE ARRAY r_stopwatch_play_when_items
+    {
+    items =
+        {
+        LBUF { txt = "At countdownX"; },
+        LBUF { txt = "Until countdownX"; }
+        };
+    }
+RESOURCE ARRAY r_stopwatch_play_what_items
+    {
+    items =
+        {
+        LBUF { txt = "Selected songsX"; },
+        LBUF { txt = "Alarm tuneX"; }
+        };
+    }
+
+RESOURCE TBUF r_countdown_timer_elapsed {buf=qtn_countdown_timer_elapsed; }
+RESOURCE TBUF r_countdown_timer_remaining {buf=qtn_countdown_timer_remaining; }
+/*
+RESOURCE AVKON_SETTING_ITEM_LIST r_stopwatch_settings
+    {
+    title = "Settings";
+    items =
+        {
+        AVKON_SETTING_ITEM
+            {
+            identifier = EStopwatchSettingDuration; //time
+            setting_page_resource = r_stopwatch_duration_page;
+            name = "Time";
+            },
+        AVKON_SETTING_ITEM
+            {
+            identifier = EStopwatchSettingPlayWhen; //binary
+            setting_page_resource = r_stopwatch_play_when_page;
+            associated_resource = r_stopwatch_play_when_texts;
+            name = "Binary item";
+            },
+        AVKON_SETTING_ITEM
+            {
+            identifier = EStopwatchSettingPlayWhat; //radio
+            setting_page_resource = r_stopwatch_play_what_page;
+            associated_resource = r_stopwatch_play_what_texts;        // gives available options
+            name = "Radio Buttons";
+            }
+        };
+    }
+
+//pages
+RESOURCE AVKON_SETTING_PAGE r_stopwatch_duration_page
+    {
+    label="Time";
+    type = EEikCtDurationEditor;
+    editor_resource_id = r_stopwatch_duration;
+    }
+
+RESOURCE AVKON_SETTING_PAGE r_stopwatch_play_when_page
+    {
+    label="Binary Options";
+    type = EAknCtPopupSettingList;
+    editor_resource_id = r_stopwatch_play_when;
+    hint_text="hint text";
+    }
+
+RESOURCE AVKON_SETTING_PAGE r_stopwatch_play_what_page
+    {
+    label="Radio Buttons";
+    type = EAknCtPopupSettingList;
+    editor_resource_id = r_stopwatch_play_what;
+    hint_text="hint text";
+    }
+
+//editor pages
+RESOURCE TIME_EDITOR r_stopwatch_duration
+    {
+    minTime = TIME
+        {
+        second = 1;
+        minute = 0;
+        hour = 0;
+        };
+    maxTime = TIME
+        {
+        second = 0;
+        minute = 0;
+        hour = 240;
+        };
+    }
+RESOURCE POPUP_SETTING_LIST r_stopwatch_play_when
+    {
+    // no definitions required - values obtained from
+    // associated_resource of owning AVKON_SETTING_ITEM_LIST
+    }
+RESOURCE POPUP_SETTING_LIST r_stopwatch_play_what
+    {
+    }
+
+//associated resources
+RESOURCE AVKON_POPUP_SETTING_TEXTS r_stopwatch_play_when_texts
+    {
+    setting_texts_resource = r_stopwatch_play_when_settingitem_texts;
+    }
+
+RESOURCE ARRAY r_stopwatch_play_when_settingitem_texts
+    {
+    items =
+        {
+        AVKON_ENUMERATED_TEXT
+            {
+            value = 0;
+            text = "Until Countdown";
+            },
+        AVKON_ENUMERATED_TEXT
+            {
+            value = 1;
+            text = "At Countdown";
+            }
+        };
+    }
+
+RESOURCE AVKON_POPUP_SETTING_TEXTS r_stopwatch_play_what_texts
+    {
+    setting_texts_resource = r_stopwatch_play_what_item_texts;
+    popped_up_texts_resource = r_stopwatch_play_what_editor_texts;
+    }
+
+RESOURCE ARRAY r_stopwatch_play_what_item_texts
+    {
+    items =
+        {
+        AVKON_ENUMERATED_TEXT
+            {
+            value = 0;
+            text = "Selected music";
+            },
+        AVKON_ENUMERATED_TEXT
+            {
+            value = 1;
+            text = "Alarm";
+            }
+        };
+    }
+
+RESOURCE ARRAY r_stopwatch_play_what_editor_texts
+    {
+    items =
+        {
+        LBUF { txt = "Selected music";   },
+        LBUF { txt = "Alarm";   }
+        };
+    }
+    */
+
+//MSK Labels
+RESOURCE TBUF32 r_msk_select {buf=qtn_msk_select; }
+RESOURCE TBUF32 r_msk_unselect {buf=qtn_msk_unselect; }
+RESOURCE TBUF32 r_msk_use {buf=qtn_msk_use; }
+RESOURCE TBUF32 r_msk_ignore {buf=qtn_msk_ignore; }
+RESOURCE TBUF32 r_msk_play {buf=qtn_msk_play; }
+RESOURCE TBUF32 r_msk_pause {buf=qtn_msk_pause; }
+
+//other labels
+RESOURCE TBUF32 r_label_options {buf=qtn_options;}
+RESOURCE TBUF32 r_label_show {buf=qtn_text_softkey_navi;}
+RESOURCE TBUF32 r_label_back {buf=qtn_back;}
+//
+RESOURCE TBUF32 r_list_entry_equalizer_off {buf=qtn_equalizer_off;}
+RESOURCE TBUF32 r_list_entry_presets {buf=qtn_presets;}
+RESOURCE TBUF32 r_list_entry_effects {buf=qtn_effects;}
+RESOURCE TBUF32 r_list_entry_effect_bass_boost {buf=qtn_effect_bass_boost;}
+RESOURCE TBUF32 r_list_entry_effect_stereo_widening {buf=qtn_effect_stereo_widening;}
+RESOURCE TBUF32 r_list_entry_effect_loudness {buf=qtn_effect_loudness;}
+
+// -----------------------------------------------------------------------------
+//
+// Resources for messages.
+//
+// -----------------------------------------------------------------------------
+//
+RESOURCE TBUF r_playlist_exported_successfully { buf=qtn_playlist_exported_successfully; }
+RESOURCE TBUF r_playlist_export_failed { buf=qtn_playlist_export_failed; }
+
+RESOURCE TBUF r_new_folder_error { buf=qtn_new_folder_error; }
+RESOURCE TBUF r_caption_string { buf=qtn_caption_string; }
+RESOURCE TBUF r_user_agent { buf=qtn_user_agent; }
+RESOURCE TBUF r_cannot_save_startingdir { buf=qtn_cannot_save_startingdir; }
+
+//data query strings
+RESOURCE TBUF r_data_query_playlist_prompt {buf=qtn_playlist_filename_prompt; }
+RESOURCE TBUF r_data_query_startingdir_prompt {buf=qtn_startingdir_prompt; }
+RESOURCE TBUF r_data_query_rename_prompt {buf=qtn_rename_prompt; }
+RESOURCE TBUF r_data_query_new_folder_prompt {buf=qtn_new_folder_prompt; }
+
+
+//confirmation query strings
+RESOURCE TBUF r_query_areyousure {buf=qtn_query_areyousure; }
+//RESOURCE TBUF r_query_set_music_path {buf=qtn_query_set_music_path; }
+//RESOURCE TBUF r_query_set_music_path_again {buf=qtn_query_set_music_path_again; }
+RESOURCE TBUF r_query_keepselection {buf=qtn_query_keepselection; }
+RESOURCE TBUF r_query_usemetadata {buf=qtn_query_usemetadata; }
+RESOURCE TBUF r_query_launchembedded {buf=qtn_query_launchembedded; }
+RESOURCE TBUF r_query_usepartialcheck {buf=qtn_query_usepartialcheck; }
+RESOURCE TBUF r_query_useinternalmusicplayer {buf=qtn_query_useinternalmusicplayer; }
+RESOURCE TBUF r_query_redkey {buf=qtn_query_redkey; }
+RESOURCE TBUF r_query_playbutton {buf=qtn_query_playbutton; }
+RESOURCE TBUF r_query_deletepreferences {buf=qtn_query_deletepreferences; } 
+RESOURCE TBUF r_query_installnow {buf=qtn_query_installnow; }
+RESOURCE TBUF r_query_create_folder {buf=qtn_query_create_folder; }
+RESOURCE TBUF r_query_uploadlog {buf=qtn_query_uploadlog; }
+RESOURCE TBUF r_query_deleteallsources {buf=qtn_query_deleteallsources; }
+//RESOURCE TBUF r_query_crossfading {buf=qtn_query_crossfading; }
+RESOURCE TBUF r_query_buttonsdrag {buf=qtn_query_buttonsdrag; }
+RESOURCE TBUF r_query_coverhintfiles {buf=qtn_query_coverhintfiles; }
+RESOURCE TBUF r_query_delete_coverhintfiles {buf=qtn_query_delete_coverhintfiles; }
+RESOURCE TBUF r_query_install_ogg_flac_plugin {buf=qtn_query_install_ogg_flac_plugin; }
+RESOURCE TBUF r_query_ogg_flac_plugin_not_found {buf=qtn_query_ogg_flac_plugin_not_found; }
+RESOURCE TBUF r_moving_some_files_failed {buf=qtn_moving_some_files_failed; }
+RESOURCE TBUF r_files_moved_successfully {buf=qtn_files_moved_successfully; }
+RESOURCE TBUF r_query_add_source_warning {buf=qtn_query_add_source_warning; }
+RESOURCE TBUF r_add_source_already_exists {buf=qtn_add_source_already_exists; }
+
+//BT Errors:
+RESOURCE TBUF r_warning_header {buf=qtn_warning_header;}
+RESOURCE TBUF r_error_header {buf=qtn_error_header;}
+RESOURCE TBUF r_note_header {buf=qtn_note_header;}
+RESOURCE TBUF r_errmsg_cannotread {buf=qtn_errmsg_cannotread;}
+RESOURCE TBUF r_errmsg_cannotwrite {buf=qtn_errmsg_cannotwrite;}
+
+//BT Errors: sender, common
+RESOURCE TBUF r_errmsg_notimplemented { buf=qtn_errmsg_notimplemented; }
+RESOURCE TBUF r_errmsg_btbusy { buf=qtn_errmsg_btbusy; }
+RESOURCE TBUF r_errmsg_sisnotfound { buf=qtn_errmsg_sisnotfound; }
+RESOURCE TBUF r_errmsg_connectsendas { buf=qtn_errmsg_connectsendas; }
+RESOURCE TBUF r_errmsg_createbtmessage { buf=qtn_errmsg_createbtmessage; }
+RESOURCE TBUF r_errmsg_cannotsend { buf=qtn_errmsg_cannotsend; }
+RESOURCE TBUF r_errmsg_cannotattachmsg { buf=qtn_errmsg_cannotattachmsg; }
+RESOURCE TBUF r_errmsg_connectnotifier { buf=qtn_errmsg_connectnotifier; }
+RESOURCE TBUF r_errmsg_notifier_error { buf=qtn_errmsg_notifier_error; }
+RESOURCE TBUF r_errmsg_connectesock { buf=qtn_errmsg_connectesock; }
+RESOURCE TBUF r_errmsg_createbtsocket { buf=qtn_errmsg_createbtsocket; }
+RESOURCE TBUF r_errmsg_cannotconnect2btdevice { buf=qtn_errmsg_cannotconnect2btdevice; }
+RESOURCE TBUF r_errmsg_cannotsend2btdevice { buf=qtn_errmsg_cannotsend2btdevice; }
+RESOURCE TBUF r_errmsg_badrecipient { buf=qtn_errmsg_badrecipient; }
+RESOURCE TBUF r_errmsg_cannotrecvfrombtdevice { buf=qtn_errmsg_cannotrecvfrombtdevice; }
+RESOURCE TBUF r_errmsg_playlistsentsuccessfully { buf=qtn_errmsg_playlistsentsuccessfully; }
+
+//BT Errors: receiver
+RESOURCE TBUF r_errmsg_connectbtdbserver {buf=qtn_errmsg_connectbtdbserver; }
+RESOURCE TBUF r_errmsg_openbtdb {buf=qtn_errmsg_openbtdb; }
+RESOURCE TBUF r_errmsg_bindbtsocket {buf=qtn_errmsg_bindbtsocket; }
+RESOURCE TBUF r_errmsg_bindbtsocket_alreadyinuse {buf=qtn_errmsg_bindbtsocket_alreadyinuse; }
+RESOURCE TBUF r_errmsg_listenbtsocket {buf=qtn_errmsg_listenbtsocket; }
+RESOURCE TBUF r_errmsg_cannotacceptconnection {buf=qtn_errmsg_cannotacceptconnection; }
+RESOURCE TBUF r_errmsg_playlistrecvsuccessfully { buf=qtn_errmsg_playlistrecvsuccessfully; }
+RESOURCE TBUF r_errmsg_notenoughspace {buf=qtn_errmsg_notenoughspace; }
+RESOURCE TBUF r_errmsg_peernotenoughspace {buf=qtn_errmsg_peernotenoughspace; }
+RESOURCE TBUF r_errmsg_cancelsuccessful {buf=qtn_errmsg_cancelsuccessful; }
+RESOURCE TBUF r_errmsg_peercanceledtransfer {buf=qtn_errmsg_peercanceledtransfer; }
+
+//IP errors: sender
+RESOURCE TBUF r_errmsg_createipsocket { buf=qtn_errmsg_createipsocket; }
+RESOURCE TBUF r_errmsg_cannotconnect2ipdevice { buf=qtn_errmsg_cannotconnect2ipdevice; }
+//RESOURCE TBUF r_errmsg_cannotsend2ipdevice { buf=qtn_errmsg_cannotsend2ipdevice; }
+
+RESOURCE TBUF r_errmsg_sendappproceeding { buf=qtn_errmsg_sendappproceeding; }
+
+//send SMS
+RESOURCE TBUF r_errmsg_sendasbusy { buf=qtn_errmsg_sendasbusy; }
+RESOURCE TBUF r_errmsg_createsmsmessage { buf=qtn_errmsg_createsmsmessage; }
+RESOURCE TBUF r_sms_text { buf=qtn_sms_text; }
+
+//Check for updates
+RESOURCE TBUF r_msg_sis_downloaded_successfully {buf=qtn_msg_sis_downloaded_successfully; }
+RESOURCE TBUF r_errmsg_log_uploaded_successfully {buf=qtn_errmsg_log_uploaded_successfully; }
+RESOURCE TBUF r_errmsg_log_upload_failed {buf=qtn_errmsg_log_upload_failed; }
+
+//Build starting dir list
+RESOURCE TBUF r_files_1_file {buf=qtn_files_1_file; }
+RESOURCE TBUF r_files_many_files {buf=qtn_files_many_files; }
+RESOURCE TBUF r_input_starting_folder_manually {buf=qtn_input_starting_folder_manually; }
+RESOURCE TBUF r_current_folder_startingdir {buf=qtn_current_folder_startingdir; }
+RESOURCE TBUF r_received_files_display_name {buf=qtn_received_files_display_name; }
+RESOURCE TBUF r_artists_albums_display_name {buf=qtn_artists_albums_display_name; }
+
+//general errors
+RESOURCE TBUF r_errmsg_commandfailed {buf=qtn_errmsg_commandfailed; }
+RESOURCE TBUF r_errmsg_unknown {buf=qtn_errmsg_unknown; }
+
+//done with error messages
+
+//labels for File Transfer view
+RESOURCE TBUF r_filetransfer_label_sending_file {buf=qtn_filetransfer_label_sending_file; }
+RESOURCE TBUF r_filetransfer_label_receiving_file {buf=qtn_filetransfer_label_receiving_file; }
+RESOURCE TBUF r_filetransfer_label_kb_transfered {buf=qtn_filetransfer_label_kb_transfered; }
+RESOURCE TBUF r_filetransfer_label_kb_2transfer {buf=qtn_filetransfer_label_kb_2transfer; }
+RESOURCE TBUF r_filetransfer_label_elapsed_time {buf=qtn_filetransfer_label_elapsed_time; }
+RESOURCE TBUF r_filetransfer_label_estimated_time {buf=qtn_filetransfer_label_estimated_time; }
+RESOURCE TBUF r_filetransfer_label_link {buf=qtn_filetransfer_label_link; }
+RESOURCE TBUF r_filetransfer_label_speed {buf=qtn_filetransfer_label_speed; }
+
+//notifications
+RESOURCE TBUF r_msg_loop_off {buf=qtn_msg_loop_off; }
+RESOURCE TBUF r_msg_loop_playlist {buf=qtn_msg_loop_playlist; }
+RESOURCE TBUF r_msg_loop_song {buf=qtn_msg_loop_song; }
+RESOURCE TBUF r_cannot_play_right_now {buf=qtn_cannot_play_right_now; }
+RESOURCE TBUF r_info_crossfading_disabled {buf=qtn_crossfading_disabled; }
+RESOURCE TBUF r_info_crossfading_enabled {buf=qtn_crossfading_enabled; }
+//labels for Music Player view
+//RESOURCE TBUF32 r_musicplayer_label_elapsed_time {buf=qtn_musicplayer_label_elapsed_time; }
+
+/*
+RESOURCE LISTBOX r_multiselection_list
+    {
+    flags = EAknListBoxMultiselectionList;
+    }
+    */
+/*
+RESOURCE LISTBOX r_menu_navi
+{
+    flags = EAknListBoxMenuList;
+}
+*/
+
+RESOURCE DIALOG r_dataquery_input_filename
+    {
+    flags = EGeneralQueryFlags;
+    buttons = R_AVKON_SOFTKEYS_OK_CANCEL;
+    items =
+        {
+        DLG_LINE
+            {
+            type = EAknCtQuery;
+            id = EDataQueryDlgCIdPlaylistFilename;
+            control = AVKON_DATA_QUERY
+                {
+                layout = EDataLayout;
+                control = EDWIN
+                    {
+                    width = 32;
+                    lines = 1;
+                    maxlength = KMaxFileName;
+                    };
+                };
+            }
+        };
+    }
+
+RESOURCE DIALOG r_dataquery_input_playlist_name
+    {
+    flags = EGeneralQueryFlags;
+    buttons = R_AVKON_SOFTKEYS_OK_CANCEL;
+    items =
+        {
+        DLG_LINE
+            {
+            type = EAknCtQuery;
+            id = EDataQueryDlgCIdPlaylistName;
+            control = AVKON_DATA_QUERY
+                {
+                layout = EDataLayout;
+                control = EDWIN
+                    {
+                    width = 32;
+                    lines = 1;
+                    maxlength = 64;
+                    };
+                };
+            }
+        };
+    }
+
+RESOURCE DIALOG r_query_confirmation
+{
+flags = EGeneralQueryFlags;
+buttons = R_AVKON_SOFTKEYS_YES_NO;
+
+items =
+    {
+    DLG_LINE
+        {
+        type = EAknCtQuery;
+        id = EGeneralQuery;
+        control = AVKON_CONFIRMATION_QUERY
+            {
+            layout = EConfirmationQueryLayout;
+            label = "";
+            };
+        }
+    };
+}
+
+RESOURCE CBA r_softkeys_now_later
+{
+    buttons=
+        {
+        AVKON_CBA_BUTTON
+            {
+				id=ESoftkeyNow;
+				txt=qtn_text_softkey_now;
+            },
+	    AVKON_CBA_BUTTON
+            {
+	    	    id=ESoftkeyLater;
+			    txt=qtn_text_softkey_later;
+            }
+        };
+}
+RESOURCE DIALOG r_query_confirmation_now_later
+{
+flags = EGeneralQueryFlags;
+buttons = r_softkeys_now_later;
+
+items =
+    {
+    DLG_LINE
+        {
+        type = EAknCtQuery;
+        id = EGeneralQuery;
+        control = AVKON_CONFIRMATION_QUERY
+            {
+            layout = EConfirmationQueryLayout;
+            label = "";
+            };
+        }
+    };
+}
+
+/*
+
+RESOURCE DIALOG r_query_set_music_path
+{
+flags = EGeneralQueryFlags;
+buttons = R_AVKON_SOFTKEYS_YES_NO;
+items =
+    {
+    DLG_LINE
+        {
+        type = EAknCtQuery;
+        id = EGeneralQuery;
+        control = AVKON_CONFIRMATION_QUERY
+            {
+            layout = EConfirmationQueryLayout;
+            label = qtn_query_set_music_path;
+            };
+        }
+    };
+}
+
+RESOURCE DIALOG r_query_set_music_path_again
+{
+flags = EGeneralQueryFlags;
+buttons = R_AVKON_SOFTKEYS_YES_NO;
+items =
+    {
+    DLG_LINE
+        {
+        type = EAknCtQuery;
+        id = EGeneralQuery;
+        control = AVKON_CONFIRMATION_QUERY
+            {
+            layout = EConfirmationQueryLayout;
+            label = qtn_query_set_music_path_again;
+            };
+        }
+    };
+}
+
+
+RESOURCE DIALOG r_query_set_startingdir
+    {
+    flags = EGeneralQueryFlags;
+    buttons = R_AVKON_SOFTKEYS_YES_NO;
+
+    items =
+        {
+        DLG_LINE
+            {
+            type = EAknCtQuery;
+            id = EGeneralQuery;
+            control = AVKON_CONFIRMATION_QUERY
+                {
+                layout = EConfirmationQueryLayout;
+                label = qtn_query_startingdir;
+                };
+            }
+        };
+    }
+
+RESOURCE DIALOG r_query_keepselection
+    {
+    flags = EGeneralQueryFlags;
+    buttons = R_AVKON_SOFTKEYS_YES_NO;
+
+    items =
+        {
+        DLG_LINE
+            {
+            type = EAknCtQuery;
+            id = EGeneralQuery;
+            control = AVKON_CONFIRMATION_QUERY
+                {
+                layout = EConfirmationQueryLayout;
+                label = qtn_query_keepselection;
+                };
+            }
+        };
+    }
+
+RESOURCE DIALOG r_query_launchembedded
+    {
+    flags = EGeneralQueryFlags;
+    buttons = R_AVKON_SOFTKEYS_YES_NO;
+
+    items =
+        {
+        DLG_LINE
+            {
+            type = EAknCtQuery;
+            id = EGeneralQuery;
+            control = AVKON_CONFIRMATION_QUERY
+                {
+                layout = EConfirmationQueryLayout;
+                label = qtn_query_launchembedded;
+                };
+            }
+        };
+    }
+*/
+
+/*
+RESOURCE CBA r_softkeys_empty_continue
+{
+    buttons=
+        {
+	    AVKON_CBA_BUTTON
+            {
+				// empty
+            },
+	    AVKON_CBA_BUTTON
+            {
+				id=ESoftkeyContinue;
+				txt=qtn_text_softkey_continue;
+            }
+        };
+}
+
+RESOURCE DIALOG r_query_continue_send_sis_bt
+{
+flags = EGeneralQueryFlags;
+//buttons = R_AVKON_SOFTKEYS_YES_NO;
+buttons = r_softkeys_empty_continue;
+items =
+    {
+    DLG_LINE
+        {
+        type = EAknCtQuery;
+        id = EGeneralQuery;
+        control = AVKON_CONFIRMATION_QUERY
+            {
+            layout = EConfirmationQueryLayout;
+            label = qtn_query_continue_send_sis_bt;
+            };
+        }
+    };
+}
+*/
+
+RESOURCE DIALOG r_msg_big_note
+{
+flags=EGeneralQueryFlags | EEikDialogFlagNoBorder | EEikDialogFlagNoShadow;
+buttons = R_AVKON_SOFTKEYS_BACK;
+items =
+	{
+	DLG_LINE
+		{
+		type = EAknCtPopupHeadingPane;
+		id = EAknMessageQueryHeaderId;
+		control = AVKON_HEADING
+			{
+            headinglayout = R_AVKON_LIST_HEADING_PANE_POPUPS;
+			};
+		},
+	DLG_LINE
+		{
+		type = EAknCtMessageQuery;
+		id = EAknMessageQueryContentId;
+		control = AVKON_MESSAGE_QUERY
+			{
+			};
+		}
+	};
+}
+
+RESOURCE DIALOG r_msg_big_note_nowait
+{
+flags=EEikDialogFlagCbaButtons;
+buttons = R_AVKON_SOFTKEYS_BACK;
+items =
+	{
+	DLG_LINE
+		{
+		type = EAknCtPopupHeadingPane;
+		id = EAknMessageQueryHeaderId;
+		control = AVKON_HEADING
+			{
+            headinglayout = R_AVKON_LIST_HEADING_PANE_POPUPS;
+			};
+		},
+	DLG_LINE
+		{
+		type = EAknCtMessageQuery;
+		id = EAknMessageQueryContentId;
+		control = AVKON_MESSAGE_QUERY
+			{
+			};
+		}
+	};
+}
+
+RESOURCE TBUF r_music_player_help_header {buf=qtn_music_player_help_header; }
+RESOURCE TBUF r_music_player_help_text_touch {buf=qtn_music_player_help_text_touch; }
+RESOURCE TBUF r_music_player_help_text_with_volume_keys {buf=qtn_music_player_help_text_with_volume_keys; }
+RESOURCE TBUF r_music_player_help_text_without_volume_keys {buf=qtn_music_player_help_text_without_volume_keys; }
+
+RESOURCE TBUF r_music_player_albumart_howto_header {buf=qtn_music_player_albumart_howto_header; }
+RESOURCE TBUF r_music_player_albumart_howto_text   {buf=qtn_music_player_albumart_howto_text; }
+
+RESOURCE TBUF r_fflist_help_header {buf=qtn_fflist_help_header; }
+RESOURCE TBUF r_fflist_first_time_header {buf=qtn_fflist_first_time_header; }
+RESOURCE TBUF r_fflist_help_text_touch {buf=qtn_fflist_help_text_touch; }
+RESOURCE TBUF r_fflist_help_text_nontouch {buf=qtn_fflist_help_text_nontouch; }
+RESOURCE TBUF r_fflist_empty_nomusic {buf=qtn_fflist_empty_nomusic; }
+RESOURCE TBUF r_fflist_empty_searchingmusic {buf=qtn_fflist_empty_searchingmusic; }
+/*
+RESOURCE DIALOG r_about_heading_pane
+{
+//flags=EEikDialogFlagNoDrag |EEikDialogFlagCbaButtons |EEikDialogFlagWait;
+flags=EGeneralQueryFlags | EEikDialogFlagNoBorder | EEikDialogFlagNoShadow;
+buttons = R_AVKON_SOFTKEYS_BACK;
+items =
+	{
+	DLG_LINE
+		{
+		type = EAknCtPopupHeadingPane;
+		id = EAknMessageQueryHeaderId;
+		control = AVKON_HEADING
+			{
+            headinglayout = R_AVKON_LIST_HEADING_PANE_POPUPS;
+			};
+		},
+	DLG_LINE
+		{
+		type = EAknCtMessageQuery;
+		id = EAknMessageQueryContentId;
+		control = AVKON_MESSAGE_QUERY
+			{
+			};
+		}
+	};
+}*/
+RESOURCE TBUF r_about_header {buf=qtn_about_header; }
+RESOURCE TBUF r_about_header_development {buf=qtn_about_header_development; }
+RESOURCE TBUF r_about_text {buf=qtn_about_text; }
+RESOURCE TBUF r_mlauncher_development {buf=qtn_mlauncher_development; }
+
+RESOURCE CBA r_softkeys_upgrade_later
+{
+    buttons=
+        {
+	    AVKON_CBA_BUTTON
+            {
+				id=ESoftkeyUpgrade;
+				txt=qtn_text_softkey_upgrade;
+            },
+            AVKON_CBA_BUTTON
+            {
+	    	    id=ESoftkeyLater;
+			    txt=qtn_text_softkey_later;
+            }
+        };
+}
+RESOURCE DIALOG r_upgrade_query
+{
+flags=EGeneralQueryFlags | EEikDialogFlagNoBorder | EEikDialogFlagNoShadow;
+buttons = r_softkeys_upgrade_later;
+items =
+	{
+	DLG_LINE
+		{
+		type = EAknCtPopupHeadingPane;
+		id = EAknMessageQueryHeaderId;
+		control = AVKON_HEADING
+			{
+            headinglayout = R_AVKON_LIST_HEADING_PANE_POPUPS;
+			};
+		},
+	DLG_LINE
+		{
+		type = EAknCtMessageQuery;
+		id = EAknMessageQueryContentId;
+		control = AVKON_MESSAGE_QUERY
+			{
+			};
+		}
+	};
+}
+RESOURCE TBUF r_upgrade_header {buf=qtn_upgrade_header; }
+RESOURCE TBUF r_upgrade_text {buf=qtn_upgrade_text; }
+RESOURCE TBUF r_log_uploaded_upgrade_text {buf=qtn_log_uploaded_upgrade_text; }
+
+RESOURCE CBA r_softkeys_download_later
+{
+    buttons=
+        {
+	    AVKON_CBA_BUTTON
+            {
+				id=ESoftkeyDownload;
+				txt=qtn_text_softkey_download;
+            },
+            AVKON_CBA_BUTTON
+            {
+	    	    id=ESoftkeyLater;
+			    txt=qtn_text_softkey_later;
+            }
+        };
+}
+RESOURCE DIALOG r_sisdownload_query
+{
+flags=EGeneralQueryFlags | EEikDialogFlagNoBorder | EEikDialogFlagNoShadow;
+buttons = r_softkeys_download_later;
+items =
+	{
+	DLG_LINE
+		{
+		type = EAknCtPopupHeadingPane;
+		id = EAknMessageQueryHeaderId;
+		control = AVKON_HEADING
+			{
+            headinglayout = R_AVKON_LIST_HEADING_PANE_POPUPS;
+			};
+		},
+	DLG_LINE
+		{
+		type = EAknCtMessageQuery;
+		id = EAknMessageQueryContentId;
+		control = AVKON_MESSAGE_QUERY
+			{
+			};
+		}
+	};
+}
+RESOURCE TBUF r_sisdownload_noupgrade_header {buf=qtn_sisdownload_noupgrade_header; }
+RESOURCE TBUF r_sisdownload_noupgrade_text {buf=qtn_sisdownload_noupgrade_text; }
+RESOURCE TBUF r_sisdownload_latestv_header {buf=qtn_sisdownload_latestv_header; }
+RESOURCE TBUF r_sisdownload_latestv_text {buf=qtn_sisdownload_latestv_text; }
+
+RESOURCE TBUF r_message_log_enabled {buf=qtn_message_log_enabled; }
+RESOURCE TBUF r_message_log_disabled {buf=qtn_message_log_disabled; }
+
+RESOURCE TBUF r_message_usemetadata_after_restart {buf=qtn_message_usemetadata_after_restart; }
+RESOURCE TBUF r_message_all_tracks_failed {buf=qtn_message_all_tracks_failed; }
+
+RESOURCE DIALOG r_message_dlg_ok_empty
+{
+//flags=EGeneralQueryFlags | EEikDialogFlagNoBorder | EEikDialogFlagNoShadow;
+flags=EGeneralQueryFlags;
+buttons = R_AVKON_SOFTKEYS_OK_EMPTY;
+items =
+	{
+	DLG_LINE
+		{
+		type = EAknCtPopupHeadingPane;
+		id = EAknMessageQueryHeaderId;
+		control = AVKON_HEADING
+			{
+            headinglayout = R_AVKON_LIST_HEADING_PANE_POPUPS;
+			};
+		},
+	DLG_LINE
+		{
+		type = EAknCtMessageQuery;
+		id = EAknMessageQueryContentId;
+		control = AVKON_MESSAGE_QUERY
+			{
+			};
+		}
+	};
+}
+
+RESOURCE TBUF r_noupgrade_necessary_header {buf=qtn_noupgrade_necessary_header; }
+RESOURCE TBUF r_noupgrade_necessary_text {buf=qtn_noupgrade_necessary_text; }
+/*
+RESOURCE DIALOG r_waitnote_softkey_empty
+{
+flags = EAknWaitNoteFlags;
+buttons = R_AVKON_SOFTKEYS_EMPTY;
+items =
+    {
+    DLG_LINE
+        {
+        type = EAknCtNote;
+        id = EGeneralNote;
+        control= AVKON_NOTE
+            {
+            layout = EWaitLayout;
+            singular_label = "Please wait...";
+            animation = R_QGN_GRAF_WAIT_BAR_ANIM;
+            };
+        }
+    };
+}*/
+/*
+RESOURCE DIALOG r_waitnote_softkey_cancel
+{
+flags = EAknWaitNoteFlags | EEikDialogFlagNotifyEsc;
+buttons = R_AVKON_SOFTKEYS_CANCEL;
+items =
+    {
+    DLG_LINE
+        {
+        type = EAknCtNote;
+        id = EGeneralNote;
+        control= AVKON_NOTE
+            {
+            layout = EWaitLayout;
+            animation = R_QGN_GRAF_WAIT_BAR_ANIM;
+            };
+        }
+    };
+}*/
+/*
+RESOURCE AVKON_LIST_QUERY r_listquery
+{
+	flags = EGeneralQueryFlags | EEikDialogFlagNoBorder | EEikDialogFlagNoShadow;
+    softkeys = R_AVKON_SOFTKEYS_OK_CANCEL;
+	items=
+	{
+		AVKON_LIST_QUERY_DLG_LINE
+		{
+			control=AVKON_LIST_QUERY_CONTROL
+			{
+				listtype=EAknCtSinglePopupMenuListBox;
+				heading=" ";
+				listbox=AVKON_LIST_QUERY_LIST
+				{
+					//array defined dynamically
+				};
+			};
+		}
+	};
+}*/
+RESOURCE TBUF r_select_starting_dir_header {buf=qtn_select_starting_dir_header; }
+
+RESOURCE CBA r_softkeys_choose_exit
+{
+    buttons=
+        {
+        AVKON_CBA_BUTTON
+            {
+				id=ESoftkeyChoose;
+				txt=qtn_text_softkey_choose;
+            },
+	    AVKON_CBA_BUTTON
+            {
+	    	    id=EAknSoftkeyExit;
+			    txt=qtn_exit;
+            }
+        };
+}
+RESOURCE DIALOG r_message_query_choose_exit
+{
+flags=EGeneralQueryFlags;
+buttons = r_softkeys_choose_exit;
+items =
+	{
+	DLG_LINE
+		{
+		type = EAknCtPopupHeadingPane;
+		id = EAknMessageQueryHeaderId;
+		control = AVKON_HEADING
+			{
+            headinglayout = R_AVKON_LIST_HEADING_PANE_POPUPS;
+			};
+		},
+	DLG_LINE
+		{
+		type = EAknCtMessageQuery;
+		id = EAknMessageQueryContentId;
+		control = AVKON_MESSAGE_QUERY
+			{
+			};
+		}
+	};
+}
+
+RESOURCE DIALOG r_message_query_yes_no
+{
+flags=EGeneralQueryFlags;
+buttons = R_AVKON_SOFTKEYS_YES_NO;
+items =
+	{
+	DLG_LINE
+		{
+		type = EAknCtPopupHeadingPane;
+		id = EAknMessageQueryHeaderId;
+		control = AVKON_HEADING
+			{
+            headinglayout = R_AVKON_LIST_HEADING_PANE_POPUPS;
+			};
+		},
+	DLG_LINE
+		{
+		type = EAknCtMessageQuery;
+		id = EAknMessageQueryContentId;
+		control = AVKON_MESSAGE_QUERY
+			{
+			};
+		}
+	};
+}
+
+RESOURCE CBA r_softkeys_create_retry
+{
+    buttons=
+        {
+        AVKON_CBA_BUTTON
+            {
+				id=ESoftkeyCreate;
+				txt=qtn_text_softkey_create;
+            },
+	    AVKON_CBA_BUTTON
+            {
+	    	    id=ESoftkeyRetry;
+			    txt=qtn_text_softkey_retry;
+            }
+        };
+}
+RESOURCE DIALOG r_query_confirmation_create_retry
+{
+flags = EGeneralQueryFlags;
+buttons = r_softkeys_create_retry;
+
+items =
+    {
+    DLG_LINE
+        {
+        type = EAknCtQuery;
+        id = EGeneralQuery;
+        control = AVKON_CONFIRMATION_QUERY
+            {
+            layout = EConfirmationQueryLayout;
+            label = "";
+            };
+        }
+    };
+}
+
+RESOURCE MEMORYSELECTIONDIALOG r_source_folder_memory_select_dialog 
+{
+	title = "Source folder:";
+	locations = {  
+			LOCATION { root_path = "E:\\"; },
+			LOCATION { root_path = "F:\\"; },
+			LOCATION { root_path = "C:\\"; }
+	};
+}
+
+RESOURCE FILESELECTIONDIALOG r_source_folder_file_select_dialog 
+{
+	title = "Source folder:";
+	softkey_1_folder = "Go inside";
+	//softkey_2_root_level = "SELect";
+	//softkey_2_subfolder = "Go inside";
+	filters =
+	{
+			FILTER
+			{
+				filter_type = EAttributeFilter;
+				filter_style = EInclusiveFilter;
+				filter_data = { "D" }; // Only show directories
+			}
+	};
+}
+
+RESOURCE DIALOG r_equalizer_effects_dlg
+{
+	flags = EEikDialogFlagCbaButtons ;
+	buttons = R_AVKON_SOFTKEYS_BACK;
+	items = 
+	{
+		DLG_LINE
+	    {
+			type=EAknCtSingleGraphicListBox;
+			id=EEqualizerSelectionListControl;
+			control = LISTBOX
+			{
+				flags=EAknGenericListBoxFlags ;
+			};
+	    }
+	};
+}
+
+/*
+ * 
+	
+	
+RESOURCE AVKON_SETTING_ITEM_LIST r_preferences_settings_list
+    {
+    flags = 0;
+    //title =
+    items =
+        {
+        AVKON_SETTING_ITEM
+            {
+            identifier = EPreferencesStartingDir;
+            setting_page_resource = r_preferences_item_startingdir;
+            name = preferences_item_title_startingdir; //PREFERENCES_ITEM_TITLE_STARTINGDIR;
+            },
+        AVKON_SETTING_ITEM
+            {
+            identifier = EPreferencesLaunchEmbedded;
+            setting_page_resource = r_preferences_item_launchembedded;
+            associated_resource = r_preferenses_item_launchembedded_texts;
+            name = preferences_item_title_launchembedded; //PREFERENCES_ITEM_TITLE_LAUNCHEMBEDDED;
+            },
+        AVKON_SETTING_ITEM
+            {
+            identifier = EPreferencesKeepSelection;
+            setting_page_resource = r_preferences_item_keepselection;
+            associated_resource = r_preferenses_item_keepselection_texts;
+            name = preferences_item_title_keepselection; //PREFERENCES_ITEM_TITLE_KEEPSELECTION;
+            }
+        };
+    }
+
+RESOURCE AVKON_SETTING_PAGE r_preferences_item_startingdir
+    {
+    type = EEikCtEdwin;
+    editor_resource_id = 0; //r_startingdir_editor;
+    }
+
+RESOURCE AVKON_SETTING_PAGE r_preferences_item_launchembedded
+    {
+    type = EAknCtPopupSettingList;
+    //editor_resource_id = r_launchembedded_something;
+    }
+
+RESOURCE AVKON_SETTING_PAGE r_preferences_item_keepselection
+    {
+    type = EAknCtPopupSettingList;
+    //editor_resource_id = r_keepselection_something;
+    }
+
+RESOURCE AVKON_POPUP_SETTING_TEXTS r_preferenses_item_launchembedded_texts
+    {
+    flags = 0;
+    setting_texts_resource = 0;
+    popped_up_texts_resource = 0;
+    }
+
+RESOURCE AVKON_POPUP_SETTING_TEXTS r_preferenses_item_keepselection_texts
+    {
+    flags = 0;
+    setting_texts_resource = 0;
+    popped_up_texts_resource = 0;
+    }
+
+RESOURCE TBUF32 preferences_item_title_startingdir { buf=qtn_prefitem_title_startingdir; }
+RESOURCE TBUF32 preferences_item_title_launchembedded { buf=qtn_prefitem_title_launchembedded; }
+RESOURCE TBUF32 preferences_item_title_keepselection { buf=qtn_prefitem_title_keepselection; }
+
+
+STRUCT AVKON_POPUP_SETTING_TEXTS
+	{
+	WORD flags = 0;
+	LLINK setting_texts_resource = 0;
+	LLINK popped_up_texts_resource = 0;
+	LLINK reserved = 0;
+	}
+	*/
+// ----------------------------------------------------------------------------
+//
+// r_localisable_app_info
+//
+// ----------------------------------------------------------------------------
+//
+RESOURCE LOCALISABLE_APP_INFO r_localisable_app_info
+    {
+    short_caption = qtn_caption_string;
+    caption_and_icon =
+    CAPTION_AND_ICON_INFO
+        {
+        caption = qtn_caption_string;
+
+        number_of_icons = 1;
+	   	icon_file = "\\resource\\apps\\MLauncher.mif";
+	    };
+    }
+
+#include "preferences.rss"
+
+// End of File

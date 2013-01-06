@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Tiny//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-tiny.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="tiny" height="100%" version="1.0" viewBox="0 0 130 130" width="100%">
+<defs>
+<radialGradient id="radialGradient4673">
+cx="343.24512" cy="296.31384" fx="343.24512" fy="296.31384" gradientTransform="matrix(1.2778337,0,0,1.2214525,-96.993758,-64.805106)" gradientUnits="userSpaceOnUse" r="53.025059" 
+<stop offset="0" style="stop-color:#ffffff;stop-opacity:1;"/>
+<stop offset="1" style="stop-color:#ffffff;stop-opacity:0.66274512;"/>
+</radialGradient>
+</defs>
+<path d="M 0,0 L 0,130 L 130,65 L 0,0 z" style="fill:url(#radialGradient4673);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"/>
+</svg>

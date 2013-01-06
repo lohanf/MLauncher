@@ -1,0 +1,134 @@
+/*
+============================================================================
+ Name        : MLauncher.mmp
+ Author      : Florin Lohan
+ Copyright   : Florin Lohan
+ Description : This is the project specification file for MLauncher.
+============================================================================
+*/
+#include <fll_sdk_version.h> //this file is placed by hand in all SDKs
+
+TARGET            MLauncher.exe
+TARGETTYPE        exe
+UID		  0x0 0xE388D98A
+EPOCSTACKSIZE 32768
+EPOCHEAPSIZE 0x100000 0x400000
+
+SOURCEPATH        ..\src
+SOURCE            MLauncher.cpp
+SOURCE            MLauncherApplication.cpp
+SOURCE            MLauncherDocument.cpp
+SOURCE            MLauncherAppUi.cpp 
+SOURCE            FFListView.cpp FFListContainer.cpp
+SOURCE            PlaylistsView.cpp PlaylistsContainer.cpp
+SOURCE            FiletransferView.cpp FiletransferContainer.cpp 
+SOURCE            StopwatchSettings.cpp StopwatchView.cpp StopwatchContainer.cpp
+SOURCE            SourcesView.cpp SourcesContainer.cpp
+SOURCE            TrackInfo.cpp
+SOURCE            MusicPlayerView.cpp MusicPlayerContainer.cpp MusicPlayerImgEngine.cpp MusicPlayerTelObs.cpp MusicPlayerThemes.cpp
+SOURCE            EqualizerDlg.cpp 
+SOURCE            XMLparsing.cpp 
+SOURCE            MLauncherBT.cpp
+SOURCE            MLauncherPreferences.cpp PreferencesView.cpp
+SOURCE            HTTPclient.cpp
+SOURCE            log.cpp
+SOURCE            Model.cpp
+SOURCE            MyFilesView.cpp MyFilesContainer.cpp
+
+SOURCEPATH        ..\data
+
+START RESOURCE    MLauncher.rss
+HEADER
+TARGETPATH resource\apps
+END //RESOURCE
+
+START RESOURCE    MLauncher_reg.rss
+TARGETPATH 	  \private\10003a3f\apps
+END //RESOURCE
+
+
+
+USERINCLUDE       ..\inc
+
+SYSTEMINCLUDE     \epoc32\include \epoc32\include\libc \epoc32\include\variant ..
+SYSTEMINCLUDE     \epoc32\include\mmf\plugin
+
+
+LIBRARY           euser.lib
+LIBRARY           apparc.lib
+LIBRARY           cone.lib
+LIBRARY           eikcore.lib
+LIBRARY           avkon.lib
+LIBRARY           commonengine.lib
+LIBRARY		  	  efsrv.lib 
+LIBRARY           estor.lib 
+LIBRARY           xmlframework.lib 
+LIBRARY           btdevice.lib 
+LIBRARY           bluetooth.lib 
+LIBRARY           sendas2.lib 
+LIBRARY           btextnotifiers.lib 
+LIBRARY           apgrfx.lib 
+LIBRARY           random.lib 
+LIBRARY           commonui.lib 
+//LIBRARY           servicehandler.lib
+LIBRARY           apmime.lib 
+LIBRARY           eikctl.lib 
+LIBRARY           eikcoctl.lib
+LIBRARY           eikdlg.lib  
+LIBRARY           bafl.lib 
+LIBRARY           aknskins.lib 
+LIBRARY           egul.lib 
+LIBRARY           aknicon.lib 
+LIBRARY           flogger.lib 
+LIBRARY           hal.lib 
+LIBRARY           esock.lib 
+LIBRARY           insock.lib 
+LIBRARY           sdpdatabase.lib 
+LIBRARY           http.lib
+LIBRARY           inetprotutil.lib 
+LIBRARY           fbscli.lib 
+LIBRARY           SenXml.lib 
+LIBRARY           estlib.lib //standard library, ntohl
+LIBRARY           charconv.lib 
+LIBRARY           hash.lib
+LIBRARY           etel3rdparty.lib
+LIBRARY           gdi.lib
+LIBRARY           bitgdi.lib
+LIBRARY           ws32.lib //CWsBitmap
+LIBRARY           scdv.lib
+LIBRARY           CommonDialogs.lib //memory selection
+LIBRARY           PlatformEnv.lib
+LIBRARY       form.lib 
+LIBRARY       uiklaf.lib
+
+LIBRARY           mediaclientaudio.lib 
+LIBRARY           mmfcontrollerframework.lib 
+LIBRARY           AudioEqualizerUtility.lib
+LIBRARY           BassBoostEffect.lib
+LIBRARY           StereoWideningEffect.lib
+LIBRARY           LoudnessEffect.lib
+
+LIBRARY           imageconversion.lib
+LIBRARY           bitmaptransforms.lib
+LIBRARY           RemConCoreApi.lib
+LIBRARY           RemConInterfaceBase.lib
+//LIBRARY           HWRMLightClient.lib
+//LIBRARY           MetaDataUtility.lib
+LIBRARY           SWInstCli.lib
+
+#ifdef _FLL_SDK_VERSION_32_
+LIBRARY           audiooutputrouting.lib
+#endif¨
+#ifdef _FLL_SDK_VERSION_50_
+LIBRARY           accmonitor.lib
+LIBRARY           SensrvClient.lib sensrvutil.lib
+#endif
+
+//LANG SC
+LANG 01 03 04 18 42 78 83 103
+
+VENDORID	  	  0
+SECUREID	      0xE388D98A
+CAPABILITY	  	  LocalServices NetworkServices ReadUserData WriteUserData
+// End of File
+

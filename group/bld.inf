@@ -1,0 +1,19 @@
+/*
+============================================================================
+ Name        : bld.inf
+ Author      : Florin Lohan
+ Copyright   : Florin Lohan
+ Description : This file provides the information required for building the
+               whole of a MLauncher.
+============================================================================
+*/
+
+
+PRJ_PLATFORMS
+WINSCW  GCCE
+
+PRJ_MMPFILES
+
+//gnumakefile icons_scalable_aif_dc.mk
+gnumakefile icons_scalable_dc.mk
+MLauncher.mmp BUILD_AS_ARM

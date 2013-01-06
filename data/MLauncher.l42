@@ -1,0 +1,405 @@
+/*
+============================================================================
+ Name        : MLauncher.rls
+ Author      : Florin Lohan
+ Copyright   : Florin Lohan
+ Description : This is a localisation file for MLauncher
+               A .rls file is the one and only place where the logical
+			   strings to be localised are defined.
+============================================================================
+*/
+CHARACTER_SET UTF8
+
+//  LOCALISATION STRINGS
+
+// Caption string for app.
+#define qtn_caption_string "Music Launcher"
+
+//general commands
+#define qtn_command_help "Помощ"
+
+// Items in "Options" menu pane
+#define qtn_command_play "Възпроизвеждане [1]"
+#define qtn_command_shuffle_play "Произв. възпроизв. [2]"
+#define qtn_command_playlist "Създай списък[3]"
+#define qtn_command_find "Търсене..."
+#define qtn_command_send_playlist "Изпр. на муз. файл."
+#define qtn_command_files "Файлов мениджър"
+#define qtn_command_application "Приложение"
+#define qtn_command_preferences "Настройки"
+
+//softkeys labels
+#define qtn_exit "Изход"
+#define qtn_options "Опции"
+#define qtn_cancel "Отмяна"
+#define qtn_select "Избор"
+#define qtn_back "Назад"
+
+//MSK Labels
+#define qtn_msk_select "Маркиране"
+#define qtn_msk_unselect "Размаркиране"
+#define qtn_msk_ignore "Игнориране"
+#define qtn_msk_use "Използване"
+#define qtn_msk_pause "Пауза"
+#define qtn_msk_play "Възпроизвеждане"
+
+//items in Send Music Files
+#define qtn_command_send_playlist_bt_discover "Чрез Bluetooth [7]"
+#define qtn_command_send_playlist_ip "До IP сървър"
+
+//items in File Manager + Move
+#define qtn_command_selectall "Марк. на всички [4]"
+#define qtn_command_unselectall "Размарк. на всички [5]"
+#define qtn_command_save_selection "Запиши селекцията [6]"
+#define qtn_command_delete "Изтрий селекцията"
+#define qtn_command_rename "Преименувай обекта"
+#define qtn_command_move "Премести селекцията"
+#define qtn_command_move_here "Премести тук"
+#define qtn_command_new_folder "Нова папка"
+#define qtn_command_cancel_move "Отмени преместването"
+
+//Playlist View
+#define qtn_command_playlist_play "Възпроизвеждане"
+#define qtn_command_playlist_rename "Преименуване"
+#define qtn_command_playlist_delete "Изтриване"
+
+//items in Application menu
+#define qtn_command_countdown_timer "Обратен брояч"
+#define qtn_command_send_app_bt_discover "Изпр. чрез Bluetooth [8]"
+#define qtn_command_send_app_sms "Изпр. чрез SMS (линк)"
+#define qtn_command_upload_crash_logfile "Качване на лога"
+#define qtn_command_check4updates "Пров. за обновления [9]"
+#define qtn_command_about "Относно"
+
+// Items in the Preferences
+#define qtn_command_starting_dirs     "Папки с музика..."
+#define qtn_command_use_metadata      "Изп. на метаданни..."
+#define qtn_command_launchembedded    "Вград. муз. плейър..."
+#define qtn_command_keepselection     "Запазвай селекцията"
+#define qtn_command_usepartialcheck   "Изп. частич. избор ..."
+#define qtn_command_useinternalplayer "Използ. муз. плейър..."
+#define qtn_command_redkey            "Бутон червена слушалка..."
+#define qtn_command_playbutton        "Бутон за възпроизвеждане..."
+#define qtn_command_deletepreferences "Фабрични настройки..."
+#define qtn_command_enable_log        "Вкл. логването"
+#define qtn_command_disable_log       "Изкл. логването"
+
+//Items in the Filetransfer menu
+#define qtn_command_cancel_transfer "Отмени прехвърлянето"
+//#define qtn_command_skip_this_file "Проп. на този файл"
+
+//Items in Stopwatch menu
+#define qtn_command_stop_alarm "Спри алармата"
+#define qtn_command_start_countdown "Старт на обр. броене"
+#define qtn_command_countdown_settings "Настр. на обрат. броене"
+#define qtn_command_exit_countdown "Изход от обр. броене"
+
+//Items in Sources menu
+#define qtn_command_delete_source "Изтриване"
+#define qtn_command_add_source "Доб. на папка с музика"
+#define qtn_command_delete_all_sources "Изтриване на всички"
+
+//Items in Music Player menu
+#define qtn_command_save_and_exit "Запис и Изход"
+#define qtn_command_stop "Спиране"
+#define qtn_command_album_art "Обложка на албума"
+#define qtn_command_album_art_howto "Помощ..."
+#define qtn_command_album_art_crop "Изряз. на границите..."
+#define qtn_command_color_schemes "Цветове"
+#define qtn_command_black_and_green "Черно и Зелено"
+#define qtn_command_black_and_blue "Черно и Синьо"
+#define qtn_command_black_and_orange "Черно и Оранжево"
+#define qtn_command_black_and_red "Черно и Червено"
+#define qtn_command_black_and_violet "Черно и Виолетово"
+#define qtn_command_white_and_green "Бяло и Зелено"
+#define qtn_command_white_and_blue "Бяло и Синьо"
+#define qtn_command_white_and_orange "Бяло и Оранжево"
+#define qtn_command_white_and_red "Бяло и Червено"
+#define qtn_command_white_and_violet "Бяло и Виолетово"
+#define qtn_command_music_player_preferences_crossfading "Плавен преход..."
+#define qtn_command_music_player_preferences_music_player "Плейър..."
+#define qtn_command_music_player_preferences_buttonsdrag "Бутони за След./Пред. ..."
+#define qtn_command_music_player_loop "Повторение"
+#define qtn_command_music_player_loop_off "Изкл. [1]"
+#define qtn_command_music_player_loop_playlist "Списък [2]"
+#define qtn_command_music_player_loop_song "Песен [3]"
+#define qtn_command_music_player_fmtx "FM Приемник..."
+
+//Items in the Navi menu
+#define qtn_text_softkey_navi "Показване"
+#define qtn_command_switchto_fflist       "Папки и файлове"
+#define qtn_command_switchto_playlists    "Списъци"
+#define qtn_command_switchto_filetransfer "Прехвърляне на файлове"
+#define qtn_command_switchto_stopwatch    "Обратно броене"
+#define qtn_command_switchto_musicplayer  "Музикален плейър"
+#define qtn_command_switchto_myfiles      "Моите файлове"
+
+//Music Player notes
+#define qtn_music_player_help_header "Начин на употреба:"
+/*
+ * * Възпроизвеждане/Пауза: ...
+ * * Спиране: ...
+ * * Сила на звука: ...
+ * * Следваща/Предишна песен: ...
+ * * Превъртане: ...
+ */
+//#define qtn_music_player_help_text_touch "В портретен режим:\n* Докоснете иконата за Възпроизвеждане/Пауза за да възпроизведете/паузирате текущата песен\n* Плъзнете пръста си от ляво към дясно, за да отидете на следващата песен. От дясно към ляво отива на предишната песен.\n* Използвайте клавишите за регулиране на звука, за да го увеличите/намалите\n* Плъзгайте пръста си по края на лентата за напредъка, за да превъртате в текущата песен.\n\nВ портретен режим:\n* Използвайте лентата с бутоните за възпроизвеждане/пауза или преминаване към предишна/следваща песен"
+#define qtn_music_player_help_text_touch "* Възпроизвеждане/Пауза: Докоснете иконата за Възпроизвеждане/Пауза, или използвайте лентата с бутоните при пейзажен режим\n* Спиране: Използвайте менюто с опциите\n* Сила на звука: Използвайте клавишите за регулиране на звука\n* Предишна/Следваща песен: Плъзгайте пръста си от ляво към дясно за да преминете на следващата песен, или от дясно към ляво, за да преминете на предишната песен. В пейзажен режим, използвайте лентата с бутоните.\n* Превъртане: Влачете края на лентата за напредъка"
+#define qtn_music_player_help_text_with_volume_keys "* Възпроизвеждане/Пауза: Натиснете центъра на джойстика\n* Спиране: Използвайте стрелката за надолу\n* Сила на звука: Използвайте клавишите за регулиране на звука\n* Следваща/Предишна песен: Използвайте клавишите за надясно и наляво\n* Превъртане: Натиснете и задръжте клавишите за наляво/надясно"
+#define qtn_music_player_help_text_without_volume_keys "* Възпроизвеждане/Пауза: Натиснете центъра на джойстика\n* Спиране: Използвайте командата в меню Опции\n* Сила на звука: използвайте клавишите за нагоре и надолу\n* Следваща/Предишна песен: използвайте клавишите за надясно/наляво\n* Превъртане: натиснете и задръжте клавишите за наляво/надясно"
+
+#define qtn_music_player_albumart_howto_header "Добавяне на обложка към албума:"
+#define qtn_music_player_albumart_howto_text "Ако папката в която се намира текущо възпр. се песен съдържа файл с име cover.jpg (или folder.jpg), това изображ. ще бъде използв. като облож. за албума. Изображ. ще бъдат преоразм , за да съвпаднат с изискванията, които са за квадратно изображ. Препоръчва се cover.jpg да е с висока резолюция и шир. и вис. да са максимално близки до изискванията. Добри размери са 500x500 пиксела.\n\nАко няма cover.jpg или folder.jpg файл, ще бъде използвано изображ. по подразб. Можете да промените това като поставите изображ. с име e:\\Images\\MLauncherCover.jpg в картата памет."
+
+#define qtn_fflist_help_header "Начин на употреба:"
+#define qtn_fflist_first_time_header "Добре дошли в MLauncher!"
+#define qtn_fflist_help_text_touch "MLauncher ви показва музикалните файлове и папки във вашия телефон. Можете да изберете индивидуални файлове и папки като ги докоснете. Избирането на папка ще избере и всичките й файлове и подпапки. Можете да навигирате из папките, използвайки лентата с бутоните. За да възпроизведете избраното от вас, може да използвате лентата с бутоните (Разбъркване и Възпроизвеждане), или чрез командите от меню Опции."
+#define qtn_fflist_help_text_nontouch "MLauncher ви показва музикалните файлове и папки във вашия телефон. Може да избирате индивидуални файлове и папки чрез натискане на центъра на джойстика. Избирането на папка ще избере и всичките й файлове и подпапки. Може да навигирате из папките, използвайки стрелките за наляво и надясно. За да възпроизведете избраното от вас, можете да използвате командите от меню Опции, или техните бързи команди (1 за възпроизвеждане на избраните файлове, и 2 за произволно възпроизвеждане на избраните файлове)."
+
+// Preferences query
+#define qtn_startingdir_prompt "Начална папка:"
+#define qtn_query_keepselection "Запазване на текущата селекция и прилагането й при следващото стартиране на приложението?"
+#define qtn_query_usemetadata "Бихте ли желали Music Launcher да сканира метаданните от вашата музика при стартирането си? След сканирането ще можете да правите селекции базирани на изпълнители и албуми."
+#define qtn_query_launchembedded "Зареждане на муз. плейър във вграден режим? (възможно е някои опции да не са налични във вградения режим)"
+#define qtn_query_usepartialcheck "Папки с избрани само част от техните файлове или подпапки може да бъдат маркирани като \"частично избрани\", с различна отметка. Искате ли да включите частичното избиране?"
+#define qtn_query_useinternalmusicplayer "Използване на MLauncher за възпроизвеждане на музика? (Ако изберете \"Не\", избраната музика ще бъде възпроизвеждана с вградения в телефона муз. плейър)"
+#define qtn_query_redkey "Натискането на червената слушалка да праща ли MLauncher на заден план (вместо да го затваря)?"
+#define qtn_query_playbutton "Да разбърква ли песните преди възпроизвеждането им бутона Възпроизвеждане от лентата с бутоните?"
+#define qtn_query_deletepreferences "Нулиране на настройките и изход от приложението?"
+#define qtn_query_crossfading "Използване на плавен преход между песните?"
+#define qtn_query_buttonsdrag "Изп. бутони за Следващ/Предишен вместо плъзгане?"
+
+//Startup folder items
+#define qtn_text_softkey_choose "Избор"
+#define qtn_text_softkey_create "Създаване"
+#define qtn_text_softkey_retry "Нов опит"
+//old versions (delete)
+//#define qtn_query_set_music_path "No music found. Set the starting folder?"
+//#define qtn_query_set_music_path_again "Folder does not exist, or no music found. Try again?"
+#define qtn_query_create_folder "Папката не съществува. Да я създам ли?"
+
+//#define qtn_message_log_enabled "Log enabled in C:\\Logs\\MLauncher\\MLauncher.txt\nIn case of a crash, you will be prompted to upload the log next time MLauncher starts."
+#define qtn_message_log_enabled "Логването е включено в E:\\Documents\\MLauncherDebug\\MLauncher.txt\nВ случай на грешка в програмата, ще бъдете подканени да качите лога при следващото стартиране на MLauncher."
+//#define qtn_message_log_disabled "It takes 2-3 seconds to disable logging! If you exit MLauncher during this time, logging may not get disabled."
+#define qtn_message_log_disabled "Логването е изключено."
+
+#define qtn_message_usemetadata_after_restart "Новата настройка ще бъде приложена при следващото стартиране на MLauncher"
+#define qtn_message_all_tracks_failed "Всички песни от текущия списък не можаха да бъдат заредени. Най-вероятно това се случи или защото те са били на карта памет която вече не е налична, или са били изтрити."
+
+#define qtn_msg_loop_off "Повторението е изключено"
+#define qtn_msg_loop_playlist "Повтаряне на списъка"
+#define qtn_msg_loop_song "Повтаряне на песента"
+
+//delete query
+#define qtn_query_areyousure "Сигурни ли сте, че искате да изтриете избраните файлове и папки?"
+
+//install query
+#define qtn_query_installnow "Обновлението е изтеглено. Да го инсталирам ли сега? (Приложението ще бъде затворено)"
+
+//Upload log file query
+#define qtn_query_uploadlog "Открит е лог файл. Качване сега (%N КБ, през интернет/HTTP)?"
+
+//Sources queries
+//#define qtn_query_deleteallsources "Изтриване на всички музикални папки? (Музикалните папки ще бъдат преоткрити)"
+
+//BT send sis query
+//#define qtn_text_softkey_continue "Continue"
+//#define qtn_query_continue_send_sis_bt "Please wait until MLauncher is installed on the other phone."
+
+//upgrade query
+#define qtn_text_softkey_later "По-късно"
+#define qtn_text_softkey_upgrade "Обновяване"
+#define qtn_text_softkey_download "Изтегляне"
+#define qtn_text_softkey_now "Сега"
+#define qtn_upgrade_header "Налично е обновление!"
+#define qtn_upgrade_text "Можете да обновите от версия %0N.%1N до версия %2N.%3N. Размерът на файла за изтегляне е %4N КБ.\nНовости:\n%0U"
+#define qtn_sisdownload_noupgrade_header "Програмата не бе открита!"
+#define qtn_sisdownload_noupgrade_text "Приложния (SIS) файл не бе открит във вашия телефон, тъй че не е възможно да го изпратите до други устройства чрез Bluetooth. Бихте ли желали да изтеглите този файл? (%N КБ)"
+#define qtn_sisdownload_latestv_header "Програмата не бе открита!"
+#define qtn_sisdownload_latestv_text "Вие вече притежавате най-новата версия (%0N.%1N), но приложния (SIS) файл не бе открит във вашето устройство, тъй че не бихте могли да го изпратите до други устройства чрез Bluetooth. Бихте ли желали да изтеглите този файл? (%2N КБ)"
+#define qtn_noupgrade_necessary_header "Не се налага обновяване!"
+#define qtn_noupgrade_necessary_text "Вие вече притежавате най-новата версия (%0N.%1N). Засега не се налага обновяване. Моля проверете пак скоро."
+
+//Error strings for BT
+#define qtn_warning_header "Предупреждение"
+#define qtn_error_header "Грешка"
+#define qtn_note_header "Забележка"
+#define qtn_errmsg_cannotread "Вътрешна грешка: Не е възможно прочитането на файла."
+#define qtn_errmsg_cannotwrite "Вътрешна грешка: Не е възможен запис във файла."
+#define qtn_errmsg_notimplemented "Тази функция все още не е добавена"
+//Error strings for the BT Sender
+#define qtn_errmsg_btbusy "Bluetooth е все още зает с предишната команда. Моля опитайте по-късно."
+#define qtn_errmsg_sisnotfound "Приложния SIS файл не бе открит. Приложението не може да бъде изпратено."
+#define qtn_errmsg_connectsendas "Вътрешна грешка: Свързването с SendAs сървъра е невъзможно."
+#define qtn_errmsg_createbtmessage "Вътрешна грешка: не може да бъде създадено BT съобщение от типа SendAs."
+#define qtn_errmsg_cannotsend "Вътрешна грешка: не може да бъде изпратено BT съобщението."
+#define qtn_errmsg_cannotattachmsg "Вътрешна грешка: не може да бъде прикачен SIS файла към BT съобщението."
+#define qtn_errmsg_connectnotifier "Вътрешна грешка: невъзможно е свързването със сървъра-уведомител."
+#define qtn_errmsg_notifier_error "Грешка от Уведомителя: промени ме."
+#define qtn_errmsg_connectesock "Вътрешна грешка: невъзможно е свързването към сокетния сървър."
+#define qtn_errmsg_createbtsocket "Вътрешна грешка: невъзможно е създаването на BT сокет."
+#define qtn_errmsg_cannotconnect2btdevice "Невъзможно е свързването с BT устройството. Другото устройство трябва да е в обхват (до няколко метра), Bluetooth трябва да е включен и програмата MLauncher трябва да е стартирана."
+#define qtn_errmsg_cannotsend2btdevice "Невъзможно е да се изпратят данните до BT устройството. Връзката се разпадна."
+#define qtn_errmsg_badrecipient "Вътрешна грешка: лош BT адрес."
+#define qtn_errmsg_cannotrecvfrombtdevice "Невъзможно е получаването на данни от BT устройството. Връзката се разпадна."
+#define qtn_errmsg_playlistsentsuccessfully "Файловете бяха изпратени успешно!"
+//Error strings for the BT Receiver
+#define qtn_errmsg_connectbtdbserver "Невъзможно е свързването с BT услугата DB сървър."
+#define qtn_errmsg_openbtdb "Невъзможно е отварянето на BT услугата DB."
+#define qtn_errmsg_bindbtsocket "Невъзможно е обвързването на BT сокета."
+#define qtn_errmsg_bindbtsocket_alreadyinuse "BT в момента се използва. Прехвърлянето на файлове чрез BT няма да работи!"
+#define qtn_errmsg_listenbtsocket "Невъзможно е следенето на BT сокета."
+#define qtn_errmsg_cannotacceptconnection "Невъзможно е приемането на BT връзката"
+#define qtn_errmsg_playlistrecvsuccessfully "Файловете бяха получени успешно!"
+#define qtn_errmsg_notenoughspace "Няма достатъчно място за осъществяване на прехвърляне на файлове! Налично: %0N МБ, Необходимо: %1N МБ, разликата е %2N МБ."
+#define qtn_errmsg_peernotenoughspace "Устройството-получател няма необходимото свободно пространство за прехвърляне на файлове! Налично: %0N МБ, Необходимо: %1N МБ, разликата е %2N МБ."
+#define qtn_errmsg_cancelsuccessful "Прехвърлянето е отменено!"
+#define qtn_errmsg_peercanceledtransfer "Другото устройство отмени прехвърлянето!"
+
+#define qtn_errmsg_sendappproceeding "Изпращането на приложението е в ход!"
+
+//Error strings for IP Sender
+#define qtn_errmsg_createipsocket "Вътрешна грешка: невъзможно е създаването на TCP/IP сокет."
+#define qtn_errmsg_cannotconnect2ipdevice "Невъзможно е свързването с IP адреса."
+
+//general errors
+#define qtn_errmsg_commandfailed "Командата е неуспешна!"
+#define qtn_errmsg_unknown "Грешка (неприхваната)"
+
+//Sending SMS
+#define qtn_errmsg_sendasbusy "SendAss сървъра е все още зает с предходната команда. Моля опитайте след няколко секунди."
+#define qtn_errmsg_createsmsmessage "Вътрешна грешка: невъзможно е създаването на SendAs SMS съобщение."
+#define qtn_sms_text "Бяхте поканени да станете бета-тестер на MLauncher. Моля изтеглете приложението от %U Наслаждавайте се :-)"
+
+//Error strings for Check for Upgrade
+#define qtn_msg_sis_downloaded_successfully "Файлът беше изтеглен успешно!"
+//Error strings for Log upload
+#define qtn_errmsg_log_uploaded_successfully "Логът беше изпратен успешно!"
+#define qtn_errmsg_log_upload_failed "Логът не можа да бъде изпратен!"
+
+//starting dir query & list
+#define qtn_select_starting_dir_header "Стартова папка:"
+#define qtn_files_1_file " (%N файл)" //MUST start with " (", otherwise the scan is not working
+#define qtn_files_many_files " (%N файла)"  //MUST start with " (", otherwise the scan is not working
+#define qtn_input_starting_folder_manually "Въведете папката ръчно"
+#define qtn_current_folder_startingdir "Задаване на текущата папка (%U) като стартова папка"
+#define qtn_received_files_display_name "Файловете са получени в %U"
+#define qtn_artists_albums_display_name "Изпълнители и Албуми"
+
+//labels in the File Transfer view
+#define qtn_filetransfer_label_sending_file   "Изпращане на файл (%0N/%1N):"
+#define qtn_filetransfer_label_receiving_file "Получаване на файл (%0N/%1N):"
+#define qtn_filetransfer_label_kb_transfered  "%0N КБ (%1N%)"
+#define qtn_filetransfer_label_kb_2transfer   "%N КБ"
+#define qtn_filetransfer_label_elapsed_time   "%0N мин. %1N сек."
+#define qtn_filetransfer_label_estimated_time "%0N мин. %1N сек."
+#define qtn_filetransfer_label_link           "Линк:"
+#define qtn_filetransfer_label_speed          "%N кб/с"
+
+//labels in the Music Player view
+//#define qtn_musicplayer_label_elapsed_time "%0N:%0N"
+
+//labels in the stopwatch view
+#define qtn_countdown_timer_elapsed "Изминали: %U"
+#define qtn_countdown_timer_remaining "Оставащи: %U"
+
+//other stuff
+
+#define qtn_playlist_filename_prompt "Име на списъка:"
+#define qtn_new_folder_prompt "Име на новата папка:"
+
+#define qtn_playlist_exported_successfully "Списъкът е експортиран!"
+#define qtn_playlist_export_failed "Експортирането на списъка е неуспешно!"
+#define qtn_new_folder_error "Грешка в създаването на папката (%N)"
+
+#define qtn_cannot_save_startingdir "Създаването на стартовата папка е неуспешно!"
+
+#define qtn_rename_prompt "Ново име:"
+
+#define qtn_user_agent "MLauncher вер. %0N.%1N"
+
+#define qtn_about_header "Music Launcher %0N.%1N"
+#define qtn_about_header_development "Music Launcher %0N.%1N.%2Ndev"
+#define qtn_mlauncher_development "Music Launcher %0N.%1N.%2N Тестово издание"
+#define qtn_about_text "(C) 2007-2011, Florin Lohan\nВсички права запазени.\nЛицензирано за ползване под правилата на BSD Лиценза.\nБългарски превод от Костадин Колев (последна актуализация 10.09.2012 г.)."
+
+//added 2011-11-19
+#define qtn_command_source_to_music "Съдържа Музика"
+#define qtn_command_source_to_audiobooks "Съдържа аудиокниги"
+
+//added 2011-11-23
+#define qtn_cannot_play_right_now "Активен разговор. В момента не може да се осъществи възпроизвеждане."
+
+//added 2012-01-22 
+//the following 5 items are the help text for the toolbar in the "Files & Folders" view. 
+//The middle button can be either "play" or "shuffle & play"
+//The last button is either "go into folder" or "play the current song"
+#define qtn_gotoparent_helptext "Отиване едно ниво нагоре"
+#define qtn_play_helptext "Възпроизвеждане на избраните песни и папки"
+#define qtn_shufleandplay_helptext "Произволно възпроизвеждане на избраното"
+#define qtn_gointofolder_helptext "Влизане в избраната папка"
+#define qtn_playsong_helptext "Възпроизвеждане на текущата песен (само)"
+
+//added 2012-02-11
+//these 3 strings are part of the Music Player view. 
+//This is the Menu/Preferences string, 
+#define qtn_command_music_player_preferences_coverhintfiles "Подсказки за обложки..." 
+//This is the query that pops-up when the user selects the menu entry
+#define qtn_query_coverhintfiles "Използване на файлове с подсказки за обложки? (все още експериментална функция)"
+//if the user selects "no" to the previous query, this next query pops up.
+#define qtn_query_delete_coverhintfiles "Изтриване на съществуващите файлове с подсказки за обложки?"
+
+//added 2012-02-17
+//this string is used in a dialog shown after a successful log upload, and when there is an upgrade available
+#define qtn_log_uploaded_upgrade_text "Логът е изпратен успешно!\nИма по-нова версия на MLauncher! Можете да надградите от V%0N.%1N до V%2N.%3N. Размера на файла за изтегляне е %4N КБ.\nНови възможности:\n%0U"
+//startin with 0.105 the Ogg & FLAC plugin comes with MLauncher, but it is not installed by default. This query pops up when the user makes a playlist that contains FLACs and Oggs, but the plugin is not installed. The softkeys are Yes and No.
+#define qtn_query_install_ogg_flac_plugin "Вашият списък съдържа Ogg и/или FLAC музик. файл., които изискват плъгина за Ogg и FLAC (лицензиран под GPL) да бъде инсталиран. Да бъде ли инсталиран сега (не е необходимо изтеглянето му)? Ако отговорите Не, то Ogg и/или FLAC файловете в този списък ще бъдат игнорирани."
+//if the playlist contains Oggs and FLACs and because of some reason the plugin is not available, the following message is displayed.
+#define qtn_query_ogg_flac_plugin_not_found "Вашият списък съдържа Ogg и/или FLAC музик. файл., които изискват плъгина за Ogg и FLAC (лицензиран под GPL) да бъде инсталиран. Моля изтеглете го от уебсайта на MLauncher (http://www.mlauncher.org/index.php?cid=download) и го инсталирайте. За момента, Ogg и/или FLAC файловете в този списък ще бъдат игнорирани."
+
+//added 2012-02-19
+//this string is displayed when the user tries to move some files around, and moving some of the files fails.
+#define qtn_moving_some_files_failed "%0N файла бяха успешно преместени.\n%1N файла не успяха да бъдат преместени."
+//the success case, all files moved
+#define qtn_files_moved_successfully "%0N файла бяха успешно преместени."
+//THE NEXT STRING CHANGED FROM PREVIOUS VERSION
+#define qtn_query_deleteallsources "Изчистване на списъка с музикалните папки и излизане от MLauncher? При следващото пускане на MLauncher, музикалните папки ще бъдат преоткрити."
+//next message is displayed when the user wants to add a music folder manually, in the Music Folders view
+#define qtn_query_add_source_warning "Моля имайте предвид, че тази функция е все още експериментална, най-вероятно все още в нея има дефекти. Продължаване?"
+//this messahe is displayed if the added music folder already exists.
+#define qtn_add_source_already_exists "Тази музикална папка вече е добавена. Няма да бъдат правени никакви промени."
+
+//added 2012-03-22
+#define qtn_command_match_album_art "Съвпадане с албумната обложка"
+
+//added 2012-05-xx
+#define qtn_command_music_player_help_howtouse "Начин на употреба..."
+#define qtn_command_music_player_help_albumart "Инструкции за албумните обложки..."
+#define qtn_command_music_player_equalizer_and_effects "Еквалайзер и Ефекти..."
+#define qtn_command_music_player_audio_settings "Звукови настройки"
+
+#define qtn_equalizer_off "Еквалайзер изкл."
+#define qtn_presets "Шаблони:"
+#define qtn_effects "Ефекти:"
+//effects
+#define qtn_effect_bass_boost "Повдигане на басите"
+#define qtn_effect_stereo_widening "Стерео Разширяване"
+#define qtn_effect_loudness "Усилване на звука"
+
+//added 2012-07-28
+//the next 2 messages are displayed in the files & folder view when there is no music (instead of the "(no elements)" text
+//the first text is displayed while MLauncher is searching for music files
+//the second text is displayed if no music files have been found
+#define qtn_fflist_empty_searchingmusic "Търсене на музикални файлове..."
+#define qtn_fflist_empty_nomusic "Няма намерени музикални файлове"
+
+//added 2012-08-12
+#define qtn_command_music_player_playlist "Списък"
+#define qtn_command_music_player_playlist_remove_current_item "Премахване на текущата песен"
+#define qtn_command_music_player_playlist_reshuffle_all "Разбъркване на списъка"
+#define qtn_command_music_player_playlist_reshuffle_remaining "Разбъркване на оставащите песни"
+
+//added 2012-09-09
+#define qtn_crossfading_disabled "Свързан е BT аксесоар, Плавният преход е изключен." //this is because there are (unsolved) problems with BT headphones and crossfading, they do not work together.
+#define qtn_crossfading_enabled "BT аксесоарът е изключен, плавният преход е включен." 
+// End of File

@@ -1,0 +1,402 @@
+/*
+============================================================================
+ Name        : MLauncher.rls
+ Author      : Florin Lohan
+ Copyright   : Florin Lohan
+ Description : This is a localisation file for MLauncher
+               A .rls file is the one and only place where the logical
+			   strings to be localised are defined.
+============================================================================
+*/
+
+//  LOCALISATION STRINGS
+
+// Caption string for app.
+#define qtn_caption_string "Music Launcher"
+
+//general commands
+#define qtn_command_help "Ayuda"
+
+// Items in "Options" menu pane
+#define qtn_command_play "Reproducir [1]"
+#define qtn_command_shuffle_play "Mezclar y Reproducir [2]"
+#define qtn_command_playlist "Crear Lista Rep. [3]"
+#define qtn_command_find "Buscar..."
+#define qtn_command_send_playlist "Enviar Canciones"
+#define qtn_command_files "Admin. de Archivos"
+#define qtn_command_application "Aplicación"
+#define qtn_command_preferences "Preferencias"
+
+//softkeys labels
+#define qtn_exit "Salir"
+#define qtn_options "Opciones"
+#define qtn_cancel "Cancelar"
+#define qtn_select "Seleccionar"
+#define qtn_back "Volver"
+
+//MSK Labels
+#define qtn_msk_select "Marcar"
+#define qtn_msk_unselect "Desmarcar"
+#define qtn_msk_ignore "Ignorar"
+#define qtn_msk_use "Usar"
+#define qtn_msk_pause "Pausar"
+#define qtn_msk_play "Reproducir"
+
+//items in Send Music Files
+#define qtn_command_send_playlist_bt_discover "Vía Bluetooth [7]"
+#define qtn_command_send_playlist_ip "A un servidor IP"
+
+//items in File Manager + Move
+#define qtn_command_selectall "Marcar Todo [4]"
+#define qtn_command_unselectall "Desmarcar Todo [5]"
+#define qtn_command_save_selection "Guardar Selección [6]"
+#define qtn_command_delete "Eliminar Marcados"
+#define qtn_command_rename "Renombrar Elemento"
+#define qtn_command_move "Mover Marcados"
+#define qtn_command_move_here "Mover Aquí"
+#define qtn_command_new_folder "Nueva Carpeta"
+#define qtn_command_cancel_move "Cancelar"
+
+//Playlist View
+#define qtn_command_playlist_play "Reproducir la Lista"
+#define qtn_command_playlist_rename "Cambiarle el Nombre"
+#define qtn_command_playlist_delete "Eliminar la Lista"
+
+//items in Application menu
+#define qtn_command_countdown_timer "Cuenta Regresiva"
+#define qtn_command_send_app_bt_discover "Enviar vía Bluetooth [8]"
+#define qtn_command_send_app_sms "Enviar como SMS (vínculo)"
+#define qtn_command_upload_crash_logfile "Subir Registro de Fallas"
+#define qtn_command_check4updates "Buscar Actualizaciones [9]"
+#define qtn_command_about "Acerca de..."
+
+// Items in the Preferences
+#define qtn_command_starting_dirs     "Carpetas de Música..."
+#define qtn_command_use_metadata      "Usar Metadatos..."
+#define qtn_command_launchembedded    "Integrar Reproductor..."
+#define qtn_command_keepselection     "Mantener Selección"
+#define qtn_command_usepartialcheck   "Usar Marcas Parciales..."
+#define qtn_command_useinternalplayer "Motor de Reproducción..."
+#define qtn_command_redkey            "Función Tecla Roja (Colgar)..."
+#define qtn_command_playbutton        "Función Botón Reproducir..."
+#define qtn_command_deletepreferences "Reestablecer Preferencias..."
+#define qtn_command_enable_log        "Activar Registro de Errores"
+#define qtn_command_disable_log       "Desactivar Registro de Errores"
+
+//Items in the Filetransfer menu
+#define qtn_command_cancel_transfer "Cancelar Transferencia"
+//#define qtn_command_skip_this_file "Skip this file"
+
+//Items in Stopwatch menu
+#define qtn_command_stop_alarm "Detener la Alarma"
+#define qtn_command_start_countdown "Comenzar Cuenta Regresiva"
+#define qtn_command_countdown_settings "Parámetros"
+#define qtn_command_exit_countdown "Cancelar Cuenta Regresiva"
+
+//Items in Sources menu
+#define qtn_command_delete_source "Eliminar"
+#define qtn_command_add_source "Agregar Carpeta"
+#define qtn_command_delete_all_sources "Eliminar Todas"
+
+//Items in Music Player menu
+#define qtn_command_save_and_exit "Guardar y Salir"
+#define qtn_command_stop "Detener"
+#define qtn_command_album_art "Carátula del Disco"
+//#define qtn_command_album_art_howto "Tutorial..." -> not used after 0.107
+//#define qtn_command_album_art_crop "Recortar Bordes..." -> not used after 0.107
+#define qtn_command_color_schemes "Colores"
+#define qtn_command_black_and_green "Negro y Verde"
+#define qtn_command_black_and_blue "Negro y Azul"
+#define qtn_command_black_and_orange "Negro y Naranja"
+#define qtn_command_black_and_red "Negro y Rojo"
+#define qtn_command_black_and_violet "Negro y Violeta"
+#define qtn_command_white_and_green "Blanco y Verde"
+#define qtn_command_white_and_blue "Blanco y Azul"
+#define qtn_command_white_and_orange "Blanco y Naranja"
+#define qtn_command_white_and_red "Blanco y Rojo"
+#define qtn_command_white_and_violet "Blanco y Violeta"
+#define qtn_command_music_player_preferences_crossfading "Fundido Cruzado..."
+//#define qtn_command_music_player_preferences_music_player "Reproductor..."
+#define qtn_command_music_player_preferences_buttonsdrag "Botones Anterior/Siguiente..."
+#define qtn_command_music_player_loop "Repetir"
+#define qtn_command_music_player_loop_off "Desactivado [1]"
+#define qtn_command_music_player_loop_playlist "Lista Reproducción [2]"
+#define qtn_command_music_player_loop_song "Sólo esta Canción [3]"
+#define qtn_command_music_player_fmtx "Transmisor FM..."
+
+//Items in the Navi menu
+#define qtn_text_softkey_navi "Vista"
+#define qtn_command_switchto_fflist       "Carpetas y Archivos"
+#define qtn_command_switchto_playlists    "Listas de Reproducción"
+#define qtn_command_switchto_filetransfer "Transferencia de Archivos"
+#define qtn_command_switchto_stopwatch    "Cuenta Regresiva"
+#define qtn_command_switchto_musicplayer  "Reproductor de Música"
+#define qtn_command_switchto_myfiles      "Mis Archivos"
+
+//Music Player notes
+#define qtn_music_player_help_header "Instrucciones de Uso:"
+/*
+ * * Play/Pause: ...
+ * * Stop: ...
+ * * Volume: ...
+ * * Next/previous song: ...
+ * * Seek: ...
+ */
+//#define qtn_music_player_help_text_touch "In Portrait mode:\n* Tap the Play/Pause icon to play/pause the current song\n* Drag your finger over the arrows from left to right to go to the next song. Right to left goes to the previous song.\n* Use the volume keys to increase/decrease the volume\n* Drag the end of the progress bar to seek inside the current song.\n\nIn portrait mode:\n* Use the Toolbar to Play/Pause or go to the next or previous song"
+#define qtn_music_player_help_text_touch "* Reproducir/Pausar: Toca el ícono de Reproducir/Pausa o usa la barra de botones en el modo horizontal.\n* Detener: Usa el menú de Opciones.\n* Volumen: Usar las teclas de volumen.\n* Cambiar canciones: Arrastra el dedo sobre las flechas, de izquierda a derecha para avanzar a la siguiente canción, o de derecha a izquierda para volver al tema anterior. En el modo horizontal, usar la barra de botones.\n* Adelantar/Retroceder: Arrastra el borde de la barra de progreso."
+#define qtn_music_player_help_text_with_volume_keys "* Reproducir/Pausar: Presiona la tecla de Selección.\n* Detener: Usa la tecla de dirección hacia abajo.\n* Volumen: Usar las teclas de volumen.\n* Cambiar canciones: Presiona la tecla de dirección hacia la derecha para avanzar a la siguiente canción, o la dirección hacia la izquierda para volver al tema anterior.\n* Adelantar/Retroceder: Aprieta y mantén presionada la tecla de dirección hacia la izquierda o hacia la derecha."
+#define qtn_music_player_help_text_without_volume_keys "* Reproducir/Pausar: Presiona la tecla de Selección.\n* Detener: Usa el menú de Opciones.\n* Volumen: Usar las teclas de dirección hacia arriba o hacia abajo.\n* Cambiar canciones: Presiona la tecla de dirección hacia la derecha para avanzar a la siguiente canción, o la dirección hacia la izquierda para volver al tema anterior.\n* Adelantar/Retroceder: Aprieta y mantén presionada la tecla de dirección hacia la izquierda o hacia la derecha."
+
+#define qtn_music_player_albumart_howto_header "Cómo mostrar la Carátula del Disco:"
+#define qtn_music_player_albumart_howto_text "Se utilizará la imagen integrada en los metadatos del archivo de música si existiese, o una imagen llamada cover.jpg (o folder.jpg) que deberá estar almacenada dentro de la misma carpeta que contiene las canciones. Esta imagen será redimensionada para que calce dentro del marco del reproductor, el cual siempre será cuadrado. Se recomienda que la imagen sea de buen tamaño y su alto y ancho sean lo más similar posible, por ejemplo 500x500 pixeles.\n\nEn el caso de que no se encuentre ninguna de estas imágenes se mostrará una carátula por defecto. Si lo deseas, puedes cambiar esta carátula por defecto almacenando una imagen en la tarjeta de memoria con el nombre e:\\Images\\MLauncherCover.jpg."
+
+#define qtn_fflist_help_header "Instrucciones de Uso:"
+#define qtn_fflist_first_time_header "¡Bienvenido a MLauncher!"
+#define qtn_fflist_help_text_touch "MLauncher te muestra todos los archivos y carpetas de música de tu teléfono. Puedes marcar tanto archivos individuales como carpetas simplemente tocándolas. Marcar una carpeta también marcará todo su contenido, incluyendo subcarpetas. Es posible entrar y salir de las carpetas y subcarpetas mediante la barra de botones. Para reproducir los elementos marcados, usa el botón central de la barra de botones o utiliza comandos específicos para ello dentro del menú Opciones."
+#define qtn_fflist_help_text_nontouch "MLauncher te muestra todos los archivos y carpetas de música de tu teléfono. Puedes marcar tanto archivos individuales como carpetas usando la tecla de Selección. Marcar una carpeta también marcará todo su contenido, incluyendo subcarpetas. Es posible entrar y salir de las carpetas utilizando las teclas de dirección hacia la izquierda o hacia la derecha. Para reproducir los elementos marcados, utiliza los comandos dentro del menú Opciones."
+
+// Preferences query
+#define qtn_startingdir_prompt "Carpeta de inicio:"
+#define qtn_query_keepselection "¿Guardar la selección actual y volverla a aplicar la próxima vez que ejecutes MLauncher?"
+#define qtn_query_usemetadata "¿Activar la lectura de metadatos al iniciar? Esto posibilita hacer selecciones basadas en Artistas o Discos."
+#define qtn_query_launchembedded "¿Usar el reproductor interno en modo integrado? (algunas opciones no están disponibles en este modo)"
+#define qtn_query_usepartialcheck "¿Activar las \"marcas parciales\"? Esto permite distinguir las carpetas con sólo parte del contenido marcado de las completamente marcadas."
+#define qtn_query_useinternalmusicplayer "¿Usar MLauncher para reproducir música? (Si eliges \"No\" se usará el reproductor integrado del teléfono)"
+#define qtn_query_redkey "¿Minimizar el programa al pulsar la tecla Roja (colgar) del teléfono, en lugar de cerrar la aplicación?"
+#define qtn_query_playbutton "¿Quieres que el botón de Reproducción de la barra de botones también mezcle el orden de las canciones?"
+#define qtn_query_deletepreferences "¿Volver a los valores por defecto y salir de la aplicación?"
+//#define qtn_query_crossfading "¿Activar el fundido cruzado (mezcla de audio) entre canciones?"
+#define qtn_query_buttonsdrag "¿Usar botones de Anterior/Siguiente en vez de deslizar el dedo para cambiar de canción?"
+
+//Startup folder items
+#define qtn_text_softkey_choose "Escoger"
+#define qtn_text_softkey_create "Crear"
+#define qtn_text_softkey_retry "Reintentar"
+//old versions (delete)
+//#define qtn_query_set_music_path "No music found. Set the starting folder?"
+//#define qtn_query_set_music_path_again "Folder does not exist, or no music found. Try again?"
+#define qtn_query_create_folder "La carpeta no existe. ¿Crearla?"
+
+//#define qtn_message_log_enabled "Registro de errores activado en C:\\Logs\\MLauncher\\MLauncher.txt\nEn caso de error, se le solicitara enviar el registro antes de volver a ejecutar MLauncher."
+#define qtn_message_log_enabled "Registro de errores activado en E:\\Documents\\MLauncherDebug\\MLauncher.txt\nEn caso de error, se le solicitará enviar el registro cuando vuelva a ejecutar MLauncher."
+//#define qtn_message_log_disabled "Se requieren de 2 a 3 segundos para deshabilitar el registro! Si sale de MLauncher antes de eso, es posible que el registro no quede desactivado."
+#define qtn_message_log_disabled "Registro desactivado."
+
+#define qtn_message_usemetadata_after_restart "Esta característica entrará en funcionamiento la próxima vez que se ejecute MLauncher."
+#define qtn_message_all_tracks_failed "Todas las pistas de esta lista de reproducción han fallado. La causa más probable es que los archivos de música han sido eliminados o que éstos se encontraban en una tarjeta de memoria que actualmente no está disponible."
+
+#define qtn_msg_loop_off "Repetir Desactivado"
+#define qtn_msg_loop_playlist "Repitiendo la Lista de Reproducción"
+#define qtn_msg_loop_song "Repitiendo una Canción"
+
+//delete query
+#define qtn_query_areyousure "¿Estás seguro de querer ELIMINAR PERMANENTEMENTE todos los archivos y carpetas marcados?"
+
+//install query
+#define qtn_query_installnow "Actualización descargada. ¿Instalarla ahora? (La aplicación se reiniciará)"
+
+//Upload log file query
+#define qtn_query_uploadlog "Registro de errores detectado. ¿Enviarlo ahora? (%N KB, usando Internet/HTTP)"
+
+//BT send sis query
+//#define qtn_text_softkey_continue "Continue"
+//#define qtn_query_continue_send_sis_bt "Please wait until MLauncher is installed on the other phone."
+
+//upgrade query
+#define qtn_text_softkey_later "Después"
+#define qtn_text_softkey_upgrade "Actualizar"
+#define qtn_text_softkey_download "Descargar"
+#define qtn_text_softkey_now "Ahora"
+#define qtn_upgrade_header "¡Actualización disponible!"
+#define qtn_upgrade_text "Puedes actualizar tu versión V%0N.%1N a la V%2N.%3N. El tamaño de la descarga es de %4N kB.\nCaracterísticas nuevas:\n%0U"
+#define qtn_sisdownload_noupgrade_header "¡Instalador no encontrado!"
+#define qtn_sisdownload_noupgrade_text "El archivo de instalación (SIS) no ha sido encontrado en tu teléfono, lo que hace imposible compartir esta aplicación vía Bluetooth. ¿Deseas descargar el instalador? (%N kB)"
+#define qtn_sisdownload_latestv_header "¡Instalador no encontrado!"
+#define qtn_sisdownload_latestv_text "Ya tienes instalada la última versión de esta aplicación (V%0N.%1N), pero el archivo de instalación (SIS) no ha sido encontrado, lo que hace imposible compartir esta aplicación vía Bluetooth. ¿Deseas descargar el instalador? (%2N kB)"
+#define qtn_noupgrade_necessary_header "¡No se necesita actualizar!"
+#define qtn_noupgrade_necessary_text "Ya tienes instalada la última versión de esta aplicación (V%0N.%1N). No es necesario actualizar."
+
+//Error strings for BT
+#define qtn_warning_header "Advertencia"
+#define qtn_error_header "Error"
+#define qtn_note_header "Nota"
+#define qtn_errmsg_cannotread "Error interno: Imposible leer el archivo."
+#define qtn_errmsg_cannotwrite "Error interno: Imposible crear el archivo."
+#define qtn_errmsg_notimplemented "Funcionalidad no implementada aún."
+//Error strings for the BT Sender
+#define qtn_errmsg_btbusy "El servicio Bluetooth sigue ocupado. Inténtalo más tarde."
+#define qtn_errmsg_sisnotfound "Archivo de instalación no encontrado. Imposible enviar aplicación."
+#define qtn_errmsg_connectsendas "Error interno: Imposible conectar con el servidor SendAs."
+#define qtn_errmsg_createbtmessage "Error interno: No se puede componer el mensaje vía SendAs."
+#define qtn_errmsg_cannotsend "Error interno: Imposible enviar mensaje vía Bluetooth."
+#define qtn_errmsg_cannotattachmsg "Error interno: Imposible añadir archivo SIS al mensaje vía BT."
+#define qtn_errmsg_connectnotifier "Error interno: No hay conexión al Servidor de Notificaciones."
+#define qtn_errmsg_notifier_error "Error de Notificador."
+#define qtn_errmsg_connectesock "Error interno: Imposible conectar al servidor de Sockets."
+#define qtn_errmsg_createbtsocket "Error interno: Imposible crear un Socket Bluetooth."
+#define qtn_errmsg_cannotconnect2btdevice "Imposible conectar con el otro dispositivo Bluetooth. Verifica que el recipiente esté en el rango, tenga el servicio Bluetooth activado y esté ejecutando MLauncher."
+#define qtn_errmsg_cannotsend2btdevice "Imposible enviar datos vía Bluetooth. Se ha perdido la conexión."
+#define qtn_errmsg_badrecipient "Error interno: Identificación Bluetooth errónea."
+#define qtn_errmsg_cannotrecvfrombtdevice "Imposible recibir datos vía Bluetooth. Se ha perdido la conexión."
+#define qtn_errmsg_playlistsentsuccessfully "¡Archivos enviados exitosamente!"
+//Error strings for the BT Receiver
+#define qtn_errmsg_connectbtdbserver "Imposible conectar a la base de servicios Bluetooth."
+#define qtn_errmsg_openbtdb "Imposible abrir la base de servicios Bluetooth."
+#define qtn_errmsg_bindbtsocket "Imposible conectar al socket Bluetooth."
+#define qtn_errmsg_bindbtsocket_alreadyinuse "El servicio Bluetooth ya se encuentra en uso. ¡No es posible transferir archivos!"
+#define qtn_errmsg_listenbtsocket "Imposible atender el socket Bluetooth."
+#define qtn_errmsg_cannotacceptconnection "Imposible aceptar la conexión Bluetooth."
+#define qtn_errmsg_playlistrecvsuccessfully "¡Archivos recibidos exitosamente!"
+#define qtn_errmsg_notenoughspace "¡No hay suficiente espacio para transferir archivos! Hay %0N MB libres, y necesitas %1N MB. Faltan %2N MB."
+#define qtn_errmsg_peernotenoughspace "¡El dispositivo que recibe no tiene suficiente espacio para transferir archivos! Tiene %0N MB libres, y necesita de %1N MB. Faltan %2N MB."
+#define qtn_errmsg_cancelsuccessful "¡Transferencia cancelada!"
+#define qtn_errmsg_peercanceledtransfer "¡El otro dispositivo ha cancelado la transferencia!"
+
+#define qtn_errmsg_sendappproceeding "¡Enviando aplicación!"
+
+//Error strings for IP Sender
+#define qtn_errmsg_createipsocket "Error interno: imposible crear un socket TCP/IP."
+#define qtn_errmsg_cannotconnect2ipdevice "Imposible conectar a la dirección IP."
+
+//general errors
+#define qtn_errmsg_commandfailed "¡El comando ha fallado!"
+#define qtn_errmsg_unknown "Error desconocido."
+
+//Sending SMS
+#define qtn_errmsg_sendasbusy "El servidor SendAs se encuentra ocupado. Inténtalo más tarde."
+#define qtn_errmsg_createsmsmessage "Error interno: Imposible componer el mensaje SMS."
+#define qtn_sms_text "Te estamos invitando a probar el beta de MLauncher. Puedes descargar la aplicación visitando este vínculo: %U ¡Disfrútala!"
+
+//Error strings for Check for Upgrade
+#define qtn_msg_sis_downloaded_successfully "¡Actualización descargada exitosamente!"
+//Error strings for Log upload
+#define qtn_errmsg_log_uploaded_successfully "¡Registro enviado exitosamente!"
+#define qtn_errmsg_log_upload_failed "¡Ha fallado el envío del registro!"
+
+//starting dir query & list
+#define qtn_select_starting_dir_header "Carpeta de inicio:"
+#define qtn_files_1_file " (%N archivo)" //MUST start with " (", otherwise the scan is not working
+#define qtn_files_many_files " (%N archivos)"  //MUST start with " (", otherwise the scan is not working
+#define qtn_input_starting_folder_manually "Ingresar la carpeta manualmente"
+#define qtn_current_folder_startingdir "Definir la carpeta actual (%U) como la carpeta de inicio"
+#define qtn_received_files_display_name "Archivos recibidos en %U"
+#define qtn_artists_albums_display_name "Artistas y Discos"
+
+//labels in the File Transfer view
+#define qtn_filetransfer_label_sending_file   "Enviando archivo (%0N/%1N):"
+#define qtn_filetransfer_label_receiving_file "Recibiendo archivo (%0N/%1N):"
+#define qtn_filetransfer_label_kb_transfered  "%0N KB (%1N%)"
+#define qtn_filetransfer_label_kb_2transfer   "%N KB"
+#define qtn_filetransfer_label_elapsed_time   "%0N m %1N s"
+#define qtn_filetransfer_label_estimated_time "%0N m %1N s"
+#define qtn_filetransfer_label_link           "Vínculo:"
+#define qtn_filetransfer_label_speed          "%N kbps"
+
+//labels in the Music Player view
+//#define qtn_musicplayer_label_elapsed_time "%0N:%0N"
+
+//labels in the stopwatch view
+#define qtn_countdown_timer_elapsed "Transcurrido: %U"
+#define qtn_countdown_timer_remaining "Restante: %U"
+
+//other stuff
+
+#define qtn_playlist_filename_prompt "Nombre de la Lista de Reproducción:"
+#define qtn_new_folder_prompt "Nombre de la Nueva Carpeta:"
+
+#define qtn_playlist_exported_successfully "¡Lista de Reproducción exportada!"
+#define qtn_playlist_export_failed "¡Falló la exportación de la Lista de Reproducción!"
+#define qtn_new_folder_error "Error creando la nueva carpeta (%N)"
+
+#define qtn_cannot_save_startingdir "¡Imposible crear la carpeta de inicio!"
+
+#define qtn_rename_prompt "Renombrar la Lista como:"
+
+#define qtn_user_agent "MLauncher V %0N.%1N"
+
+#define qtn_about_header "Music Launcher V%0N.%1N"
+#define qtn_about_header_development "Music Launcher V%0N.%1N.%2Ndev"
+#define qtn_mlauncher_development "Music Launcher V%0N.%1N.%2N Development Edition"
+#define qtn_about_text "(C) 2007-2012, Florin Lohan\nTodos los derechos reservados.\nTraducción al Español Latinoamericano por Saiyaku.\n\nLicencia concedida para usar la aplicación según los términos de la licencia BSD."
+
+//added 2011-11-19
+#define qtn_command_source_to_music "Contiene Música"
+#define qtn_command_source_to_audiobooks "Contiene Audiolibros"
+
+//added 2011-11-23
+#define qtn_cannot_play_right_now "Llamada en curso. No es posible reproducir en estos momentos."
+
+//added 2012-01-22 
+//the following 5 items are the help text for the toolbar in the "Files & Folders" view. 
+//The middle button can be either "play" or "shuffle & play"
+//The last button is either "go into folder" or "play the current song"
+#define qtn_gotoparent_helptext "Volver a la carpeta anterior"
+#define qtn_play_helptext "Reproducir canciones y carpetas marcadas"
+#define qtn_shufleandplay_helptext "Mezclar y reproducir los archivos marcados"
+#define qtn_gointofolder_helptext "Entrar en esta carpeta"
+#define qtn_playsong_helptext "Reproducir esta canción (solamente)"
+
+//added 2012-02-11
+//these 3 strings are part of the Music Player view. 
+//This is the Menu/Preferences string, 
+#define qtn_command_music_player_preferences_coverhintfiles "Indicios de Caratulas..." 
+//This is the query that pops-up when the user selects the menu entry
+#define qtn_query_coverhintfiles "¿Activar los indicios para las carátulas que falten? (experimental)"
+//if the user selects "no" to the previous query, this next query pops up.
+#define qtn_query_delete_coverhintfiles "¿Eliminar los indicios previamente creados?"
+
+
+//added 2012-02-17
+//this string is used in a dialog shown after a successful log upload, and when there is an upgrade available
+#define qtn_log_uploaded_upgrade_text "¡Registro enviado exitosamente!\nPor cierto, ¡hay una nueva versión de MLauncher disponible! Puedes actualizar de la versión V%0N.%1N a la V%2N.%3N. El tamaño de la descarga es de %4N kB.\nCaracterísticas nuevas:\n%0U"
+//startin with 0.105 the Ogg & FLAC plugin comes with MLauncher, but it is not installed by default. This query pops up when the user makes a playlist that contains FLACs and Oggs, but the plugin is not installed. The softkeys are Yes and No.
+#define qtn_query_install_ogg_flac_plugin "Esta Lista de Reproducción contiene archivos Ogg y/o FLAC que requieren la instalación del plugin de control para Ogg/FLAC. ¿Deseas instalarlo ahora? Si tu respuesta es No, entonces tanto los archivos Ogg como los FLAC serán ignorados."
+//if the playlist contains Oggs and FLACs and because of some reason the plugin is not available, the following message is displayed.
+#define qtn_query_ogg_flac_plugin_not_found "Esta Lista de Reproducción contiene archivos Ogg y/o FLAC que requieren la instalación del plugin de control para Ogg/FLAC. Descárguelo desde el sitio web de MLauncher (http://www.mlauncher.org/index.php?cid=download). Hasta no instalarlo, tanto los archivos Ogg como los FLAC serán ignorados."
+
+//added 2012-02-19
+//this string is displayed when the user tries to move some files around, and moving some of the files fails.
+#define qtn_moving_some_files_failed "%0N archivos movidos exitosamente.\nImposible mover %1N archivo(s)."
+//the success case, all files moved
+#define qtn_files_moved_successfully "%0N archivos movidos exitosamente."
+//THE NEXT STRING CHANGED FROM PREVIOUS VERSION
+#define qtn_query_deleteallsources "¿Limpiar la lista de carpetas de música y salir de MLauncher? Cuando reinicies MLauncher, automáticamente se volverán a detectar las carpetas conteniendo audio."
+//next message is displayed when the user wants to add a music folder manually, in the Music Folders view
+#define qtn_query_add_source_warning "Ten presente que esta característica aún es experimental y podría fallar. ¿Continuar?"
+//this messahe is displayed if the added music folder already exists.
+#define qtn_add_source_already_exists "Esta carpeta ya se encuentra registrada en el listado. No se harán cambios a éste."
+
+//added 2012-03-22
+#define qtn_command_match_album_art "Según la Carátula"
+
+//added 2012-05-xx
+#define qtn_command_music_player_help_howtouse "Instrucciones..."
+#define qtn_command_music_player_help_albumart "Cómo Activar Carátulas..."
+#define qtn_command_music_player_equalizer_and_effects "Ecualizador y Efectos..."
+#define qtn_command_music_player_audio_settings "Ajustes de Audio"
+
+#define qtn_equalizer_off "Ecualizador Desactivado"
+#define qtn_presets "Programas Preestablecidos:"
+#define qtn_effects "Efectos de Audio:"
+//effects
+#define qtn_effect_bass_boost "Refuerzo de Bajos"
+#define qtn_effect_stereo_widening "Ampliación Estereofónica"
+#define qtn_effect_loudness "Mejora de Potencia"
+
+//added 2012-07-28
+//the next 2 messages are displayed in the files & folder view when there is no music (instead of the "(no elements)" text
+//the first text is displayed while MLauncher is searching for music files
+//the second text is displayed if no music files have been found
+#define qtn_fflist_empty_searchingmusic "Buscando archivos de música..."
+#define qtn_fflist_empty_nomusic "No se han encontrado canciones"
+
+//added 2012-08-12
+#define qtn_command_music_player_playlist "Lista de Reproducción"
+#define qtn_command_music_player_playlist_remove_current_item "Quitar esta canción"
+#define qtn_command_music_player_playlist_reshuffle_all "Desordenar la lista"
+#define qtn_command_music_player_playlist_reshuffle_remaining "Mezclar canciones restantes"
+
+//added 2012-09-09
+#define qtn_crossfading_disabled "Bluetooth encendido - el fundido cruzado ha sido desactivado." //this is because there are (unsolved) problems with BT headphones and crossfading, they do not work together.
+#define qtn_crossfading_enabled "Bluetooth apagado - es posible activar el fundido cruzado."
+// End of File

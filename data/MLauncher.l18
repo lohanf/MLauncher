@@ -1,0 +1,402 @@
+/*
+============================================================================
+ Name        : MLauncher.rls
+ Author      : Florin Lohan
+ Copyright   : Florin Lohan
+ Description : This is a localisation file for MLauncher
+               A .rls file is the one and only place where the logical
+			   strings to be localised are defined.
+============================================================================
+*/
+
+//  LOCALISATION STRINGS
+
+// Caption string for app.
+#define qtn_caption_string "Music Launcher"
+
+//general commands
+#define qtn_command_help "Help"
+
+// Items in "Options" menu pane
+#define qtn_command_play "Spelen [1]"
+#define qtn_command_shuffle_play "Shuffle & Spelen [2]"
+#define qtn_command_playlist "Speellijst aanmaken [3]"
+#define qtn_command_find "Zoek ..."
+#define qtn_command_send_playlist "Muziek bestanden sturen"
+#define qtn_command_files "Bestandbeheer"
+#define qtn_command_application "Programma"
+#define qtn_command_preferences "Instellingen"
+
+//softkeys labels
+#define qtn_exit "Stoppen"
+#define qtn_options "Opties"
+#define qtn_cancel "Annuleren"
+#define qtn_select "Selecteer"
+#define qtn_back "Terug"
+
+//MSK Labels
+#define qtn_msk_select "Selecteer"
+#define qtn_msk_unselect "Selectie opheffen"
+#define qtn_msk_ignore "Negeer"
+#define qtn_msk_use "Gebruik"
+#define qtn_msk_pause "Pauze"
+#define qtn_msk_play "Spelen"
+
+//items in Send Music Files
+#define qtn_command_send_playlist_bt_discover "Via Bluetooth [7]"
+#define qtn_command_send_playlist_ip "Via IP server"
+
+//items in File Manager + Move
+#define qtn_command_selectall "Alles selecteren [4]"
+#define qtn_command_unselectall "Alle selecties opheffen [5]"
+#define qtn_command_save_selection "Selectie opslaan [6]"
+#define qtn_command_delete "Selectie wissen"
+#define qtn_command_rename "Item hernoemen"
+#define qtn_command_move "Selectie verplaatsen"
+#define qtn_command_move_here "Verplaatsen naar hier"
+#define qtn_command_new_folder "Nieuwe map"
+#define qtn_command_cancel_move "Verplaatsen annuleren"
+
+//Playlist View
+#define qtn_command_playlist_play "Spelen"
+#define qtn_command_playlist_rename "Hernoemen"
+#define qtn_command_playlist_delete "Wissen"
+
+//items in Application menu
+#define qtn_command_countdown_timer "Terugloop Timer"
+#define qtn_command_send_app_bt_discover "Stuur via Bluetooth [8]"
+#define qtn_command_send_app_sms "Stuur via SMS (link)"
+#define qtn_command_upload_crash_logfile "Sturen crash logbestand"
+#define qtn_command_check4updates "Op updates controleren [9]"
+#define qtn_command_about "Over"
+
+// Items in the Preferences
+#define qtn_command_starting_dirs     "Muziek mappen..."
+#define qtn_command_use_metadata      "Metadata gebruiken..."
+#define qtn_command_launchembedded    "Ingebouwde Muziekspeler..."
+#define qtn_command_keepselection     "Selectie bewaren"
+#define qtn_command_usepartialcheck   "Partial check gebruiken..."
+#define qtn_command_useinternalplayer "Muziekspeler gebruiken..."
+#define qtn_command_redkey            "Gedrag rode (Einde) toets..."
+#define qtn_command_playbutton        "Gedrag spelen toets..."
+#define qtn_command_deletepreferences "Reset instellingen..."
+#define qtn_command_enable_log        "Logging aan"
+#define qtn_command_disable_log       "Logging uit"
+
+//Items in the Filetransfer menu
+#define qtn_command_cancel_transfer "Transfer afbreken"
+//#define qtn_command_skip_this_file "Bestand overslaan"
+
+//Items in Stopwatch menu
+#define qtn_command_stop_alarm "Stop alarm"
+#define qtn_command_start_countdown "Start terugtelling"
+#define qtn_command_countdown_settings "Terugtelling instellingen"
+#define qtn_command_exit_countdown "Terugtelling stoppen"
+
+//Items in Sources menu
+#define qtn_command_delete_source "Wissen"
+#define qtn_command_add_source "Muziekmap toevoegen"
+#define qtn_command_delete_all_sources "Alles wissen"
+
+//Items in Music Player menu
+#define qtn_command_save_and_exit "Opslaan & afsluiten"
+#define qtn_command_stop "Stop"
+#define qtn_command_album_art "Album plaatjes"
+#define qtn_command_album_art_howto "Hoe ..."
+#define qtn_command_album_art_crop "Rand knippen ..."
+#define qtn_command_color_schemes "Kleuren"
+#define qtn_command_black_and_green "Zwart & Groen"
+#define qtn_command_black_and_blue "Zwart & Blauw"
+#define qtn_command_black_and_orange "Zwart & Oranje"
+#define qtn_command_black_and_red "Zwart & Rood"
+#define qtn_command_black_and_violet "Zwart & Paars"
+#define qtn_command_white_and_green "Wit & Groen"
+#define qtn_command_white_and_blue "Wit & Blauw"
+#define qtn_command_white_and_orange "Wit & Oranje"
+#define qtn_command_white_and_red "Wit & Rood"
+#define qtn_command_white_and_violet "Wit & Paars"
+#define qtn_command_music_player_preferences_crossfading "Overvloeien..."
+#define qtn_command_music_player_preferences_music_player "Speler..."
+#define qtn_command_music_player_preferences_buttonsdrag "Volgende/Vorige Knoppen..."
+#define qtn_command_music_player_loop "Lus"
+#define qtn_command_music_player_loop_off "Uit [1]"
+#define qtn_command_music_player_loop_playlist "Speellijst [2]"
+#define qtn_command_music_player_loop_song "Lied [3]"
+#define qtn_command_music_player_fmtx "FM Zender..."
+
+//Items in the Navi menu
+#define qtn_text_softkey_navi "Afbeelden"
+#define qtn_command_switchto_fflist       "Mappen & Bestanden"
+#define qtn_command_switchto_playlists    "Speellijsten"
+#define qtn_command_switchto_filetransfer "Bestand overdracht"
+#define qtn_command_switchto_stopwatch    "Terugteller"
+#define qtn_command_switchto_musicplayer  "Muziekspeler"
+#define qtn_command_switchto_myfiles      "Mijn bestanden"
+
+//Music Player notes
+#define qtn_music_player_help_header "Hoe te gebruiken:"
+/*
+ * * Afspelen/Pauze: ...
+ * * Stop: ...
+ * * Volume: ...
+ * * Volgend/vorig nummer: ...
+ * * Zoek: ...
+ */
+//#define qtn_music_player_help_text_touch "In portret mode:\n* Tip op het speel/pauze ikoon om huidig nummer te spelen/pauzeren \n* Schuif van links naar rechts over de pijlen om naar het volgende nummer te gaan. Rechts naar links voor vorig nummer.\n* Gebruik de volume toetsen om het volume harder/zachter te zetten\n* Schuif in de voortgangsbalk om te zoeken in huidig nummer.\n\nIn portret mode:\n* Gebruik de toolbar voor Spelen/Pauze of om naar Volgend/vorig nummer te gaan"
+#define qtn_music_player_help_text_touch "* Spelen/Pauze: tik op het Spelen/Pauze ikoon, of gebruik de toolbar in landschap mode\n* Stop: Gebruik het opties menu\n* Volume: gebruik de volume toetsen\n* Volgend/vorig nummer: schuif van links naar rechts over de pijlen om naar volgend nummer te gaan, of van rechts naar links voor vorig nummer. Gebruik de toolbar in Landschap mode.\n* Zoek: schuif naar einde toe van voortgangsbalk"
+#define qtn_music_player_help_text_with_volume_keys "* Spelen/Pauze: Druk op Enter\n* Stop: pijl omlaag\n* Volume: gebruik volume toetsen\n* Volgend/Vorig nummer: gebruik de rechts/links toetsen\n* Zoek: langer vasthouden van links/rechts toetsen"
+#define qtn_music_player_help_text_without_volume_keys "* Spelen/Pauze: Druk op Enter\n* Stop: gebruik Opties menu\n* Volume: gebruik omhoog en omlaag toetsen\n* Volgend/vorig nummer: gebruik rechts/links toetsen\n* Zoek: lang vasthouden van links/rechts toetsen"
+
+#define qtn_music_player_albumart_howto_header "Hoe Album Art aanzetten:"
+#define qtn_music_player_albumart_howto_text "Als de map van waaruit huidig nummer afgespeeld wordt een file cover.jpg bevat (of folder.jpg) zal deze afbeelding als album art gebruikt worden. Afbeeldingen zullen aangepast worden aan het formaat in de speler, dit is altijd vierkant. Aanbevolen is dat cover.jpg een hoge resolutie is en de hoogte en breedte zo dicht mogelijk hieraan. Een goed formaat is 500x500 pixels.\n\nIs er geen cover.jpg of folder.jpg bestand wordt een standaard plaatje gebruikt. U kunt het standaard plaatje aanpassen door een bestand e:\\Images\\MLauncherCover.jpg op de geheugen kaart te zetten."
+
+#define qtn_fflist_help_header "Hoe te gebruiken:"
+#define qtn_fflist_first_time_header "Welcom bij MLauncher!"
+#define qtn_fflist_help_text_touch "MLauncher laat de muziek bestanden & mappen van de telefoon zien. Je kunt bestanden en mappen selecteren door deze te tippen. Wanneer een map geselecteerd is zijn ook alle bestanden en submappen geselecteerd. Middels de toolbar kun je mappen hoger of lager navigeren. Om de selectie te spelen kun je de toolbar (Willekeurig & Spelen) gebruiken, of gebruik opdrachten van het Opties menu."
+#define qtn_fflist_help_text_nontouch "MLauncher laat de muziek bestanden & mappen van de telefoon zien. Je kunt bestanden en mappen selecteren door op de Enter toets te drukken. Wanneer een map geselecteerd is zijn ook alle bestanden en submappen geselecteerd. Middels de links en rechts toetsen kun je mappen hoger of lager navigeren. Om de selectie te spelen kun je de opdrachten van het Opties menu gebruiken (Willekeurig & Spelen) gebruiken, of de snelkoppelingen (1 voor spelen geselecteerde bestanden, en 2 voor willekeurig spelen van geselecteerde bestanden)."
+
+// Preferences query
+#define qtn_startingdir_prompt "Start map:"
+#define qtn_query_keepselection "Huidige selectie opslaan en gebruiken wanneer programma volgende keer start ?"
+#define qtn_query_usemetadata "Wil je dat Music Launcher de muziek metadata analyseert tijdens start ? Je kunt dan een selectie gebaseerd op Artiest & Albums maken."
+#define qtn_query_launchembedded "Muziek Speler in ingebedde mode starten ? (sommige functies zijn wellicht niet beschikbaar in deze mode)"
+#define qtn_query_usepartialcheck "Mappen met alleen een gedeelte van de bestanden of submappen geselecteerd kunnen als \"gedeeltelijk geselecteerd\" gemarkeerd worden, met een andere checkbox. Gedeeltelijke selectie aanzetten ?"
+#define qtn_query_useinternalmusicplayer "MLauncher gebruiken om muziek te spelen ? (Als je \"Nee\" kiest worden de geselecteerde bestanden gespeeld met de S60 Muziek Speler)"
+#define qtn_query_redkey "Moet drukken op de rode (Einde) toets MLauncher naar de achtergrond sturen (in plaats van stoppen) ?"
+#define qtn_query_playbutton "Moet de knop Spelen op de taakbalk ook de speellijst willekeurig indelen ?"
+#define qtn_query_deletepreferences "Instellingen resetten en applicatie stoppen ?"
+#define qtn_query_crossfading "Crossfade gebruiken ?"
+#define qtn_query_buttonsdrag "Volgende/Vorige knoppen gebruiken in plaats van swipe ?"
+
+//Startup folder items
+#define qtn_text_softkey_choose "Kies"
+#define qtn_text_softkey_create "Aanmaken"
+#define qtn_text_softkey_retry "Opnieuw"
+//old versions (delete)
+//#define qtn_query_set_music_path "No music found. Set the starting folder?"
+//#define qtn_query_set_music_path_again "Folder does not exist, or no music found. Try again?"
+#define qtn_query_create_folder "Map bestaat niet. Deze aanmaken ?"
+
+//#define qtn_message_log_enabled "Log enabled in C:\\Logs\\MLauncher\\MLauncher.txt\nIn case of a crash, you will be prompted to upload the log next time MLauncher starts."
+#define qtn_message_log_enabled "Logging aan in E:\\Documents\\MLauncherDebug\\MLauncher.txt\nWanneer crash is geweest word je gevraagd om het logbestand te uploaden bij de volgende start van MLauncher."
+//#define qtn_message_log_disabled "It takes 2-3 seconds to disable logging! If you exit MLauncher during this time, logging may not get disabled."
+#define qtn_message_log_disabled "Logging uit."
+
+#define qtn_message_usemetadata_after_restart "Nieuwe instellingen worden uitgevoerd na een herstart van MLauncher"
+#define qtn_message_all_tracks_failed "Tracks in huidige speellijst kunnen niet geladen worden. Reden kan zijn dat deze op een geheugenkaart staan die nu niet beschikbaar is, of deze zijn gewist."
+
+#define qtn_msg_loop_off "Herhaling uit"
+#define qtn_msg_loop_playlist "Speellijst herhalen"
+#define qtn_msg_loop_song "Nummer herhalen"
+
+//delete query
+#define qtn_query_areyousure "Weet je zeker dat je de geselecteerde bestanden en mappen wil WISSEN ?"
+
+//install query
+#define qtn_query_installnow "Update opgehaald. Nu installeren ? (Applicatie sluit)"
+
+//Upload log file query
+#define qtn_query_uploadlog "Crash logbestand gevonden. Uploaden (%N KB, naar Internet/HTTP) ?"
+
+//Sources queries
+//#define qtn_query_deleteallsources "Alle muziek mappen wissen ? (Muziek mappen worden opnieuw gezocht)"
+
+//BT send sis query
+//#define qtn_text_softkey_continue "Continue"
+//#define qtn_query_continue_send_sis_bt "Please wait until MLauncher is installed on the other phone."
+
+//upgrade query
+#define qtn_text_softkey_later "Later"
+#define qtn_text_softkey_upgrade "Upgraden"
+#define qtn_text_softkey_download "Downloaden"
+#define qtn_text_softkey_now "Nu"
+#define qtn_upgrade_header "Upgrade beschikbaar !"
+#define qtn_upgrade_text "Je kunt opwaarderen van V%0N.%1N naar V%2N.%3N. Download grootte is %4N kB.\nNieuw beschikbaar:\n%0U"
+#define qtn_sisdownload_noupgrade_header "App niet gevonden !"
+#define qtn_sisdownload_noupgrade_text "Applicatie (SIS) bestand niet gevonden op apparaat, je kunt deze applicatie niet via Bluetooth sturen naar andere apparaten. Wil je dit bestand nu ophalen ? (%N kB)"
+#define qtn_sisdownload_latestv_header "App niet gevonden !"
+#define qtn_sisdownload_latestv_text "Je beschikt al over de laatste versie (V%0N.%1N), echter het applicatie (SIS) bestand is niet op het apparaat gevonden, applicatie kan niet via Bluetooth naar ander apparaat gestuurd worden. Wil je dit bestand ophalen ? (%2N kB)"
+#define qtn_noupgrade_necessary_header "Upgrade niet nodig !"
+#define qtn_noupgrade_necessary_text "Je beschikt al over de laatste versie (V%0N.%1N). Upgrade niet nodig. Probeer het binnenkort nogmaals."
+
+//Error strings for BT
+#define qtn_warning_header "Waarschuwing"
+#define qtn_error_header "Error"
+#define qtn_note_header "Pas op"
+#define qtn_errmsg_cannotread "Interne fout: Kan bestand niet lezen."
+#define qtn_errmsg_cannotwrite "Interne fout: Kan niet naar bestand schrijven."
+#define qtn_errmsg_notimplemented "Functie nog niet beschikbaar"
+//Error strings for the BT Sender
+#define qtn_errmsg_btbusy "Bluetooth bezig met vorige opdracht. Probeer later nogmaals."
+#define qtn_errmsg_sisnotfound "Applicatie SIS bestand niet gevonden. Kan applicatie niet sturen."
+#define qtn_errmsg_connectsendas "Interne fout: kan geen verbinding met SendAs server maken."
+#define qtn_errmsg_createbtmessage "Interne fout: kan geen BT SendAs bericht maken."
+#define qtn_errmsg_cannotsend "Interne fout: kan BT bericht niet sturen."
+#define qtn_errmsg_cannotattachmsg "Interne fout: kan SIS bestand niet aan BT bericht hangen."
+#define qtn_errmsg_connectnotifier "Interne fout: kan geen verbinding met Notifier server maken."
+#define qtn_errmsg_notifier_error "Bericht fout: pas aan."
+#define qtn_errmsg_connectesock "Interne fout: kan niet naar Socket server verbinden."
+#define qtn_errmsg_createbtsocket "Interne fout: kan geen BT socket aanmaken."
+#define qtn_errmsg_cannotconnect2btdevice "Kan geen verbinding met BT apparaat maken. Ander apparaat moet binnen bereik zijn (paar meter), Bluetooth moet aangeschakeld zijn en MLauncher applicatie moet gestart zijn."
+#define qtn_errmsg_cannotsend2btdevice "Kan geen data naar BT apparaat sturen. Connectie verbroken."
+#define qtn_errmsg_badrecipient "Interne fout: fout BT adres."
+#define qtn_errmsg_cannotrecvfrombtdevice "Kan geen data van BT apparaat ontvangen. Connectie verbroken."
+#define qtn_errmsg_playlistsentsuccessfully "Bestanden succesvol verstuurd !"
+//Error strings for the BT Receiver
+#define qtn_errmsg_connectbtdbserver "Kan niet met BT service van DB server verbinden."
+#define qtn_errmsg_openbtdb "Kan BT service DB niet openen."
+#define qtn_errmsg_bindbtsocket "Kan BT socket niet verbinden."
+#define qtn_errmsg_bindbtsocket_alreadyinuse "BT al in gebruik. Bestandsoverdracht via BT zal niet werken !"
+#define qtn_errmsg_listenbtsocket "Kan niet op BT socket luisteren."
+#define qtn_errmsg_cannotacceptconnection "Kan BT verbinding niet accepteren"
+#define qtn_errmsg_playlistrecvsuccessfully "Bestanden succesvol ontvangen !"
+#define qtn_errmsg_notenoughspace "Niet genoeg ruimte om bestanden te ontvangen ! Beschikbaar: %0N MB, nodig: %1N MB, verschil is %2N MB."
+#define qtn_errmsg_peernotenoughspace "Ontvangend apparaat heeft niet genoeg ruimte om bestanden uit te wisselen ! Beschikbaar: %0N MB, nodig: %1N MB, verschil is %2N MB."
+#define qtn_errmsg_cancelsuccessful "Overdracht afgebroken !"
+#define qtn_errmsg_peercanceledtransfer "Ander apparaat heeft overdracht afgebroken !"
+#define qtn_errmsg_sendappproceeding "Sturende applicatie voortgang !"
+
+//Error strings for IP Sender
+#define qtn_errmsg_createipsocket "Interne fout: kan geen TCP/IP socket maken."
+#define qtn_errmsg_cannotconnect2ipdevice "Kan geen verbinding met IP adres maken."
+
+//general errors
+#define qtn_errmsg_commandfailed "Opdracht fout !"
+#define qtn_errmsg_unknown "Onbekende fout"
+
+//Sending SMS
+#define qtn_errmsg_sendasbusy "SendAs server bezig met vorige opdracht. Probeer opnieuw over enkele seconden."
+#define qtn_errmsg_createsmsmessage "Interne fout: kan SendAs SMS bericht niet maken."
+#define qtn_sms_text "U bent uitgenodigd voor beta-test van MLauncher. Download de applicatie van %U Veel plezier :-)"
+
+//Error strings for Check for Upgrade
+#define qtn_msg_sis_downloaded_successfully "Bestand succesvol downloaded !"
+//Error strings for Log upload
+#define qtn_errmsg_log_uploaded_successfully "Log upload succesvol !"
+#define qtn_errmsg_log_upload_failed "Log upload mislukt !"
+
+//starting dir query & list
+#define qtn_select_starting_dir_header "Start in map:"
+#define qtn_files_1_file " (%N bestand)" //MUST start with " (", otherwise the scan is not working
+#define qtn_files_many_files " (%N bestanden)"  //MUST start with " (", otherwise the scan is not working
+#define qtn_input_starting_folder_manually "Input map handmatig"
+#define qtn_current_folder_startingdir "Huidige map (%U) als start map zetten"
+#define qtn_received_files_display_name "Bestanden ontvangen in %U"
+#define qtn_artists_albums_display_name "Artiesten & Albums"
+
+//labels in the File Transfer view
+#define qtn_filetransfer_label_sending_file   "Sturen bestand (%0N/%1N):"
+#define qtn_filetransfer_label_receiving_file "Ontvangen bestand (%0N/%1N):"
+#define qtn_filetransfer_label_kb_transfered  "%0N KB (%1N%)"
+#define qtn_filetransfer_label_kb_2transfer   "%N KB"
+#define qtn_filetransfer_label_elapsed_time   "%0N m %1N s"
+#define qtn_filetransfer_label_estimated_time "%0N m %1N s"
+#define qtn_filetransfer_label_link           "Link:"
+#define qtn_filetransfer_label_speed          "%N kbps"
+
+//labels in the Music Player view
+//#define qtn_musicplayer_label_elapsed_time "%0N:%0N"
+
+//labels in the stopwatch view
+#define qtn_countdown_timer_elapsed "Verstreken: %U"
+#define qtn_countdown_timer_remaining "Overblijven: %U"
+
+//other stuff
+#define qtn_playlist_filename_prompt "Naam speellijst:"
+#define qtn_new_folder_prompt "Naam nieuwe map:"
+
+#define qtn_playlist_exported_successfully "Speellijst geexporteerd !"
+#define qtn_playlist_export_failed "Speellijst export mislukt !"
+#define qtn_new_folder_error "Fout maken map (%N)"
+
+#define qtn_cannot_save_startingdir "Maken map starten mislukt !"
+
+#define qtn_rename_prompt "Nieuwe naam:"
+
+#define qtn_user_agent "MLauncher V %0N.%1N"
+
+#define qtn_about_header "Music Launcher V%0N.%1N"
+#define qtn_about_header_development "Music Launcher V%0N.%1N.%2Ndev"
+#define qtn_mlauncher_development "Music Launcher V%0N.%1N.%2N Ontwikkel Editie"
+#define qtn_about_text "(C) 2007-2012, Florin Lohan\nAlle rechten voorbehouden.\nLicentie voor gebruik onder voorwaarden BSD Licentie.\nVertaald naar Nederlands door Hans Dorssers"
+
+//added 2011-11-19
+#define qtn_command_source_to_music "Bevat Muziek"
+#define qtn_command_source_to_audiobooks "Bevat Audioboeken"
+
+//added 2011-11-23
+#define qtn_cannot_play_right_now "Oproep bezig. Kan niet beginnen met spelen."
+
+//added 2012-01-22 
+//the following 5 items are the help text for the toolbar in the "Files & Folders" view. 
+//The middle button can be either "play" or "shuffle & play"
+//The last button is either "go into folder" or "play the current song"
+#define qtn_gotoparent_helptext "Naar huidige map gaan"
+#define qtn_play_helptext "Speel het geselecteerde nummer & mappen"
+#define qtn_shufleandplay_helptext "Shuffle en speel selectie"
+#define qtn_gointofolder_helptext "In geselecteerde submap gaan"
+#define qtn_playsong_helptext "Speel (alleen) huidig nummer"
+
+//added 2012-02-11
+//these 3 strings are part of the Music Player view. 
+//This is the Menu/Preferences string, 
+#define qtn_command_music_player_preferences_coverhintfiles "Afbeelding hint bestand..." 
+//This is the query that pops-up when the user selects the menu entry
+#define qtn_query_coverhintfiles "Gebruik afbeelding hint bestanden? (experimentele functie)"
+//if the user selects "no" to the previous query, this next query pops up.
+#define qtn_query_delete_coverhintfiles "Wissen bestaande afbeelding hint bestanden?"
+
+//added 2012-02-17
+//this string is used in a dialog shown after a successful log upload, and when there is an upgrade available
+#define qtn_log_uploaded_upgrade_text "Log succesvol uploaded!\nEr is een nieuwe MLauncher release! U kunt upgraden van V%0N.%1N naar V%2N.%3N. Download grootte is %4N kB.\nNieuw zijn:\n%0U"
+//startin with 0.105 the Ogg & FLAC plugin comes with MLauncher, but it is not installed by default. This query pops up when the user makes a playlist that contains FLACs and Oggs, but the plugin is not installed. The softkeys are Yes and No.
+#define qtn_query_install_ogg_flac_plugin "De speellijst bevat Ogg en/of FLAC muziek bestanden waarvoor de Ogg and FLAC plugin (GPL licentie) geinstalleerd moet zijn. Nu installeren (geen download nodig)? Wanneer U Nee kiest worden Ogg en/of FLAC bestanden in de speellijst overgeslagen."
+//if the playlist contains Oggs and FLACs and because of some reason the plugin is not available, the following message is displayed.
+#define qtn_query_ogg_flac_plugin_not_found "De speellijst bevat Ogg en/of FLAC muziek bestanden waarvoor de Ogg and FLAC plugin (GPL licentie) geinstalleerd moet zijn. Download en installeer van de MLauncher website (http://www.mlauncher.org/index.php?cid=download). Op dit moment worden Ogg en/of FLAC bestanden in deze speellijst overgeslagen."
+
+//added 2012-02-19
+//this string is displayed when the user tries to move some files around, and moving some of the files fails.
+#define qtn_moving_some_files_failed "%0N bestanden verplaatst.\nMislukt verplaatsen van %1N bestand(en)."
+//the success case, all files moved
+#define qtn_files_moved_successfully "%0N bestanden verplaatst."
+//THE NEXT STRING CHANGED FROM PREVIOUS VERSION
+#define qtn_query_deleteallsources "Lijst met muziek mappen wissen en MLauncher stoppen? Bij de volgende MLauncher start zullen de muziek mappen opnieuw gelezen worden."
+//next message is displayed when the user wants to add a music folder manually, in the Music Folders view
+#define qtn_query_add_source_warning "Dit is een experimentele functie, bevat waarschijnlijk fouten. Doorgaan?"
+//this messahe is displayed if the added music folder already exists.
+#define qtn_add_source_already_exists "Deze muziek map is al opgeslagen. Geen wijzigingen gedaan."
+
+//added 2012-03-22
+#define qtn_command_match_album_art "Vergelijk Album Art"
+
+//added 2012-05-xx
+#define qtn_command_music_player_help_howtouse "Hoe te gebruiken..."
+#define qtn_command_music_player_help_albumart "Album Art Hoe Te..."
+#define qtn_command_music_player_equalizer_and_effects "Equaliser & Effecten..."
+#define qtn_command_music_player_audio_settings "Audio Instellingen"
+
+#define qtn_equalizer_off "Equaliser uit"
+#define qtn_presets "Voorkeur:"
+#define qtn_effects "Effecten:"
+//effects
+#define qtn_effect_bass_boost "Bass Boost"
+#define qtn_effect_stereo_widening "Stereo Verbreding"
+#define qtn_effect_loudness "Loudness"
+
+//added 2012-07-28
+//the next 2 messages are displayed in the files & folder view when there is no music (instead of the "(no elements)" text
+//the first text is displayed while MLauncher is searching for music files
+//the second text is displayed if no music files have been found
+#define qtn_fflist_empty_searchingmusic "Zoeken naar audio bestanden..."
+#define qtn_fflist_empty_nomusic "Geen audio bestanden gevonden"
+
+//added 2012-08-12
+#define qtn_command_music_player_playlist "Speellijst"
+#define qtn_command_music_player_playlist_remove_current_item "Huidig bestand wissen"
+#define qtn_command_music_player_playlist_reshuffle_all "Speellijst opnieuw shufflen"
+#define qtn_command_music_player_playlist_reshuffle_remaining "Shufflen overgebleven titels"
+
+//added 2012-09-09
+#define qtn_crossfading_disabled "BT toegang aktief, crossfade uitgeschakeld." //this is because there are (unsolved) problems with BT headphones and crossfading, they do not work together.
+#define qtn_crossfading_enabled "BT toegang inaktief, crossfade ingeschakeld." 
+// End of File

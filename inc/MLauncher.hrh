@@ -1,0 +1,193 @@
+/*
+============================================================================
+ Name        : MLauncher.hrh
+ Author      : Florin Lohan
+ Copyright   : Florin Lohan
+ Description : This file contains declarations for constants of MLauncher.
+               The file can be included in C++ or resource file.
+============================================================================
+*/
+#ifndef __MLAUNCHER_HRH__
+#define __MLAUNCHER_HRH__
+
+#define _UID3 0xE388D98A
+
+// MLauncher enumerate command codes
+enum TMLauncherIds
+    {
+    //in the options menu
+    ECommandPlay = 0x6001, // start value must not be 0
+    ECommandShufflePlay,
+    ECommandPlaylist,
+    ECommandFind, //0.104
+    ECommandSendPlaylist,
+    ECommandFiles,
+    ECommandApplication,
+
+    ECommandSelectAll,
+    ECommandUnselectAll,
+    ECommandSaveSelection,
+    ECommandDelete,
+    ECommandRename,
+    ECommandMove,
+    ECommandMoveHere,
+    ECommandCancelMove,
+    ECommandNewFolder,
+
+    ECommandSendApplication,
+    ECommandCheckUpdates,
+    ECommandAbout,
+    ECommandPreferences,
+
+    ECommandCountdownTimer,
+    ECommandSendApplicationSMS,
+    ECommandSendPlaylistIP,
+    ECommandSendApplicationBTDiscover,
+    ECommandSendPlaylistBTDiscover,
+    ECommandUploadCrashLogFile,
+    
+    //settings list (preferences)
+    ECommandPreferencesStartingDirs,
+    ECommandPreferencesUseMetadata, //added in 0.103
+    ECommandPreferencesLaunchEmbedded,
+    ECommandPreferencesKeepSelection,
+    ECommandPreferencesUsePartialCheck,
+    ECommandPreferencesUseInternalPlayer,
+    ECommandPreferencesRedKey, //added in 0.99.1
+    ECommandPreferencesPlayButton, //added in 0.100
+    ECommandPreferencesEnableLog,
+    ECommandPreferencesDisableLog,
+    ECommandPreferencesDelete,
+    //Files toolbar
+    ECommandFilesUp,
+    ECommandFilesPlayMenu,
+    ECommandFilesShufflePlayMenu,
+    ECommandFilesDown,
+    ECommandFilesPreview,
+    //filetransfer Options menu:
+    ECommandCancelTransfer = 0x6101,
+    ECommandSkipThisFile,
+    //sources Options menu:
+    ECommandSourceToAudioBook,
+    ECommandSourceToMusic,
+    ECommandDeleteSource,
+    ECommandAddSource,
+    ECommandDeleteAllSources,
+    //stopwatch Options menu:
+    ECommandStopAlarm = 0x6201,
+    ECommandStartCountdown,
+    ECommandCountdownSettings,
+    ECommandExitCountdown,
+    //Music Player Options Menu
+    ECommandMusicPlayerStop = 0x6301,
+    ECommandMusicPlayerAudioSettings, //in 0.107 replaces ECommandMusicPlayerAlbumArt
+    ECommandMusicPlayerHelpAlbumArt, //name of command changed in 0.107
+    ECommandMusicPlayerHelpHowTo, //in 0.107 replaces ECommandAlbumArtCrop
+    ECommandMusicPlayerHelp,
+    ECommandMusicPlayerPreferences,
+    ECommandMusicPlayerAudioSettingsCrossfading,  //in 0.107 replaces ECommandMusicPlayerPreferencesCrossfading
+    ECommandAudioSettingsEqualizerAndEffects, 
+    ECommandMusicPlayerPreferencesButtonsInsteadOfDrag, //added in 0.99.1
+    ECommandMusicPlayerPreferencesCoverHintFiles, //added in 0.105
+    ECommandMusicPlayerLoop, //added in 0.103.0
+    ECommandMusicPlayerLoopOff, //added in 0.103.0
+    ECommandMusicPlayerLoopPlaylist, //added in 0.103.0
+    ECommandMusicPlayerLoopSong, //added in 0.103.0
+    ECommandMusicPlayerFmTx, //added in 0.103.1
+    //Music Player toolbar
+    ECommandMusicPlayerPlayPause,
+    ECommandMusicPlayerNext,
+    ECommandMusicPlayerPrev,
+    //Music Player playlist menu, added in 0.107 (all 4 items)
+    ECommandMusicPlayerPlaylist,
+    ECommandMusicPlayerPlaylistRemoveCurrentItem,
+    ECommandMusicPlayerPlaylistReshuffleAll,
+    ECommandMusicPlayerPlaylistReshuffleRemaining,
+    //Themes, nHD
+    ECommandColorSchemes =  0x6331, //changed in 0.106
+    ECommandThemeMatchAlbumArt, //added in 0.106
+    ECommandThemeBlackAndGreen,
+    ECommandThemeBlackAndBlue,
+    ECommandThemeBlackAndOrange,
+    ECommandThemeBlackAndRed,
+    ECommandThemeBlackAndViolet,
+    ECommandThemeWhiteAndGreen,
+    ECommandThemeWhiteAndBlue,
+    ECommandThemeWhiteAndOrange,
+    ECommandThemeWhiteAndRed,
+    ECommandThemeWhiteAndViolet,
+    
+    //Playlist view
+    ECommandPlaylistPlay = 0x6401,
+    ECommandPlaylistRename,
+    ECommandPlaylistDelete,
+    //My Files view
+    ECommandMyFilesPlay,
+    
+    //navi:
+    ECommandSwitchToFFList = 0x6501,
+    ECommandSwitchToPlaylists, //added in 0.103.1
+    ECommandSwitchToFiletransfer,
+    ECommandSwitchToMusicPlayer,
+    ECommandSwitchToStopwatch,
+    ECommandSwitchToMyFiles,
+    //
+    ECommandExitStage1,
+    ECommandExitStage2,
+    //
+    ECommandTest,
+    
+    //
+
+    //Settings Ids
+    EStopwatchSettingDuration=0x7001,
+    EStopwatchSettingPlayWhen,
+    EStopwatchSettingPlayWhat,
+    
+    //preferences form
+    //EPreferencesCrossfadingPage,
+    //EPreferencesMusicPlayerPage,
+    EPreferencesFormCrossfadingEnableDisable,
+    EPreferencesFormCrossfadingTime,
+    EPreferencesFormCrossfadingTimeVolRampUp,
+    EPreferencesFormMusicPlayerKeyLock,
+
+    //preferences dialogs
+    EDataQueryIdStardingDir,
+    EDataQueryIdKeepSelection,
+    EDataQueryIdLaunchEmbedded,
+    //outside options
+    EDataQueryDlgCIdPlaylistFilename,
+    EDataQueryDlgCIdPlaylistName,
+    
+    //otheresource IDs
+    EEqualizerSelectionListControl=0x7101,
+    
+    //queries
+    //ESoftkeyContinue,
+    ESoftkeyLater,
+    ESoftkeyUpgrade,
+    ESoftkeyDownload,
+    ESoftkeyNow,
+    ESoftkeyNavi,
+    ESoftkeyChoose,
+    ESoftkeyCreate,
+    ESoftkeyRetry,
+
+    //
+    //ECommandSendApplicationBTAddrStart = 0x7000,
+    //ECommandSendPlaylistBTAddrStart = 0x8000,
+
+    //view IDs
+    KListViewId=0x8001,
+    KFiletransferViewId,
+    KStopwatchViewId,
+    KMusicPlayerViewId,
+    KSourcesViewId,
+    KPlaylistsViewId,
+    KMyFilesViewId
+    
+    
+    };
+
+#endif // __MLAUNCHER_HRH__

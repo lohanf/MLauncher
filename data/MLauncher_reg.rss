@@ -1,0 +1,28 @@
+/*
+============================================================================
+ Name        : MLauncher.rss
+ Author      : Florin Lohan
+ Copyright   : Florin Lohan
+ Description : This file contains the application registration resource.
+============================================================================
+*/
+
+#include "MLauncher.hrh"
+#include "MLauncher.rls"
+#include <appinfo.rh>
+#include <MLauncher.rsg>
+
+UID2 KUidAppRegistrationResourceFile
+UID3 _UID3
+
+RESOURCE APP_REGISTRATION_INFO
+  {
+  app_file="MLauncher";
+  localisable_resource_file =  "\\resource\\apps\\MLauncher";
+  localisable_resource_id = R_LOCALISABLE_APP_INFO;
+
+  embeddability=KAppNotEmbeddable;
+  newfile=KAppDoesNotSupportNewFile;
+  
+  }
+      
