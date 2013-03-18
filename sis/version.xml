@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<version major="0" minor="100" size="685">
+<description>
+Version 0.100:
+-Imprved music search algorithm
+-Cover art: folder.jpg can be used instead of cover.jpg
+-Default album art picture can be changed
+-Many fixes, some performance improvements
+-Log changes: log file is now saved on the memory card in e:\Documents\MLauncherDebug
+-application can be installed on the memory card
+Version 0.99:
+-MLauncher is faster, lots of bug fixes
+-BT file transfer works again
+-Behaviour of Red/End key configurable
+-Touch devices can use buttons for Next/Previous song instead of swipe (configurable)
+Version 0.98:
+-Added: internal music player
+-Lots of bugfixes and improvements
+-Issues: BT files transfer not working in this version
+</description>
+</version>

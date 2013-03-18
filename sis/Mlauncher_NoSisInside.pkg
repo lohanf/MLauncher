@@ -1,19 +1,19 @@
 ;Language - standard language definitions
-&EN,GE,SP,DU,BG,RO,LS,GL
+&EN,GE,SP,IT,DU,BG,RO,LS,GL
 
 ; standard SIS file header
-#{"MLauncher","MLauncher","MLauncher","MLauncher","MLauncher","MLauncher","MLauncher","MLauncher"},(0xE388D98A),0,107,0
+#{"MLauncher","MLauncher","MLauncher","MLauncher","MLauncher","MLauncher","MLauncher","MLauncher","MLauncher"},(0xE388D98A),0,107,0
 
 ;Localised Vendor name
-%{"Florin Lohan","Florin Lohan","Florin Lohan","Florin Lohan","Florin Lohan","Florin Lohan","Florin Lohan","Florin Lohan"}
+%{"Florin Lohan","Florin Lohan","Florin Lohan","Florin Lohan","Florin Lohan","Florin Lohan","Florin Lohan","Florin Lohan","Florin Lohan"}
 
 ;Unique Vendor name
 :"Florin Lohan"
 
 ;Supports Series 60 v 3.0
-[0x101F7961], 0, 0, 0, {"S60 3rd Edition","S60 3rd Edition","S60 3rd Edition","S60 3rd Edition","S60 3rd Edition","S60 3rd Edition","S60 3rd Edition","S60 3rd Edition"}
+[0x101F7961], 0, 0, 0, {"S60 3rd Edition","S60 3rd Edition","S60 3rd Edition","S60 3rd Edition","S60 3rd Edition","S60 3rd Edition","S60 3rd Edition","S60 3rd Edition","S60 3rd Edition"}
 ;Supports S60 release 5.0
-[0x1028315F], 0, 0, 0, {"S60 5th Edition","S60 5th Edition","S60 5th Edition","S60 5th Edition","S60 5th Edition","S60 5th Edition","S60 5th Edition","S60 5th Edition"}
+[0x1028315F], 0, 0, 0, {"S60 5th Edition","S60 5th Edition","S60 5th Edition","S60 5th Edition","S60 5th Edition","S60 5th Edition","S60 5th Edition","S60 5th Edition","S60 5th Edition"}
 
 
 ;Files to install
@@ -37,7 +37,8 @@ IF EXISTS("z:\system\install\Series60v5.0.sis")
 ; install 5.0 specific files
 {"C:\S60\devices\S60_5th_Edition_SDK_v1.0\Epoc32\data\z\resource\apps\MLauncher.r01" 
  "C:\S60\devices\S60_5th_Edition_SDK_v1.0\Epoc32\data\z\resource\apps\MLauncher.r03" 
- "C:\S60\devices\S60_5th_Edition_SDK_v1.0\Epoc32\data\z\resource\apps\MLauncher.r04" 	
+ "C:\S60\devices\S60_5th_Edition_SDK_v1.0\Epoc32\data\z\resource\apps\MLauncher.r04"
+ "C:\S60\devices\S60_5th_Edition_SDK_v1.0\Epoc32\data\z\resource\apps\MLauncher.r05" 	
  "C:\S60\devices\S60_5th_Edition_SDK_v1.0\Epoc32\data\z\resource\apps\MLauncher.r18" 
  "C:\S60\devices\S60_5th_Edition_SDK_v1.0\Epoc32\data\z\resource\apps\MLauncher.r42" 
  "C:\S60\devices\S60_5th_Edition_SDK_v1.0\Epoc32\data\z\resource\apps\MLauncher.r78"
@@ -46,6 +47,7 @@ IF EXISTS("z:\system\install\Series60v5.0.sis")
 {"C:\S60\devices\S60_5th_Edition_SDK_v1.0\Epoc32\data\z\private\10003a3f\apps\MLauncher_reg.r01" 
  "C:\S60\devices\S60_5th_Edition_SDK_v1.0\Epoc32\data\z\private\10003a3f\apps\MLauncher_reg.r03" 
  "C:\S60\devices\S60_5th_Edition_SDK_v1.0\Epoc32\data\z\private\10003a3f\apps\MLauncher_reg.r04" 
+ "C:\S60\devices\S60_5th_Edition_SDK_v1.0\Epoc32\data\z\private\10003a3f\apps\MLauncher_reg.r05"
  "C:\S60\devices\S60_5th_Edition_SDK_v1.0\Epoc32\data\z\private\10003a3f\apps\MLauncher_reg.r18" 
  "C:\S60\devices\S60_5th_Edition_SDK_v1.0\Epoc32\data\z\private\10003a3f\apps\MLauncher_reg.r42" 
  "C:\S60\devices\S60_5th_Edition_SDK_v1.0\Epoc32\data\z\private\10003a3f\apps\MLauncher_reg.r78"
@@ -59,6 +61,7 @@ ELSEIF EXISTS("z:\system\install\Series60v3.2.sis")
 {"C:\S60\devices\S60_3rd_FP2_SDK_v1.1\Epoc32\data\z\resource\apps\MLauncher.r01" 
  "C:\S60\devices\S60_3rd_FP2_SDK_v1.1\Epoc32\data\z\resource\apps\MLauncher.r03" 
  "C:\S60\devices\S60_3rd_FP2_SDK_v1.1\Epoc32\data\z\resource\apps\MLauncher.r04" 
+ "C:\S60\devices\S60_3rd_FP2_SDK_v1.1\Epoc32\data\z\resource\apps\MLauncher.r05"
  "C:\S60\devices\S60_3rd_FP2_SDK_v1.1\Epoc32\data\z\resource\apps\MLauncher.r18"
  "C:\S60\devices\S60_3rd_FP2_SDK_v1.1\Epoc32\data\z\resource\apps\MLauncher.r42" 
  "C:\S60\devices\S60_3rd_FP2_SDK_v1.1\Epoc32\data\z\resource\apps\MLauncher.r78"
@@ -67,6 +70,7 @@ ELSEIF EXISTS("z:\system\install\Series60v3.2.sis")
 {"C:\S60\devices\S60_3rd_FP2_SDK_v1.1\Epoc32\data\z\private\10003a3f\apps\MLauncher_reg.r01" 
  "C:\S60\devices\S60_3rd_FP2_SDK_v1.1\Epoc32\data\z\private\10003a3f\apps\MLauncher_reg.r03" 
  "C:\S60\devices\S60_3rd_FP2_SDK_v1.1\Epoc32\data\z\private\10003a3f\apps\MLauncher_reg.r04" 
+ "C:\S60\devices\S60_3rd_FP2_SDK_v1.1\Epoc32\data\z\private\10003a3f\apps\MLauncher_reg.r05"
  "C:\S60\devices\S60_3rd_FP2_SDK_v1.1\Epoc32\data\z\private\10003a3f\apps\MLauncher_reg.r18" 
  "C:\S60\devices\S60_3rd_FP2_SDK_v1.1\Epoc32\data\z\private\10003a3f\apps\MLauncher_reg.r42" 
  "C:\S60\devices\S60_3rd_FP2_SDK_v1.1\Epoc32\data\z\private\10003a3f\apps\MLauncher_reg.r78"
@@ -80,6 +84,7 @@ ELSE
 {"C:\Symbian\9.1\S60_3rd_MR\Epoc32\data\z\resource\apps\MLauncher.r01" 
  "C:\Symbian\9.1\S60_3rd_MR\Epoc32\data\z\resource\apps\MLauncher.r03" 
  "C:\Symbian\9.1\S60_3rd_MR\Epoc32\data\z\resource\apps\MLauncher.r04" 
+ "C:\Symbian\9.1\S60_3rd_MR\Epoc32\data\z\resource\apps\MLauncher.r05"
  "C:\Symbian\9.1\S60_3rd_MR\Epoc32\data\z\resource\apps\MLauncher.r18" 
  "C:\Symbian\9.1\S60_3rd_MR\Epoc32\data\z\resource\apps\MLauncher.r42" 
  "C:\Symbian\9.1\S60_3rd_MR\Epoc32\data\z\resource\apps\MLauncher.r78"
@@ -88,6 +93,7 @@ ELSE
 {"C:\Symbian\9.1\S60_3rd_MR\Epoc32\data\z\private\10003a3f\apps\MLauncher_reg.r01" 
  "C:\Symbian\9.1\S60_3rd_MR\Epoc32\data\z\private\10003a3f\apps\MLauncher_reg.r03" 
  "C:\Symbian\9.1\S60_3rd_MR\Epoc32\data\z\private\10003a3f\apps\MLauncher_reg.r04" 
+ "C:\Symbian\9.1\S60_3rd_MR\Epoc32\data\z\private\10003a3f\apps\MLauncher_reg.r05"
  "C:\Symbian\9.1\S60_3rd_MR\Epoc32\data\z\private\10003a3f\apps\MLauncher_reg.r18"
  "C:\Symbian\9.1\S60_3rd_MR\Epoc32\data\z\private\10003a3f\apps\MLauncher_reg.r42"
  "C:\Symbian\9.1\S60_3rd_MR\Epoc32\data\z\private\10003a3f\apps\MLauncher_reg.r78"

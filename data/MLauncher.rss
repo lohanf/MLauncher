@@ -30,6 +30,11 @@ NAME MLAU    // 4 letter ID
 #define LANG_INCLUDED
 #endif
 
+#ifdef LANGUAGE_05
+#include "MLauncher.l05"
+#define LANG_INCLUDED
+#endif
+
 #ifdef LANGUAGE_18
 #include "MLauncher.l18"
 #define LANG_INCLUDED
@@ -2408,6 +2413,5 @@ RESOURCE LOCALISABLE_APP_INFO r_localisable_app_info
 	    };
     }
 
-#include "preferences.rss"
 
 // End of File

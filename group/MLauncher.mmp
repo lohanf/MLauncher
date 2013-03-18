@@ -125,7 +125,7 @@ LIBRARY           SensrvClient.lib sensrvutil.lib
 #endif
 
 //LANG SC
-LANG 01 03 04 18 42 78 83 103
+LANG 01 03 04 05 18 42 78 83 103
 
 VENDORID	  	  0
 SECUREID	      0xE388D98A
