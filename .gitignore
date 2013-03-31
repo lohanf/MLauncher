@@ -1,2 +1,7 @@
 .cproject
 .project
+sis/*.sisx
+sis/MLauncher*.sis
+sis/fl*
+sis/makesis.bat
+

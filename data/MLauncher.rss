@@ -20,11 +20,6 @@ NAME MLAU    // 4 letter ID
 #include "MLauncher.hrh"
 
 //localization support
-#ifdef LANGUAGE_03
-#include "MLauncher.l03"
-#define LANG_INCLUDED
-#endif
-
 #ifdef LANGUAGE_04
 #include "MLauncher.l04"
 #define LANG_INCLUDED
