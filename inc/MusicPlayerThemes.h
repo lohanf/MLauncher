@@ -170,7 +170,7 @@ public:
 		//first 4 bits used for bg color
 		EBgColorWhite=1,
 		EBgColorBlack=2,
-		//next 4 bits are used for progress bar color
+		//next 12 bits are used for color
 		EColorGreen=0x10,
 		EColorBlue=0x20,
 		EColorOrange=0x40,

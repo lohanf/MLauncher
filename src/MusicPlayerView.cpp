@@ -839,43 +839,7 @@ void CMusicPlayerView::HandleViewRectChange()
 }
 */
 
-/*
-void CMusicPlayerView::ApplyMetadataL()
-{
-	if(iTrack && iTrack->iIndex>=0 && iTrack->iMetadata.iFilename)
-	{
-		iMusicPlayerContainer->SetMetadata(iTrack->iMetadata,iPlaybackPosition);
-		iMusicPlayerContainer->iAlbumArt=iTrack->iAlbumArt; //might be NULL or wrog size
-		TSize albumArtSize(iMusicPlayerContainer->GetAlbumArtSize());
-		if(!iTrack->iAlbumArt || iTrack->iAlbumArt->SizeInPixels()!=albumArtSize)
-			if(!(iTrack->iFlags&CTrack::EImageRequested))
-			{
-				//request album art 
-				TInt err=iImgEngine->GetAlbumArtL(*(*iPlaylist)[iTrack->iIndex],*iTrack,albumArtSize);
-				if(err)
-				{
-					iMusicPlayerContainer->iFlags|=CMusicPlayerContainer::ENoAlbumArt;
-					iMusicPlayerContainer->iAlbumArt=NULL;
-				}
-				else
-				{
-					iMusicPlayerContainer->iFlags&=~CMusicPlayerContainer::ENoAlbumArt;	
-					if(!(iTrack->iFlags&CTrack::EImageRequested))
-					{
-						//image is ready already
-						iMusicPlayerContainer->iAlbumArt=iTrack->iAlbumArt;
-						iMusicPlayerContainer->DrawDeferred();
-					};
-				}
-			}
-			else
-			{
-				iMusicPlayerContainer->iFlags&=~CMusicPlayerContainer::ENoAlbumArt;
-			}
-		else
-			iMusicPlayerContainer->DrawDeferred();
-	};
-}*/
+
 
 void CMusicPlayerView::HandleCommandL( TInt aCommand )
 {

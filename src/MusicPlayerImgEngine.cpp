@@ -9,7 +9,9 @@
  */
 #include <imageconversion.h>
 #include <BitmapTransforms.h>
+#include <akniconutils.h>
 #include <eikenv.h>
+#include <MLauncher.mbg> //loading icons
 #include "MusicPlayerImgEngine.h"
 #include "MusicPlayerView.h"
 #include "MusicPlayerThemes.h"
@@ -24,19 +26,11 @@ const TInt KHintFileExtensionLength=5; //should match the above
 _LIT(KAlbumCoverNameGeneric,"cover.jpg");
 _LIT(KAlbumCoverNameGeneric2,"folder.jpg");
 _LIT(KCoversFolderName,"__Covers\\");
-#ifdef __WINS__
-_LIT(KGenericAlbumArtName,"Z:\\private\\E388D98A\\cover.jpg");
-#else
-_LIT(KGenericAlbumArtName,"cover.jpg");
-#endif
+_LIT(KIgnoreFolderName,"IGNORE\\");
 _LIT(KAlternateGenericAlbumArtName,"E:\\Images\\MLauncherCover.jpg");
 _LIT8(KJpegMime,"image/jpeg");
-/*
-const TSize KLegacySize(176,176);
-const TSize KDoubleSize(352,352);
-const TSize KQVGASize(240,240);
-const TSize KnHDSize(360,360);
-*/
+_LIT(KOwnIconFile, "\\resource\\apps\\MLauncher.mif");
+
 const TInt KMaxImagesInCache=10;
 
 CMusicPlayerImgEngine::CMusicPlayerImgEngine() : CActive(EPriorityStandard), iState(EIdle),
@@ -83,6 +77,7 @@ CMusicPlayerImgEngine::~CMusicPlayerImgEngine()
 	iFilenames.ResetAndDestroy();
 	iSizes.ResetAndDestroy();
 	iDominantColors.Close();
+	iGenericImages.ResetAndDestroy();
 }
 
 void CMusicPlayerImgEngine::DoCancel()
@@ -156,45 +151,112 @@ void CMusicPlayerImgEngine::PrepareAlbumArtL(const CMetadata &aMetadata, const T
 	LOG(ELogGeneral,-1,"PrepareAlbumArtL: end");
 }
 
-TInt CMusicPlayerImgEngine::GetAlbumArtL(const CMetadata &aMetadata, CTheme &aTheme)
+void CMusicPlayerImgEngine::GetAlbumArtL(const CMetadata &aMetadata, CTheme &aTheme)
 {
-	if(aTheme.iAlbumArtSize.iHeight==0 || aMetadata.iFileDirEntry==NULL)return KErrNotFound;
+	if(aTheme.iAlbumArtSize.iHeight==0 || aMetadata.iFileDirEntry==NULL)return;
 	//get the path & size out of the song
 	LOG(ELogGeneral,1,"GetAlbumArtL++ (iFileDirEntry: %x)",aMetadata.iFileDirEntry);
 
 	TFileName cover;
 	CImageDecoder *dec;
 	TInt err=GetAlbumArtFilename(aMetadata,aTheme.iAlbumArtSize,cover,&dec);
-	if(err<0)
-	{
-		LOG(ELogGeneral,-1,"GetAlbumArtL-- (album art not found)");
-		aTheme.iAlbumArt=NULL;
-		return KErrNotFound;
+	if(err<0) {
+		//no album art found, use generic based on the current theme color
+		//first, compute the offset, based on size;
+		const TInt KNrColors=5;
+		TInt i,offset=0;
+		if(aTheme.iAlbumArtSize==iGenericSize0)offset=0;
+		else if(aTheme.iAlbumArtSize==iGenericSize1)offset=KNrColors;
+		else {
+			//we need to set the size and offset
+			if(iGenericSize0.iHeight==0){
+				iGenericSize0=aTheme.iAlbumArtSize;
+				for(i=0;i<KNrColors;i++)
+					iGenericImages.AppendL(NULL);			
+			} 
+			else if(iGenericSize1.iHeight==0){
+				iGenericSize1=aTheme.iAlbumArtSize;
+				FL_ASSERT(iGenericImages.Count()==KNrColors);
+				for(i=0;i<KNrColors;i++)
+					iGenericImages.AppendL(NULL);
+			}
+			else FL_ASSERT_TXT(0,"Both sizes full, something is wrong.");
+		}
+		
+		switch(iPreferences->iMusicPlayerThemeData&0xFFF0)
+		{
+		case CColoredTheme::EColorGreen:
+			if(!iGenericImages[offset]){
+				//we need to load the green image/icon
+				iGenericImages[offset]=AknIconUtils::CreateIconL(KOwnIconFile,EMbmMlauncherMlauncheraif);
+				AknIconUtils::SetSize(iGenericImages[offset],aTheme.iAlbumArtSize,EAspectRatioNotPreserved );
+			}
+			aTheme.iAlbumArt=iGenericImages[offset];
+			aTheme.iAlbumArtDominantColor=0x00FF00;//green
+			break;
+		case CColoredTheme::EColorBlue:
+			if(!iGenericImages[offset+1]){
+				//we need to load the blue image/icon
+				iGenericImages[offset+1]=AknIconUtils::CreateIconL(KOwnIconFile,EMbmMlauncherMlauncheraifblue);
+				AknIconUtils::SetSize(iGenericImages[offset+1],aTheme.iAlbumArtSize,EAspectRatioNotPreserved );
+			}
+			aTheme.iAlbumArt=iGenericImages[offset+1];
+			aTheme.iAlbumArtDominantColor=0x0080FF;//blue
+			break;
+		case CColoredTheme::EColorOrange:
+			if(!iGenericImages[offset+2]){
+				//we need to load the orange image/icon
+				iGenericImages[offset+2]=AknIconUtils::CreateIconL(KOwnIconFile,EMbmMlauncherMlauncheraiforange);
+				AknIconUtils::SetSize(iGenericImages[offset+2],aTheme.iAlbumArtSize,EAspectRatioNotPreserved );
+			}
+			aTheme.iAlbumArt=iGenericImages[offset+2];
+			aTheme.iAlbumArtDominantColor=0xFBB416;//orange
+			break;
+		case CColoredTheme::EColorRed:
+			if(!iGenericImages[offset+3]){
+				//we need to load the red image/icon
+				iGenericImages[offset+3]=AknIconUtils::CreateIconL(KOwnIconFile,EMbmMlauncherMlauncheraifred);
+				AknIconUtils::SetSize(iGenericImages[offset+3],aTheme.iAlbumArtSize,EAspectRatioNotPreserved );
+			}
+			aTheme.iAlbumArt=iGenericImages[offset+3];
+			aTheme.iAlbumArtDominantColor=0xFF0000;//red
+			break;
+		case CColoredTheme::EColorViolet:
+			if(!iGenericImages[offset+4]){
+				//we need to load the violet image/icon
+				iGenericImages[offset+4]=AknIconUtils::CreateIconL(KOwnIconFile,EMbmMlauncherMlauncheraifviolet);
+				AknIconUtils::SetSize(iGenericImages[offset+4],aTheme.iAlbumArtSize,EAspectRatioNotPreserved );
+			}
+			aTheme.iAlbumArt=iGenericImages[offset+4];
+			aTheme.iAlbumArtDominantColor=0xF107E7;//violet
+			break;
+		}//switch
+		LOG(ELogGeneral,-1,"GetAlbumArtL-- (generic album art used)");
+		return;
 	}
 	if(err>0)
 	{
 		LOG(ELogGeneral,-1,"GetAlbumArtL-- (album art found in cache)");
 		aTheme.iAlbumArt=iImages[0];
 		aTheme.iAlbumArtDominantColor=iDominantColors[0];
-		return KErrNone;
+		return;
 	}
-		
+
 	LOG0("GetAlbumArtL: checking if we are already loading this request");
-	
+
 	//check if this request is already processing, or we need to enqueue it
 	if(iState!=EIdle)
 	{
 		CheckAgainstCurrentAndEnqueued(ETrue,cover,dec,aTheme.iAlbumArtSize,&aTheme);
 		LOG(ELogGeneral,-1,"GetAlbumArtL-- (either already processing or enqueued)");
-		return KErrNone;
+		return;
 	}
-	
+
 	//if we are here, we need to create the bitmap and transfer it
 	LOG0("GetAlbumArtL: CACHE MISS, we have to load the album art from file");
 	aTheme.iAlbumArt=NULL;
 	err=DoProcessingL(cover,dec,aTheme.iAlbumArtSize,&aTheme);
 	LOG(ELogGeneral,-1,"GetAlbumArtL-- (request processing)");
-	return err;
 }
 
 TInt CMusicPlayerImgEngine::GetAlbumArtFilename(const CMetadata &aMetadata, const TSize &aSize, TFileName &aCoverFilename, CImageDecoder **aDecoder) 
@@ -217,22 +279,20 @@ TInt CMusicPlayerImgEngine::GetAlbumArtFilename(const CMetadata &aMetadata, cons
 	aMetadata.iFileDirEntry->GetFullPath(aCoverFilename,ETrue);
 	LOG(ELogGeneral,1,"GetAlbumArtFilename++ (%S), iCover=%x",&aCoverFilename,aMetadata.iCover);
 
-	TInt err;
+	TInt r,err;
+	TEntry entry;
+	
 	*aDecoder=NULL;
-	if(aMetadata.iCover)
-	{
+	if(aMetadata.iCover) {
 		aMetadata.iFileDirEntry->GetFullPath(aCoverFilename);
 		//check if we have this in cache
-		if(IsInCache(aCoverFilename,aSize))
-		{
+		if(IsInCache(aCoverFilename,aSize)) {
 			LOG(ELogGeneral,-1,"GetAlbumArtFilename-- (we have embedded cover, in cache)");
 			return 1; 
 		}
-		else 
-		{
+		else {
 			TRAP(err,*aDecoder=CImageDecoder::DataNewL(iEikEnv->FsSession(),*aMetadata.iCover));
-			if(!err)
-			{
+			if(!err) {
 				LOG(ELogGeneral,-1,"GetAlbumArtFilename-- (we have embedded cover)");
 				return 0; 
 			}
@@ -244,45 +304,14 @@ TInt CMusicPlayerImgEngine::GetAlbumArtFilename(const CMetadata &aMetadata, cons
 	aMetadata.iFileDirEntry->iParent->GetFullPath(aCoverFilename,ETrue);
 	TInt pathLength=aCoverFilename.Length();
 	aCoverFilename.Append(KAlbumCoverNameGeneric);
-	//do we have this in cache?
-	if(IsInCache(aCoverFilename,aSize))
-	{
-		LOG(ELogGeneral,-1,"GetAlbumArtFilename-- (cover.jpg found in cache)");
-		return 1; //we found it in cache
-	}
-	//else we need to check if this file really exists
-	TEntry entry;
-	if(!iEikEnv->FsSession().Entry(aCoverFilename,entry))
-	{
-		TRAP(err,*aDecoder=CImageDecoder::FileNewL(iEikEnv->FsSession(),aCoverFilename));
-		if(!err)
-		{
-			LOG(ELogGeneral,-1,"GetAlbumArtFilename-- (cover.jpg found)");
-			return 0; 
-		}
-		else LOG0("Instantiating a CImageDecoder for the found cover.jpg failed. Checking other options.");
-	}
+	if((r=GetAlbumArtFilenameHelper(aSize,aCoverFilename,aDecoder))>=0)
+		return r;
 	
 	//check for KAlbumCoverNameGeneric2
 	aCoverFilename.SetLength(pathLength);
 	aCoverFilename.Append(KAlbumCoverNameGeneric2);
-	//do we have this in cache?
-	if(IsInCache(aCoverFilename,aSize))
-	{
-		LOG(ELogGeneral,-1,"GetAlbumArtFilename-- (folder.jpg found in cache)");
-		return 1; //we found it in cache
-	}
-	//else we need to check if this file really exists
-	if(!iEikEnv->FsSession().Entry(aCoverFilename,entry))
-	{
-		TRAP(err,*aDecoder=CImageDecoder::FileNewL(iEikEnv->FsSession(),aCoverFilename));
-		if(!err)
-		{
-			LOG(ELogGeneral,-1,"GetAlbumArtFilename-- (folder.jpg found)");
-			return 0; 
-		}
-		else LOG0("Instantiating a CImageDecoder for the found folder.jpg failed. Checking other options.");
-	}
+	if((r=GetAlbumArtFilenameHelper(aSize,aCoverFilename,aDecoder))>=0)
+		return r;
 	
 	//if we are here, we need to check if we have valid Artist and Album metadata
 	if(aMetadata.iAlbum && aMetadata.iArtist)
@@ -293,99 +322,102 @@ TInt CMusicPlayerImgEngine::GetAlbumArtFilename(const CMetadata &aMetadata, cons
 		pathLength=aCoverFilename.Length();
 		if(pathLength+aMetadata.iArtist->Length()+aMetadata.iAlbum->Length()+6<=KMaxFileName) //6= the dash + length of .jpg or .jpeg or .hint
 		{
+			//check for __Covers/Artist-Album.jpg
 			aCoverFilename.Append(*aMetadata.iArtist);
 			aCoverFilename.Append('-');
 			aCoverFilename.Append(*aMetadata.iAlbum);
 			aCoverFilename.Append(KAlbumCoverExtension);
-			//do we have this in cache?
-			if(IsInCache(aCoverFilename,aSize))
-			{
-				LOG(ELogGeneral,-1,"GetAlbumArtFilename-- (%S found in cache)",&aCoverFilename);
-				return 1; //we found it in cache
-			}
-			//else we need to check if this file really exists
-			if(!iEikEnv->FsSession().Entry(aCoverFilename,entry))
-			{
-				TRAP(err,*aDecoder=CImageDecoder::FileNewL(iEikEnv->FsSession(),aCoverFilename));
-				if(!err)
-				{
-					LOG(ELogGeneral,-1,"GetAlbumArtFilename-- (%S found)",&aCoverFilename);
-					return 0; 
-				}
-				else LOG0("Instantiating a CImageDecoder for the found %S failed. Checking other options.",&aCoverFilename);
-			}
+			if((r=GetAlbumArtFilenameHelper(aSize,aCoverFilename,aDecoder))>=0)
+				return r;
 			
 			//if we are here, the file does not exist!
-			if(iPreferences->iPFlags&CMLauncherPreferences::EPreferencesCreateCoverHintFiles)
+			if((iPreferences->iPFlags&CMLauncherPreferences::EPreferencesCreateCoverHintFiles) &&
+					(pathLength+KIgnoreFolderName().Length()+aMetadata.iArtist->Length()+aMetadata.iAlbum->Length()+6<=KMaxFileName)) //filename size requirements
 			{
-				//we should create a hint file
-				aCoverFilename.SetLength(aCoverFilename.Length()-KAlbumCoverExtension().Length());
+				//check first if the hint file is in the "IGNORE" folder
+				aCoverFilename.SetLength(pathLength);
+				aCoverFilename.Append(KIgnoreFolderName);
+				aCoverFilename.Append(*aMetadata.iArtist);
+				aCoverFilename.Append('-');
+				aCoverFilename.Append(*aMetadata.iAlbum);
 				aCoverFilename.Append(KHintFileExtension);
-				LOG0("Creating hint file for %S",&aCoverFilename);
-				//first, we try to make the folder
-				if(!iEikEnv->FsSession().MkDir(aCoverFilename.Left(pathLength)))
-				{
-					//set the entry as hidden
-					TTime modifTime;
-					modifTime.UniversalTime();
-					iEikEnv->FsSession().SetEntry(aCoverFilename.Left(pathLength),modifTime,KEntryAttHidden,0);
-				}
-				//now we create the file, IF it does not exist
-				if(iEikEnv->FsSession().Entry(aCoverFilename,entry))
-				{
-					RFile f;
-					if((err=f.Create(iEikEnv->FsSession(),aCoverFilename,EFileWrite)))
-					{
-						LOG0("Creating %S hint file failed with error %d",&aCoverFilename,err);
+				if(iEikEnv->FsSession().Entry(aCoverFilename,entry)){
+					//the hint file was not found in the IGNORE folder
+					//we should create a hint file
+					aCoverFilename.SetLength(pathLength);
+					aCoverFilename.Append(*aMetadata.iArtist);
+					aCoverFilename.Append('-');
+					aCoverFilename.Append(*aMetadata.iAlbum);
+					aCoverFilename.Append(KHintFileExtension);
+					LOG0("Creating hint file for %S",&aCoverFilename);
+					//first, we try to make the folder
+					if(!iEikEnv->FsSession().MkDir(aCoverFilename.Left(pathLength))){
+						//set the entry as hidden
+						TTime modifTime;
+						modifTime.UniversalTime();
+						iEikEnv->FsSession().SetEntry(aCoverFilename.Left(pathLength),modifTime,KEntryAttHidden,0);
 					}
-					else
-					{
-						LOG0("Hint file %S created successfully!",&aCoverFilename);
-						f.Close();
-					};
+					//now we create the file, IF it does not exist
+					if(iEikEnv->FsSession().Entry(aCoverFilename,entry)){
+						RFile f;
+						if((err=f.Create(iEikEnv->FsSession(),aCoverFilename,EFileWrite))){
+							LOG0("Creating %S hint file failed with error %d",&aCoverFilename,err);
+						}
+						else {
+							LOG0("Hint file %S created successfully!",&aCoverFilename);
+							f.Close();
+						};
+					}
 				}
 			}
+			
+			//check __Covers/Album.jpg
+			aCoverFilename.SetLength(pathLength);
+			aCoverFilename.Append(*aMetadata.iAlbum);
+			aCoverFilename.Append(KAlbumCoverExtension);
+			if((r=GetAlbumArtFilenameHelper(aSize,aCoverFilename,aDecoder))>=0)
+				return r;
+						
+			//check __Covers/Artist.jpg
+			aCoverFilename.SetLength(pathLength);
+			aCoverFilename.Append(*aMetadata.iArtist);
+			aCoverFilename.Append(KAlbumCoverExtension);
+			if((r=GetAlbumArtFilenameHelper(aSize,aCoverFilename,aDecoder))>=0)
+				return r;
+			
 		}//if(pathLength+ ...
 	}//if(aMetadata.iAlbum && aMetadata.iArtist)
 	
 	//if we are here, we did not find a cover art anywhere, so we will use the generic cover art
 	//first, check if the user has specified their own album art, and try to decode that
 	aCoverFilename.Copy(KAlternateGenericAlbumArtName);
-	if(IsInCache(aCoverFilename,aSize))
-	{
-		LOG(ELogGeneral,-1,"GetAlbumArtFilename-- (alternate generic album art (%S) found in cache)",&aCoverFilename);
+	if((r=GetAlbumArtFilenameHelper(aSize,aCoverFilename,aDecoder))>=0)
+		return r;
+	
+	//if we are here, we will use generic album art
+	LOG(ELogGeneral,-1,"GetAlbumArtFilename-- (no match found, use generic)");
+	*aDecoder=NULL;
+	return KErrNotFound;
+}
+
+TInt CMusicPlayerImgEngine::GetAlbumArtFilenameHelper(const TSize &aSize, TFileName &aCoverFilename, CImageDecoder **aDecoder)
+{
+	//do we have this in cache?
+	if(IsInCache(aCoverFilename,aSize)) {
+		LOG(ELogGeneral,-1,"GetAlbumArtFilename-- (%S found in cache)",&aCoverFilename);
 		return 1; //we found it in cache
 	}
-	//else we need to check if the file exists
-	if(!iEikEnv->FsSession().Entry(aCoverFilename,entry))
-	{
-		//alternate album art found!
-		TRAP(err,*aDecoder=CImageDecoder::FileNewL(iEikEnv->FsSession(),aCoverFilename));
-		if(!err)
-		{
-			LOG(ELogGeneral,-1,"GetAlbumArtFilename-- (alternate generic album art (%S) found)",&aCoverFilename);
+	//else we need to check if this file really exists
+	TEntry entry;
+	if(!iEikEnv->FsSession().Entry(aCoverFilename,entry)) {
+		TRAPD(err,*aDecoder=CImageDecoder::FileNewL(iEikEnv->FsSession(),aCoverFilename));
+		if(!err) {
+			LOG(ELogGeneral,-1,"GetAlbumArtFilename-- (%S found)",&aCoverFilename);
 			return 0; 
 		}
-		else LOG0("Instantiating a CImageDecoder for the alternate generic album art (%S) failed. Checking other options.",&aCoverFilename);					
+		else LOG0("Instantiating a CImageDecoder for the found %S failed. Checking other options.",&aCoverFilename);
 	}
-	
-	//the last hope, generic album art
-	aCoverFilename.Copy(iPreferences->PrivatePathPlus(KGenericAlbumArtName));
-	if(IsInCache(aCoverFilename,aSize))
-	{
-		LOG(ELogGeneral,-1,"GetAlbumArtFilename-- (generic album art found in cache)");
-		return 1; //we found it in cache
-	}
-	TRAP(err,*aDecoder=CImageDecoder::FileNewL(iEikEnv->FsSession(),aCoverFilename));
-	if(!err)
-	{
-		LOG(ELogGeneral,-1,"GetAlbumArtFilename-- (generic album art found)");
-		return 0; 
-	}
-	else LOG0("Instantiating a CImageDecoder for the generic album art failed. There are no other options.");					
-	*aDecoder=NULL;
-	
-	return KErrNotFound;
+	return -1;
 }
 
 TBool CMusicPlayerImgEngine::CheckAgainstCurrentAndEnqueued(TBool aForceEnqueue, const TDesC& aFilename, CImageDecoder *aImgDec, const TSize &aSize, CTheme *aTheme)

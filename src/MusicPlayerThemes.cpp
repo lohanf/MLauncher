@@ -509,12 +509,10 @@ void CColoredTheme::SetMetadataL(CMetadata &aMetadata,TTimeIntervalMicroSeconds 
 	LOG0("Getting the album art image...");
 	//get the image
 	iAlbumArtDominantColor=0;
-	TInt err=iManager->iImgEngine->GetAlbumArtL(aMetadata,*this);
-	if(iAlbumArt || !err) //if err is not KErrNone, there will be no album art
+	iManager->iImgEngine->GetAlbumArtL(aMetadata,*this);
+	if(iAlbumArt)
 		iManager->iView->CurrentTrackInitializationComplete();
-	if(!err)
-		SetMatchingTheme();
-	
+	SetMatchingTheme();	
 	LOG(ELogGeneral,-1,"CColoredTheme::SetMetadataL: end");
 }
 

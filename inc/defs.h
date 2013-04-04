@@ -2,10 +2,10 @@
 #define DEFS_H_
 
 //major and minor versions
-#define Vmajor 0
-#define Vminor 107
-//#define Vbuild 1
-//#define Vdevelopment
+#define Vmajor 1
+#define Vminor 1
+#define Vbuild 0
+#define Vdevelopment
 
 #include <fll_sdk_version.h> //this file is placed by hand in all SDKs
 

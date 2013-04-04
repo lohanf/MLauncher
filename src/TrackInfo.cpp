@@ -1852,6 +1852,7 @@ void CSegmentedBuffer::Reset()
 TUint8* CSegmentedBuffer::ExpandL(TInt aSize)
 {
 	//LOG(ELogNewSources,1,"CSegmentedBuffer::ExpandL++ (size=%d)",aSize);
+	//if(aSize&3)aSize=((aSize>>2)+1)<<2;//if aSize is not a multiple of 4, it is rounded up to the next multiple of 4
 	aSize=((aSize+3)>>2)<<2; //if aSize is not a multiple of 4, it is rounded up to the next multiple of 4
 	__ASSERT_DEBUG(iSegments.Count()==iSegmentLengths.Count(),Panic(ECountsNotSame));
 	if(!iSegments.Count() || (aSize+iLastSegmentLength>iSegLen))
@@ -1871,31 +1872,6 @@ TUint8* CSegmentedBuffer::ExpandL(TInt aSize)
 	//LOG(ELogNewSources,-1,"CSegmentedBuffer::ExpandL-- (ptr=%x)",ptr);
 	return ptr;
 }
-/*
-TUint8* CSegmentedBuffer::ExpandL(TInt aSize)
-{
-	//LOG(ELogNewSources,1,"CSegmentedBuffer::ExpandL++ (size=%d)",aSize);
-	TInt alignment=(iLastSegmentLength&3)?4-(iLastSegmentLength&3):0;
-	//incerc sa vad daca cu %4 merge mai repede chestia de mai sus ...
-	__ASSERT_ALWAYS(iSegments.Count()==iSegmentLengths.Count(),Panic(ECountsNotSame));
-	if(!iSegments.Count() || (aSize+iLastSegmentLength+alignment>iSegLen))
-	{
-		if(iSegments.Count()>0)//update the length of last segment
-			iSegmentLengths[iSegments.Count()-1]=iLastSegmentLength;
-		//we need to allocate a new segment & size
-		iLastSegment=(TUint8*)User::AllocL(iSegLen);
-		iSegments.AppendL(iLastSegment);
-		iSegmentLengths.AppendL(0);
-		iLastSegmentLength=0;
-		alignment=0;
-	};
-	//we should have enough memory in the last segment
-	__ASSERT_ALWAYS(aSize+iLastSegmentLength+alignment<=iSegLen,Panic(ENotEnoughMemory));
-	TUint8 *ptr=iLastSegment+iLastSegmentLength+alignment;
-	iLastSegmentLength+=aSize+alignment;
-	//LOG(ELogNewSources,-1,"CSegmentedBuffer::ExpandL-- (ptr=%x)",ptr);
-	return ptr;
-}*/
 
 void CSegmentedBuffer::GetMemoryInfo(TInt &aNrSegments, TInt &aSegmentLength)
 {

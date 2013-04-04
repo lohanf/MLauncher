@@ -40,13 +40,14 @@ public:
 	// Function for making the initial request
 	void PrepareAlbumArtL(const CMetadata &aMetadata, const TSize &aAlbumArtSize);
 	
-	TInt GetAlbumArtL(const CMetadata &aMetadata, CTheme &aTheme); //returns an error if album art is not available. If it returns KErrNone and image is NOT available, it will call CTheme::AlbumArtReady when the image is ready
+	void GetAlbumArtL(const CMetadata &aMetadata, CTheme &aTheme); //If it returns and image is NOT available, it will call CTheme::AlbumArtReady when the image is ready
 	
 	void CancelRequest(CTheme *aTheme);
 	
 	TBool AreThereCoverHintFiles(TBool aDeleteThem=EFalse); //returns ETrue if there are
 
 private: //own functions
+	TInt GetAlbumArtFilenameHelper(const TSize &aSize, TFileName &aCoverFilename, CImageDecoder **aDecoder);
 	TInt GetAlbumArtFilename(const CMetadata &aMetadata, const TSize &aSize, TFileName &aCoverFilename, CImageDecoder **aDecoder); //returns 1 if request found in cache, 0 if the request was found and we have a decoder, KErrNotFound if there is no decoder
 	TBool CheckAgainstCurrentAndEnqueued(TBool aForceEnqueue, const TDesC& aFilename, CImageDecoder *aImgDec, const TSize &aSize, CTheme *aTheme); //returns ETrue if the request was enqueued, EFalse if it was discarded. 
 	
@@ -130,6 +131,8 @@ private:
 	RPointerArray<HBufC> iFilenames;
 	RPointerArray<TSize> iSizes;
 	RArray<TUint32> iDominantColors;
+	RPointerArray<CFbsBitmap> iGenericImages;
+	TSize iGenericSize0,iGenericSize1;
 };
 
 #endif // MUSICPLAYERIMGENGINE_H

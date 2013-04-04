@@ -2,7 +2,7 @@
 &EN,SP,IT,DU,BG,RO,LS,GL
 
 ; standard SIS file header
-#{"MLauncher","MLauncher","MLauncher","MLauncher","MLauncher","MLauncher","MLauncher","MLauncher"},(0xE388D98A),0,107,0
+#{"MLauncher","MLauncher","MLauncher","MLauncher","MLauncher","MLauncher","MLauncher","MLauncher"},(0xE388D98A),1,1,0
 
 ;Localised Vendor name
 %{"Florin Lohan","Florin Lohan","Florin Lohan","Florin Lohan","Florin Lohan","Florin Lohan","Florin Lohan","Florin Lohan"}
@@ -18,20 +18,11 @@
 
 ;Files to install
 
-; Add any installation notes if applicable
-;"MLauncher.txt"        -"!:\private\E388D98A\MLauncher.txt"
-
 ;required for application to be covered by backup/restore facility 
 "..\sis\backup_registration.xml"		-"!:\private\E388D98A\backup_registration.xml"
 
-;Central repository keys
-;"..\data\E388D98A.txt"        -"!:\private\10202be9\E388D98A.txt"
-
 ;Common files
-;"C:\S60\devices\S60_3rd_FP2_SDK_v1.1\Epoc32\data\z\private\10003a3f\apps\MLauncher_reg.rsc"    -"!:\private\10003a3f\import\apps\MLauncher_reg.rsc"
 "C:\S60\devices\S60_3rd_FP2_SDK_v1.1\Epoc32\data\z\resource\apps\MLauncher.mif" -"!:\resource\apps\MLauncher.mif"
-;generic album art
-"C:\S60\devices\S60_3rd_FP2_SDK_v1.1\Epoc32\data\z\private\E388D98A\cover.jpg"        -"!:\private\E388D98A\cover.jpg"
 
 IF EXISTS("z:\system\install\Series60v5.0.sis")
 ; install 5.0 specific files

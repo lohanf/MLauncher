@@ -323,7 +323,7 @@ void FLLog::End(TBool aPanic)
 
 	delete instance;
 	instance=NULL;
-
+/*
 #ifdef Vdevelopment
     //move files to E:\Debug
     RFs fs;
@@ -334,6 +334,7 @@ void FLLog::End(TBool aPanic)
     delete fMan;
     fs.Close();
 #endif
+*/
 }
 
 /*
