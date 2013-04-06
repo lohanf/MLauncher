@@ -177,25 +177,27 @@ void CEqualizerDlg::ListItemClicked()
 
 void CEqualizerDlg::HandleListBoxEventL(CEikListBox *aListBox, TListBoxEvent aEventType)
 {
+	LOG0("CEqualizerDlg::HandleListBoxEventL")
 	if(aEventType!=EEventEnterKeyPressed && aEventType!=EEventItemDoubleClicked)return; //we are not interested in other events
 	FL_ASSERT(iEEList==aListBox);
 	ListItemClicked();
 }
 
-/*
 TBool CEqualizerDlg::OkToExitL(TInt aButtonId)
 {
-    TBool exit=CAknDialog::OkToExitL(aButtonId);
-    if(aButtonId==EAknSoftkeyOk || aButtonId==EAknSoftkeySelect)
-    {
+	LOG0("CEqualizerDlg::OkToExitL %x",aButtonId);
+	TBool exit=CAknDialog::OkToExitL(aButtonId);
+    if(aButtonId==EAknSoftkeyOk){
     	ListItemClicked();
         exit=EFalse;
-    };
+    } else if(aButtonId==EAknSoftkeyEmpty)
+    	exit=EFalse; //we do not want to exit on the left softkey
     return exit;
-}*/
+}
 
 TKeyResponse CEqualizerDlg::OfferKeyEventL( const TKeyEvent& aKeyEvent, TEventCode aType )
 {
+	LOG0("CEqualizerDlg::OfferKeyEventL %x (%x)",aKeyEvent.iCode,EKeyOK);
 	if(!iEEList)return EKeyWasNotConsumed;
 	//we do not handle other events than key presses
 	return iEEList->OfferKeyEventL(aKeyEvent,aType);

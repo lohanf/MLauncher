@@ -171,11 +171,13 @@ void CMusicPlayerImgEngine::GetAlbumArtL(const CMetadata &aMetadata, CTheme &aTh
 			//we need to set the size and offset
 			if(iGenericSize0.iHeight==0){
 				iGenericSize0=aTheme.iAlbumArtSize;
+				//offset=0; -> not needed, set above
 				for(i=0;i<KNrColors;i++)
 					iGenericImages.AppendL(NULL);			
 			} 
 			else if(iGenericSize1.iHeight==0){
 				iGenericSize1=aTheme.iAlbumArtSize;
+				offset=KNrColors;
 				FL_ASSERT(iGenericImages.Count()==KNrColors);
 				for(i=0;i<KNrColors;i++)
 					iGenericImages.AppendL(NULL);

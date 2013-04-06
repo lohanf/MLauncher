@@ -1624,7 +1624,8 @@ void TFileDirEntry::GetStartingDirL(RPointerArray<HBufC>& aList, RArray<TUint>& 
     			LOG(ELogNewSources,0,"max1 has only files and this folder is not a drive. Will add this folder.");
     		}
     	}
-    	(*iChildren)[posMax1].GetStartingDirL(aList,aListCount,aTmpPath);
+    	if(!addThisFolder)
+    		(*iChildren)[posMax1].GetStartingDirL(aList,aListCount,aTmpPath);
     }
     else if(iNrMusicFiles>0 && max1>iNrMusicFiles*0.9 && (iNrMusicFiles-max1)<10)
     {

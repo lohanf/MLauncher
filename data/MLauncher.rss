@@ -207,6 +207,30 @@ RESOURCE CBA r_softkeys_options_navi__select
         };
 }
 
+RESOURCE CBA r_softkeys_empty_back__ok
+{
+    buttons=
+        {
+        AVKON_CBA_BUTTON
+            {
+				id=EAknSoftkeyEmpty;
+				txt="";
+            },
+	    AVKON_CBA_BUTTON
+            {
+	    	    id=EAknSoftkeyBack;
+			    txt=qtn_back;
+            }
+#ifdef __MSK_ENABLED__
+            ,
+        AVKON_CBA_BUTTON
+        	{
+        	    id=EAknSoftkeyOk;
+        	    txt="";
+        	}
+#endif
+        };
+}
 
 
 /*
@@ -2296,7 +2320,8 @@ RESOURCE FILESELECTIONDIALOG r_source_folder_file_select_dialog
 RESOURCE DIALOG r_equalizer_effects_dlg
 {
 	flags = EEikDialogFlagCbaButtons ;
-	buttons = R_AVKON_SOFTKEYS_BACK;
+	//buttons = R_AVKON_SOFTKEYS_BACK;
+	buttons = r_softkeys_empty_back__ok;
 	items = 
 	{
 		DLG_LINE

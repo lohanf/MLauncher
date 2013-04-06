@@ -42,6 +42,7 @@ const TSize KQVGAPortraitSizeN958GB=TSize(240,295);
 const TSize KDoublePortraitSize=TSize(352,376);
 const TSize KnHDPortraitSize=TSize(360,640);
 const TSize KnHDLandscapeSize=TSize(640,360);
+const TSize KVGALandscapeSize=TSize(640,480);
 
 
 const TInt KTextScrollPeriod=33333; //approx 30 times a second
@@ -124,6 +125,10 @@ CTheme* CThemeManager::GetThemeL(const TRect &aRect, CTheme *aCurrentTheme)
 	else if(size==KnHDLandscapeSize)
 	{
 		theme=CThemeNHDLandscape::NewL(size);
+		iThemes.AppendL(theme);
+	}
+	else if(size==KVGALandscapeSize){
+		theme=CThemeVGALandscape::NewL(size);
 		iThemes.AppendL(theme);
 	}
 	else 
@@ -2463,6 +2468,577 @@ void CThemeNHDLandscape::Draw(const TRect& aRect, CWindowGc& gc) const
 	}
 }
 
+
+//////////////////////////////////////////////////////////////
+
+const TInt KVGALX=640;
+const TInt KVGALY=480;
+const TInt KVGALXMargin=3;
+const TInt KVGALYArtistTitleStart=0;
+const TInt KVGALYArtistTitleEnd=30;
+const TInt KVGALYArtistTitleDraw=25;
+
+const TInt KVGALXAlbumArtStart=170;
+const TInt KVGALYAlbumArtStart=30;
+const TInt KVGALAlbumArtHeight=300;
+const TInt KVGALYProgressBarStart=333;
+const TInt KVGALYProgressBarEnd=357;
+const TInt KVGALYTimeLabelsEnd=355;
+const TInt KVGALYSongInPlaylistStart=40;
+const TInt KVGALYSongInPlaylistEnd=70;
+const TInt KVGALXVolumeStart=0;
+const TInt KVGALYVolumeStart=30;
+const TInt KVGALVolumeLength=170;
+const TInt KVGALVolumeHeight=40;
+
+const TInt KVGALSmallFontSize=17;
+
+const TInt KVGALXPrevPlaylistStart=0;
+const TInt KVGALYPrevPlaylistStart=70;
+const TInt KVGALXPrevPlaylistEnd  =170;
+const TInt KVGALYPrevPlaylistEnd  =330;
+
+const TInt KVGALXNextPlaylistStart=470;
+const TInt KVGALYNextPlaylistStart=70;
+const TInt KVGALXNextPlaylistEnd  =640;
+const TInt KVGALYNextPlaylistEnd  =330; 
+
+
+const TInt KVGALListMargin=2;
+
+const TRect KVGAButtonLeftRect=TRect(2,420,179,478);
+const TRect KVGAButtonRightRect=TRect(461,420,638,478);
+//const TSize KVGAButtonsRoundSize=TSize(7,7);
+const TRect KVGALabelLeftRect=TRect(12,420,179,478);
+const TRect KVGALabelRightRect=TRect(461,420,628,478);
+
+CThemeVGALandscape* CThemeVGALandscape::NewL(TSize &aSize)
+{
+	CThemeVGALandscape* self = new (ELeave) CThemeVGALandscape();
+	CleanupStack::PushL(self);
+	self->ConstructL(aSize);
+	CleanupStack::Pop(); // self;
+	return self;
+}
+
+CThemeVGALandscape::CThemeVGALandscape()
+{
+	iAlbumArtPosition.SetXY(KVGALXAlbumArtStart,KVGALYAlbumArtStart);
+	iAlbumArtSize.SetSize(KVGALAlbumArtHeight,KVGALAlbumArtHeight);
+	iArtistTitlePosition.SetXY(KVGALXMargin,KVGALYArtistTitleDraw);
+	iArtistTitleRect.SetRect(0,0,KVGALX,KVGALYArtistTitleEnd);
+	iProgressBar.SetRect(0,KVGALYProgressBarStart,0,KVGALYProgressBarEnd);
+	iProgressBarRounded=5;
+	
+	iVolumeRect.SetRect(KVGALXVolumeStart,KVGALYVolumeStart,KVGALXVolumeStart+KVGALVolumeLength,KVGALYVolumeStart+KVGALVolumeHeight);
+	iFlags|=EShowVolumeMode;
+}
+
+void CThemeVGALandscape::ConstructL(TSize &aSize)
+{
+	CTheme::ConstructL(aSize);
+	ComputeVolumeSize(KVolumeSizeBig);
+	
+	//get texts
+	iTxtOptions=StringLoader::LoadL(R_LABEL_OPTIONS);
+	iTxtShow=StringLoader::LoadL(R_LABEL_SHOW);
+	iTxtBack=StringLoader::LoadL(R_LABEL_BACK);
+	
+	//get the font we want to use
+	iFont=iManager->iEikEnv->DenseFont();
+
+	//get the small font for the lists
+	CWsScreenDevice* screenDevice=iManager->iEikEnv->ScreenDevice();
+	//TInt nrTypefaces=screenDevice->NumTypefaces(); -> we use font with index zero anyway
+	TTypefaceSupport tf;
+	screenDevice->TypefaceSupport(tf,0);
+	TFontSpec fs(tf.iTypeface.iName,KVGALSmallFontSize);
+	screenDevice->GetNearestFontInPixels(iSmallFont,fs);
+
+		
+	iLabelElapsedTime=new (ELeave) CEikLabel;
+	iLabelElapsedTime->SetTextL(KEmpty);
+	//iLabelElapsedTime->SetLabelAlignment(ELayoutAlignRight);
+	iLabelElapsedTime->SetFont(iFont);
+	
+	iTotalTime=new (ELeave) CEikLabel;
+	iTotalTime->SetTextL(KEmpty);
+	iTotalTime->SetLabelAlignment(ELayoutAlignRight);
+	iTotalTime->SetFont(iFont);
+	
+	iPositionInPlaylist=new (ELeave) CEikLabel;
+	iPositionInPlaylist->SetTextL(KEmpty);
+	iPositionInPlaylist->SetLabelAlignment(ELayoutAlignCenter);  // was ELayoutAlignRight
+	iPositionInPlaylist->SetFont(iFont);
+	
+	TRect r;
+	iButtonLeft=new (ELeave) CEikLabel;
+	iButtonLeft->SetTextL(*iTxtOptions);
+	iButtonLeft->SetLabelAlignment(ELayoutAlignLeft);
+	iButtonLeft->OverrideColorL(EColorLabelText,iColorText);
+	//iButtonLeft->SetFont(iFont);
+	r=KVGALabelLeftRect;
+	r.iTl.iY+=(r.Height()-iButtonLeft->MinimumSize().iHeight)>>1;
+	iButtonLeft->SetRect(r);
+	iButtonRight=new (ELeave) CEikLabel;
+	if(iManager->iView->iFlags&CMusicPlayerView::ESongPreview)
+	{
+		iButtonRight->SetTextL(*iTxtBack);
+		iRightButtonShowsBack=ETrue;
+	}
+	else
+	{
+		iButtonRight->SetTextL(*iTxtShow);
+		iRightButtonShowsBack=EFalse;
+	};
+	iButtonRight->SetLabelAlignment(ELayoutAlignRight);
+	iButtonRight->OverrideColorL(EColorLabelText,iColorText);
+	//iButtonRight->SetFont(iFont);
+	r=KVGALabelRightRect;
+	r.iTl.iY+=(r.Height()-iButtonRight->MinimumSize().iHeight)>>1;
+	iButtonRight->SetRect(r);
+}
+
+void CThemeVGALandscape::SetContainer(CMusicPlayerContainer *aContainer)
+{
+	CTheme::SetContainer(aContainer);
+	iLabelElapsedTime->SetContainerWindowL(*(CCoeControl*)aContainer);
+	iTotalTime->SetContainerWindowL(*(CCoeControl*)aContainer);
+	iPositionInPlaylist->SetContainerWindowL(*(CCoeControl*)aContainer);
+	iButtonLeft->SetContainerWindowL(*(CCoeControl*)aContainer);
+	iButtonRight->SetContainerWindowL(*(CCoeControl*)aContainer);
+}
+
+CThemeVGALandscape::~CThemeVGALandscape()
+{
+	delete iLabelElapsedTime;
+	delete iTotalTime;
+	delete iPositionInPlaylist;
+	delete iButtonLeft;
+	delete iButtonRight;
+	//release the small font
+	iManager->iEikEnv->ScreenDevice()->ReleaseFont(iSmallFont);
+	
+	delete iTxtOptions;
+	delete iTxtShow;
+	delete iTxtBack;
+}
+
+void CThemeVGALandscape::UpdateVolumeOnScreen()
+{
+	iContainer->DrawNow(iVolumeRect);
+}
+	
+TInt CThemeVGALandscape::CountComponentControls()
+{
+	return 5;
+}
+
+CCoeControl* CThemeVGALandscape::ComponentControl( TInt aIndex )
+{
+	switch(aIndex)
+	{
+	case 0:return iLabelElapsedTime;
+	case 1:return iTotalTime;
+	case 2:return iPositionInPlaylist;
+	case 3:return iButtonLeft;
+	case 4:return iButtonRight;
+	};
+	return NULL;
+}
+
+void CThemeVGALandscape::HandlePointerEventL(const TPointerEvent &aPointerEvent)
+{
+	CTrack *track(iManager->iView->iTrack);
+	if(!track)return;
+	
+	//LOG(ELogGeneral,1,"CThemeVGALandscape::HandlePointerEventL++");
+
+	if(aPointerEvent.iType==TPointerEvent::EButton1Down)
+	{
+		if(aPointerEvent.iPosition.iY>KVGALYProgressBarStart-KDragSeekYMarginUp && aPointerEvent.iPosition.iY<KVGALYProgressBarEnd+KDragSeekYMarginDown)
+		{
+			//candidate to seek. Check X position
+			TInt xpos(iProgressBar.iTl.iX+iManager->iFormerPosition*iProgressBar.Width()/iDuration);
+			if(xpos-KDragSeekXMargin<aPointerEvent.iPosition.iX && xpos+KDragSeekXMargin>aPointerEvent.iPosition.iX)
+				iFlags|=ESeekDrag;
+		}
+		else if(iVolumeRect.Contains(aPointerEvent.iPosition))
+		{
+			if(aPointerEvent.iPosition.iX>iVolumeRect.iTl.iX+iSpeakerWidth)
+			{
+				iFlags|=EVolumeDrag;
+				iVolInitialX=aPointerEvent.iPosition.iX;
+			}
+		}
+		else iDragStart=aPointerEvent.iPosition;
+	}
+	else if(aPointerEvent.iType==TPointerEvent::EDrag)
+	{
+		if(iFlags&ESeekDrag)
+		{
+			TTimeIntervalMicroSeconds playbackPosition((aPointerEvent.iPosition.iX-iProgressBar.iTl.iX)*iDuration/iProgressBar.Width()*(TInt64)1000000);
+			if(playbackPosition<0)playbackPosition=0;
+			TInt64 duration(iDuration*(TInt64)1000000);
+			if(playbackPosition>duration)playbackPosition=duration;
+			UpdatePlaybackPosition(playbackPosition);
+		};
+		if(iFlags&EVolumeDrag)
+		{
+			TInt i,steps=(aPointerEvent.iPosition.iX-iVolInitialX)/iLevelWidth;
+			if(steps>0)for(i=0;i<steps;i++)
+			{
+				iManager->iView->VolumeUpDown(ETrue);
+				iVolInitialX+=iLevelWidth;
+			}
+			else for(i=steps;i<0;i++)
+			{
+				iManager->iView->VolumeUpDown(EFalse);
+				iVolInitialX-=iLevelWidth;
+			}
+		}//done with volume
+	}
+	else if(aPointerEvent.iType==TPointerEvent::EButton1Up)
+	{
+		//check for drag operations
+		if(iFlags&ESeekDrag)
+		{
+			TTimeIntervalMicroSeconds playbackPosition((aPointerEvent.iPosition.iX-iProgressBar.iTl.iX)*iDuration/iProgressBar.Width()*(TInt64)1000000);
+			if(playbackPosition<0)playbackPosition=0;
+			TInt64 duration(iDuration*(TInt64)1000000);
+			if(playbackPosition>duration)playbackPosition=duration;
+			track->SetPosition(playbackPosition);
+			iFlags&=~ESeekDrag;
+		}
+		else if(iFlags&EVolumeDrag)
+		{
+			TInt i,steps=(aPointerEvent.iPosition.iX-iVolInitialX)/iLevelWidth;
+			if(steps>0)for(i=0;i<steps;i++)
+			{
+				iManager->iView->VolumeUpDown(ETrue);
+				iVolInitialX+=iLevelWidth;
+			}
+			else for(i=steps;i<0;i++)
+			{
+				iManager->iView->VolumeUpDown(EFalse);
+				iVolInitialX-=iLevelWidth;
+			}
+			iFlags&=~EVolumeDrag;
+		}//done with volume
+		else 
+		{
+			//checking for push buttons
+			TRect clickRect(iDragStart,iDragStart);
+			clickRect.Grow(KDragXMargin,KDragYMarginUp);
+			clickRect.iBr.iY+=KDragYMarginDown-KDragYMarginUp;
+			if(clickRect.Contains(aPointerEvent.iPosition))
+			{
+				//no drag operation, so at most a play/pause or button pushed
+				TBool handled(EFalse);
+				LOG0("No drag, so perhaps play/pause or next or prev button pushed");
+				//check for play/pause
+				TRect touchRect(KVGALXAlbumArtStart,KVGALYAlbumArtStart,KVGALXAlbumArtStart+KVGALAlbumArtHeight,KVGALYAlbumArtStart+KVGALAlbumArtHeight);
+				if(touchRect.Contains(aPointerEvent.iPosition)){
+					iManager->iView->PlayPauseStop(EFalse);
+					iContainer->DrawNow(touchRect);
+					handled=ETrue;
+				}
+				if(!handled){
+					//check for next
+					touchRect.SetRect(KVGALXNextPlaylistStart,KVGALYNextPlaylistStart,KVGALXNextPlaylistEnd,KVGALYNextPlaylistEnd);
+					if(touchRect.Contains(aPointerEvent.iPosition)){
+						iManager->iView->NextPreviousL(1);
+						handled=ETrue;
+					}
+				}
+				if(!handled){
+					//check for previous
+					touchRect.SetRect(KVGALXPrevPlaylistStart,KVGALYPrevPlaylistStart,KVGALXPrevPlaylistEnd,KVGALYPrevPlaylistEnd);
+					if(touchRect.Contains(aPointerEvent.iPosition)){
+						iManager->iView->NextPreviousL(-1);
+						handled=ETrue;
+					}
+				}
+				if(!handled){
+					//check for Options (left button)
+					if(aPointerEvent.iPosition.iY>=KVGALabelLeftRect.iTl.iY && aPointerEvent.iPosition.iX<KVGALabelLeftRect.iBr.iX){
+						LOG0("Left button was pushed");
+						iManager->iView->HandleCommandL(EAknSoftkeyOptions);
+						handled=ETrue;
+					}
+				}
+				if(!handled){
+					//check for the right button
+					if(aPointerEvent.iPosition.iY>=KVGALabelRightRect.iTl.iY && aPointerEvent.iPosition.iX>KVGALabelRightRect.iTl.iX){
+						LOG0("Right button was pushed");
+						if(iManager->iView->iFlags&CMusicPlayerView::ESongPreview)
+							iManager->iView->HandleCommandL(EAknSoftkeyBack);
+						else
+							iManager->iView->HandleCommandL(ESoftkeyNavi);
+						handled=ETrue;
+					}
+				}
+				
+				LOG0("End of checking for button clicks");
+			}
+		}
+	}; //button up
+	//LOG(ELogGeneral,-1,"CThemeVGALandscape::HandlePointerEventL--");
+}
+
+void CThemeVGALandscape::SetMetadataL(CMetadata &aMetadata,TTimeIntervalMicroSeconds &aCurrentPosition)
+{
+	//set artist/title string & current position
+	CColoredTheme::SetMetadataL(aMetadata,aCurrentPosition);
+
+	//set time stuff
+	TBuf<25> time;
+	FormatTimeString(time,iManager->iFormerPosition,iDuration);
+	iLabelElapsedTime->SetTextL(time);
+
+	//set total duration
+	FormatTimeString(time,iDuration,iDuration);
+	iTotalTime->SetTextL(time);
+	//set iTimeLabelWidth
+	iTimeLabelWidth = iTotalTime->MinimumSize().iWidth;
+	//set progress bar size
+	iProgressBar.SetRect(KVGALXMargin+iTimeLabelWidth+KVGALXMargin,KVGALYProgressBarStart,KVGALX-KVGALXMargin-iTimeLabelWidth-KVGALXMargin,KVGALYProgressBarEnd);
+	
+	//set index in playlist
+	time.Format(KIndexInPlaylist,iManager->iView->iPlaylist->GetCurrentIndex()+1,iManager->iView->iPlaylist->Count());
+	iPositionInPlaylist->SetTextL(time);
+	
+	//set labels position on the screen
+	TSize labelSize;
+	TRect rect;
+	//label 1: elapsed time
+	labelSize = iLabelElapsedTime->MinimumSize();
+	labelSize.iWidth=iTimeLabelWidth;
+	rect.iTl.iX=KVGALXMargin;
+	rect.iTl.iY=KVGALYTimeLabelsEnd-labelSize.iHeight;
+	rect.iBr = rect.iTl + labelSize;
+	iLabelElapsedTime->SetRect(rect);
+
+	//label 2: total time
+	labelSize = iTotalTime->MinimumSize();
+	rect.iTl.iX=KVGALX-KVGALXMargin-iTimeLabelWidth;
+	//rect.iTl.iY=KVGALYTimeLabelsEnd-labelSize.iHeight;
+	rect.iBr = rect.iTl + labelSize;
+	iTotalTime->SetRect(rect);
+	
+	//label 3: song in playlist
+	rect.SetRect(KVGALXAlbumArtStart+KVGALAlbumArtHeight+KVGALXMargin,KVGALYSongInPlaylistStart,KVGALX,KVGALYSongInPlaylistEnd);
+	iPositionInPlaylist->SetRect(rect);
+}
+
+TBool CThemeVGALandscape::UpdatePlaybackPosition(TTimeIntervalMicroSeconds &aCurrentPosition, TBool aDraw) // aDraw=ETrue , returns ETrue if the progress bar was updated
+{
+	TInt playbackSeconds(aCurrentPosition.Int64()/1000000);
+
+	if(playbackSeconds!=iManager->iFormerPosition)
+	{
+		iManager->iFormerPosition=playbackSeconds;
+
+		//update current position label
+		TBuf<10> time;
+		FormatTimeString(time,playbackSeconds,iDuration);
+		iLabelElapsedTime->SetTextL(time);
+
+		if(aDraw)
+		{
+			TRect r(iProgressBar);
+			r.iTl.iX=0;
+			iContainer->DrawNow(r);
+			//iContainer->DrawNow(iLabelElapsedTime->Rect());
+		};
+		return ETrue;
+	};
+	return EFalse;
+}
+
+void CThemeVGALandscape::PeriodicUpdate(TTimeIntervalMicroSeconds &aCurrentPosition)
+{
+	//CColoredTheme::PeriodicUpdate(aCurrentPosition);
+	if(!(iFlags&EDragOperation) || !(iFlags&ESeekDrag))
+		UpdatePlaybackPosition(aCurrentPosition);
+}
+	
+void CThemeVGALandscape::SetColorScheme(TUint aColors, TBool aRedraw) //aRedraw=ETrue
+{
+	LOG0("CThemeVGALandscape::SetColorScheme+ (iContainer=%x aRedraw=%d)",iContainer,aRedraw);
+	CColoredTheme::SetColorScheme(aColors,EFalse);
+	aColors=iPreferences->iMusicPlayerThemeData; //can be that CColoredTheme changed/updated the aColors
+	SetStaticColorScheme(aColors);
+
+	if(iLabelElapsedTime)
+		iLabelElapsedTime->OverrideColorL(EColorLabelText,iColorText);
+	if(iTotalTime)
+		iTotalTime->OverrideColorL(EColorLabelText,iColorText);
+	if(iPositionInPlaylist)
+		iPositionInPlaylist->OverrideColorL(EColorLabelText,iColorProgressBarBoundary);
+	if(iButtonLeft)
+		iButtonLeft->OverrideColorL(EColorLabelText,iColorText);
+	if(iButtonRight)
+		iButtonRight->OverrideColorL(EColorLabelText,iColorText);
+	
+	if(iContainer && aRedraw)
+	{
+		iContainer->DrawDeferred();
+		LOG0("DD");
+	}
+	LOG0("CThemeVGALandscape::SetColorScheme-");
+}
+
+void CThemeVGALandscape::Draw(const TRect& aRect, CWindowGc& gc) const
+{	
+	CColoredTheme::Draw(aRect,gc);
+	if(iArtistTitleRect==aRect)return;
+	
+	gc.UseFont(iSmallFont);
+	gc.SetPenColor(iColorText);
+	gc.SetPenSize(TSize(1,1));
+	gc.SetBrushStyle(CGraphicsContext::ENullBrush);
+	
+	TUint32  step(0x001A1A1A);
+	TUint32 currentColor(iColorText.Value());
+	TBool decreaseColor(currentColor);
+	TInt height=iSmallFont->HeightInPixels();
+	TInt descent=iSmallFont->DescentInPixels();
+	
+	RPointerArray<HBufC> indexStrings;
+	RArray<TInt> indexes;
+	TPtr name(NULL,0);
+	TInt i,l,indexWidth,w;
+		
+	if(aRect.Intersects(TRect(KVGALXPrevPlaylistStart,KVGALYPrevPlaylistStart,KVGALXPrevPlaylistEnd,KVGALYPrevPlaylistEnd)))
+	{
+		//we draw the prev part
+		l=KVGALXPrevPlaylistEnd-KVGALListMargin;
+		const TInt nrPrevElements=(KVGALXPrevPlaylistEnd-KVGALXPrevPlaylistStart)/KVGALSmallFontSize;
+
+		if(iManager->iView->iPlaylist)
+			iManager->iView->iPlaylist->GetPrevIndexesL(nrPrevElements,indexStrings,indexes);
+		//
+		indexWidth=0;
+		for(i=0;i<indexes.Count();i++)
+		{
+			FL_ASSERT(indexStrings[i]);
+			w=iSmallFont->TextWidthInPixels(*indexStrings[i]);
+			if(w>indexWidth)indexWidth=w;
+		}
+		//
+		for(i=0;i<indexes.Count();i++)
+		{
+			//draw the index
+			gc.DrawTextVertical(*indexStrings[i],TRect(l-height-descent,KVGALYPrevPlaylistEnd-indexWidth,l,KVGALYPrevPlaylistEnd),height,ETrue,CGraphicsContext::ERight);
+			//draw the name
+			iManager->iView->iPlaylist->GetNameAsString(indexes[i],name);
+			gc.DrawTextVertical(name,TRect(l-height-descent,KVGALYPrevPlaylistStart,l,KVGALYPrevPlaylistEnd-indexWidth),height,ETrue);
+			l-=KVGALSmallFontSize;
+			if(decreaseColor)currentColor-=step;
+			else currentColor+=step;
+			gc.SetPenColor(TRgb(currentColor));
+		}
+		//clear
+		indexStrings.ResetAndDestroy();
+		indexes.Reset();
+		//fr sign on top
+		gc.BitBltMasked( TPoint(KVGALXPrevPlaylistStart+((KVGALXPrevPlaylistEnd-KVGALXPrevPlaylistStart-KNHDXFFFR)>>1), KVGALYPrevPlaylistStart+((KVGALYPrevPlaylistEnd-KVGALYPrevPlaylistStart-KNHDYFFFR)>>1)), iFr, TRect(0,0,KNHDXFFFR,KNHDYFFFR), iFrMask, ETrue);
+	}
+	
+	if(aRect.Intersects(TRect(KNHDLXNextPlaylistStart,KNHDLYNextPlaylistStart,KNHDLXNextPlaylistEnd,KNHDLYNextPlaylistEnd)))
+	{
+		//we draw the next part
+		l=KNHDLXNextPlaylistStart;
+		gc.SetPenColor(iColorText);
+		currentColor=iColorText.Value();
+		const TInt nrNextElements=(KNHDLXNextPlaylistEnd-KNHDLXNextPlaylistStart)/KNHDLSmallFontSize;
+		if(iManager->iView->iPlaylist)
+			iManager->iView->iPlaylist->GetNextIndexesL(nrNextElements,indexStrings,indexes);
+		//
+		indexWidth=0;
+		for(i=0;i<indexes.Count();i++)
+		{
+			FL_ASSERT(indexStrings[i]);
+			w=iSmallFont->TextWidthInPixels(*indexStrings[i]);
+			if(w>indexWidth)indexWidth=w;
+		}
+		//
+		for(i=0;i<indexes.Count();i++)
+		{
+			//draw the index
+			gc.DrawTextVertical(*indexStrings[i],TRect(l,KNHDLYNextPlaylistEnd-indexWidth,l+height+descent,KNHDLYNextPlaylistEnd),height,ETrue,CGraphicsContext::ERight);
+			//draw the name
+			iManager->iView->iPlaylist->GetNameAsString(indexes[i],name);
+			gc.DrawTextVertical(name,TRect(l,KNHDLYNextPlaylistStart,l+height+descent,KNHDLYNextPlaylistEnd-indexWidth),height,ETrue);
+			l+=KNHDLSmallFontSize;
+			if(decreaseColor)currentColor-=step;
+			else currentColor+=step;
+			gc.SetPenColor(TRgb(currentColor));
+		}
+		//clear
+		indexStrings.ResetAndDestroy();
+		indexes.Reset();
+		//ff sign
+		gc.BitBltMasked( TPoint(KNHDLXNextPlaylistStart+((KNHDLXNextPlaylistEnd-KNHDLXNextPlaylistStart-KNHDXFFFR)>>1), KNHDLYNextPlaylistStart+((KNHDLYNextPlaylistEnd-KNHDLYNextPlaylistStart-KNHDYFFFR)>>1)), iFf, TRect(0,0,KNHDXFFFR,KNHDYFFFR), iFfMask, ETrue);
+	}
+	//overall clear
+	gc.DiscardFont();
+	
+	
+	if(aRect.Intersects(TRect(iAlbumArtPosition,iAlbumArtSize)))
+	{
+		CTrack *currentTrack(iManager->iView->iTrack);
+		TBool drawPause(EFalse); //if iTrack is NULL, we will draw a Pause
+		if(currentTrack)
+		{
+			if(currentTrack->iState==CTrack::EStatePlaying)
+				drawPause=ETrue;
+			else if(currentTrack->iState==CTrack::EStateInitializing && currentTrack->iFlags&CTrack::EStartPlaying)
+				drawPause=ETrue;
+		};
+		if(drawPause)
+			gc.BitBltMasked( TPoint((KNHDLX-KNHDXPlayPause)>>1,(KNHDLY-KNHDYPlayPause)>>1), iPause,TRect(0,0,KNHDXPlayPause,KNHDYPlayPause), iPauseMask,ETrue);
+		else
+			gc.BitBltMasked( TPoint((KNHDLX-KNHDXPlayPause)>>1,(KNHDLY-KNHDYPlayPause)>>1), iPlay, TRect(0,0,KNHDXPlayPause,KNHDYPlayPause), iPlayMask, ETrue);
+	}
+	
+	if(aRect.iBr.iY>=KVGAButtonLeftRect.iTl.iY)
+	{
+		//we draw the botom buttons
+		gc.UseBrushPattern(iHugeFillV);
+		gc.SetBrushStyle(CGraphicsContext::EPatternedBrush);
+		gc.SetPenSize(TSize(0,0));
+		//left button
+		gc.SetBrushOrigin(KVGAButtonLeftRect.iTl);
+		gc.DrawRoundRect(KVGAButtonLeftRect,KButtonsRoundSize);
+
+		//right button
+		gc.SetBrushOrigin(KVGAButtonRightRect.iTl);
+		gc.DrawRoundRect(KVGAButtonRightRect,KButtonsRoundSize);		
+	}
+}
+
+void CThemeVGALandscape::ActivateL()
+{
+	if(iManager->iView->iFlags&CMusicPlayerView::ESongPreview)
+	{
+		if(!iRightButtonShowsBack)
+		{
+			iButtonRight->SetTextL(*iTxtBack);
+			iRightButtonShowsBack=ETrue;
+		}
+	}
+	else
+	{
+		if(iRightButtonShowsBack)
+		{
+			iButtonRight->SetTextL(*iTxtShow);
+			iRightButtonShowsBack=EFalse;
+		}
+	}
+	CColoredTheme::ActivateL();
+}
 #endif
 
 ///////////////////////////////////////////////////////////////////////	

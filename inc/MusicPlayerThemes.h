@@ -386,6 +386,61 @@ private:
 	//volume change with touch
 	TInt iVolInitialX;
 };
+
+class CThemeVGALandscape : public CNHDTheme
+{
+	friend class CThemeManager;
+public:
+	virtual ~CThemeVGALandscape();
+
+private:
+	static CThemeVGALandscape* NewL(TSize &aSize);
+	CThemeVGALandscape();
+	void ConstructL(TSize &aSize);
+public:
+	virtual TInt CountComponentControls();
+
+	virtual CCoeControl* ComponentControl( TInt aIndex );
+	
+	virtual void HandlePointerEventL(const TPointerEvent &aPointerEvent);
+	
+	virtual void SetMetadataL(CMetadata &aMetadata,TTimeIntervalMicroSeconds &aCurrentPosition);
+	
+	virtual void SetContainer(CMusicPlayerContainer *aContainer);
+	
+	virtual TBool UpdatePlaybackPosition(TTimeIntervalMicroSeconds &aCurrentPosition, TBool aDraw=ETrue); //returns ETrue if the progress bar was updated
+			
+	virtual void PeriodicUpdate(TTimeIntervalMicroSeconds &aCurrentPosition);
+	
+	virtual void UpdateVolumeOnScreen();
+	
+	virtual void Draw(const TRect& aRect, CWindowGc& gc) const;
+	
+	virtual void ActivateL();
+protected:
+	virtual void SetColorScheme(TUint aColors, TBool aRedraw=ETrue);
+
+private:
+	CEikLabel *iLabelElapsedTime;
+	CEikLabel *iTotalTime;
+	CEikLabel *iPositionInPlaylist;
+	CEikLabel *iButtonLeft;
+	CEikLabel *iButtonRight;
+	TInt iTimeLabelWidth;
+	
+	TBool iRightButtonShowsBack;
+	
+	TPoint iDragStart;
+	CFont *iSmallFont; //not owned
+
+	//volume change with touch
+	TInt iVolInitialX;
+	
+	//
+	HBufC *iTxtOptions;
+	HBufC *iTxtShow;
+	HBufC *iTxtBack;
+};
 #endif
 
 class CThemeQVGAPortrait : public CColoredTheme

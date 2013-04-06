@@ -95,19 +95,8 @@ void CMusicPlayerContainer::ConstructL(const TRect& aRect)
 
 	// Set the windows size
 	SetMopParent(iMusicPlayerView);
-	/*
-#ifdef __TOUCH_ENABLED__
-	SetExtentToWholeScreen();
-	if(aRect.Width()==360)
-		iCurrentTheme=iMusicPlayerView->iThemeManager->GetThemeL(KRectNHDportrait,iCurrentTheme);
-	else
-		iCurrentTheme=iMusicPlayerView->iThemeManager->GetThemeL(KRectNHDlandscape,iCurrentTheme);
-#else*/
 	SetRect( aRect );
 	iCurrentTheme=iMusicPlayerView->iThemeManager->GetThemeL(aRect,iCurrentTheme);
-//#endif
-
-
 
 	__ASSERT_ALWAYS(iCurrentTheme,Panic(EMusicPlayerNoTheme));
 	

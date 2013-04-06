@@ -17,7 +17,7 @@ _LIT(KDirBackslash, "\\");
 
 _LIT( KSelectionFileName, "Selection.xml");
 
-_LIT(KCDrive,"C:");
+_LIT(KCDrive,"C:\\Data"); //there is no way for the user to put music anywhere else
 _LIT(KDDrive,"D:");
 _LIT(KEDrive,"E:");
 _LIT(KFDrive,"F:");

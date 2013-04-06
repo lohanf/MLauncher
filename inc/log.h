@@ -64,12 +64,6 @@ private:
 #define WIDEN(x) WIDEN2(x)
 #define __DBG_FILE__ WIDEN(__FILE__)
 
-#define FL_ASSERT_TXT(c,x, ...) {if(FLLog::instance && !(c)){ \
-	FLLog::instance->Write(0,_L("Assertion failed in %s at line %d:"), __DBG_FILE__ , __LINE__ ); \
-	FLLog::instance->Write(0,_L(x),##__VA_ARGS__ ); \
-	FLLog::instance->End(ETrue); \
-	User::Panic(applicationName, 1000);} }
-
 #define FL_ASSERT(c) {if(FLLog::instance && !(c)){ \
 	FLLog::instance->Write(0,_L("Assertion failed in %s at line %d."), __DBG_FILE__ , __LINE__ ); \
 	FLLog::instance->End(ETrue); \
@@ -85,11 +79,25 @@ private:
 #define LOG0(x...)      {if(FLLog::instance && (ELogGeneral&FLLog::instance->iFlags))FLLog::instance->Write(0,x); }
 #define LOGret(r,x...)      {if(FLLog::instance && (ELogGeneral&FLLog::instance->iFlags))FLLog::instance->Write(-1,##x); return r;}
 #define LOGleave(r,x...)      {if(FLLog::instance && (ELogGeneral&FLLog::instance->iFlags))FLLog::instance->Write(-1,##x); User::Leave(r);}
+
+#define FL_ASSERT_TXT(c,x...) {if(FLLog::instance && !(c)){ \
+	FLLog::instance->Write(0,_L("Assertion failed in %s at line %d:"), __DBG_FILE__ , __LINE__ ); \
+	FLLog::instance->Write(0,##x ); \
+	FLLog::instance->End(ETrue); \
+	User::Panic(applicationName, 1000);} }
+
 #else
 #define LOG(f,i,x, ...)        {if(FLLog::instance && (f&FLLog::instance->iFlags))FLLog::instance->Write(i,_L(x),##__VA_ARGS__ ); }
 #define LOG0(x, ...)      {if(FLLog::instance && (ELogGeneral&FLLog::instance->iFlags))FLLog::instance->Write(0,_L(x),##__VA_ARGS__ ); }
 #define LOGret(r,x, ...)      {if(FLLog::instance && (ELogGeneral&FLLog::instance->iFlags))FLLog::instance->Write(-1,_L(x),##__VA_ARGS__ ); return r;}
 #define LOGleave(r,x, ...)      {if(FLLog::instance && (ELogGeneral&FLLog::instance->iFlags))FLLog::instance->Write(-1,_L(x),##__VA_ARGS__ ); User::Leave(r);}
+
+#define FL_ASSERT_TXT(c,x, ...) {if(FLLog::instance && !(c)){ \
+	FLLog::instance->Write(0,_L("Assertion failed in %s at line %d:"), __DBG_FILE__ , __LINE__ ); \
+	FLLog::instance->Write(0,_L(x),##__VA_ARGS__ ); \
+	FLLog::instance->End(ETrue); \
+	User::Panic(applicationName, 1000);} }
+
 #endif 
 
 #define LOG_END           {if(FLLog::instance)FLLog::instance->End(EFalse); }

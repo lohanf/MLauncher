@@ -28,7 +28,7 @@ private:
 	//from MEikListBoxObserver 
 	void HandleListBoxEventL (CEikListBox *aListBox, TListBoxEvent aEventType); 
 	//
-	//TBool OkToExitL(TInt aButtonId);
+	TBool OkToExitL(TInt aButtonId);
 	TKeyResponse OfferKeyEventL(const TKeyEvent& aKeyEvent, TEventCode aType);
 	
 	//own
